@@ -1,0 +1,124 @@
+.apartments-list {
+  @label-width: 60px;
+  margin: 0 auto 80px;
+  padding: 0 10px;
+  width: fit-content;
+
+  &__floor {
+    @item-height: 90px;
+    display: flex;  
+    flex-direction: row;
+    align-items: center;
+    border: 3px solid black;
+    height: @item-height;
+    font-size: 14px;
+
+    &:not(:first-child) {
+      border-top: 0;
+    }
+    
+    &__label {
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      border-left: 0;
+      height: @item-height;
+      box-sizing: border-box;
+      font-weight: 600;
+      width: @label-width;
+      white-space: nowrap;
+
+    }
+    
+    &__item {
+      padding: 5px;
+      border: 1px solid black;
+      border-right: 0;
+      box-sizing: border-box;
+      height: @item-height;
+      width: 130px;
+
+      &__title {
+        font-weight: 600;
+      }
+
+      &__content {
+        text-align: center;
+      }
+    }  
+
+  }
+  @media screen and (max-width: 1400px) {
+    width: auto;
+    
+    &__floor {
+      @item-height: 50px;
+      height: @item-height;
+
+      &__label {
+        height: @item-height;
+      }
+
+      &__item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc((100% - @label-width) / 10);
+        max-width: 130px;
+        height: @item-height;
+        
+        &:hover &__content {
+          visibility: visible;
+        }
+        
+        &__title {
+          width: fit-content;
+          
+          & .apartment-name {
+            display: none;
+          }
+        }
+        
+        &__content {
+          position: absolute;
+          top: 100%;
+          z-index: 2;
+          visibility: hidden;
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          background-color: @main-bg-color-dark;
+          color: white;
+          border-radius: 5px;
+          box-shadow: 0 0 3px black;
+          padding: 5px;
+
+          &::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid @main-bg-color-dark;
+            visibility: inherit;
+            position: absolute;
+            top: -5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.apartment-area {
+
+  &:before {
+    content: "Площадь ";
+  }
+
+  &:after {
+    content: " м2";
+  }
+}

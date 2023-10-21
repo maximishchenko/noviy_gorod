@@ -1,0 +1,27 @@
+/* Colors */
+// @main-bg-color-light: rgb(219, 219, 219);
+@main-bg-color-dark: #1e293c;
+
+/* Breakpoints */
+// @breakpoint-large: 1280px;
+// @breakpoint-medium: 1024px;
+// @breakpoint-small: 768px;
+// @breakpoint-mobile: 425px;
+
+/* Blocks */
+@import "header.less";
+@import "apartments-list.less";
+
+
+.container {
+  display: block;
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 100%;
+  max-width: 1220px;
+  
+  &--big {
+    max-width: 1400px;
+    padding: 0;
+  }
+}
