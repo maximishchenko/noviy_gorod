@@ -88,3 +88,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.row__section {
+    margin: 2rem 0;
+}
