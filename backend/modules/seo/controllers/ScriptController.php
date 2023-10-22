@@ -66,7 +66,7 @@ class ScriptController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        Yii::$app->session->setFlash('warning', Yii::t('app', 'Record deleted'));
+        Yii::$app->session->setFlash('danger', Yii::t('app', 'Record deleted'));
 
         return $this->redirect(['index']);
     }

@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             $field->textarea()->label(Yii::t('app', $model->label))->hint(Yii::t('app', $model->description));
                                             break;
                                         case 'dropDown':
-                                            $field->dropDownList($model->inputOptions['items'])->label(Yii::t('app', $model->label))->hint(Yii::t('app', $model->description));
+                                            $field->dropDownList($model->inputOptions['items'], $model->inputOptions['params'])->label(Yii::t('app', $model->label))->hint(Yii::t('app', $model->description));
                                             break;
                                     }
                                     echo $field;

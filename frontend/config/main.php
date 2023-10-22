@@ -15,6 +15,9 @@ return [
         'catalog' => [
             'class' => 'frontend\modules\catalog\Module',
         ],
+        'content' => [
+            'class' => 'frontend\modules\content\Module',
+        ],
         'seo' => [
             'class' => 'frontend\modules\seo\Module',
         ],

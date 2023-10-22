@@ -2,14 +2,8 @@
 
 use yii\db\Migration;
 
-/**
- * Class m231003_194230_create_seo_module_tables
- */
 class m231003_194230_create_seo_module_tables extends Migration
 {
-    /**
-     * {@inheritdoc}
-     */
     public function safeUp()
     {        
         $tableOptions = null;
@@ -106,9 +100,6 @@ class m231003_194230_create_seo_module_tables extends Migration
         $this->createIndex('idx-meta_tag-updated_by', '{{%meta_tag}}', 'updated_by');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function safeDown()
     {   
         $this->dropTable('{{%redirect}}');     

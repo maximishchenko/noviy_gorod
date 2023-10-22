@@ -2,6 +2,10 @@
 
 namespace frontend\controllers;
 
+use common\models\Status;
+use frontend\modules\content\models\Stage;
+use frontend\modules\content\models\StageItem;
+use Yii;
 
 class SiteController extends BaseController
 {
@@ -17,7 +21,8 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $stageModel = new Stage();
+        return $this->render('index', ['stage' => $stageModel->getStage()]);
     }
 
     public function actionPolicy()

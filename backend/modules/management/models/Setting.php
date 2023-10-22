@@ -20,6 +20,7 @@ class Setting extends \yii\base\Model
     const TAB_CONTACT = 'contact';
     const TAB_SEO = 'seo';
     const TAB_GLOBAL = 'global';
+    const TAB_CONTENT = 'content';
 
     public static function getTabsArray(): array
     {
@@ -27,6 +28,7 @@ class Setting extends \yii\base\Model
             self::TAB_CONTACT => Yii::t('app', 'SETTING_CONTACT_TAB'),
             self::TAB_SEO => Yii::t('app', 'SETTING_SEO_TAB'),
             self::TAB_GLOBAL => Yii::t('app', 'SETTING_TAB_GLOBAL'),
+            self::TAB_CONTENT => Yii::t('app', 'SETTING_TAB_CONTENT'),
         ];
     }
 
@@ -37,10 +39,13 @@ class Setting extends \yii\base\Model
                 'phone', 'email', 'address'
             ],
             self::TAB_SEO => [
-                'seo_keywords', 'seo_description', 'seo_index_now_key',
+                'seo_keywords', 'seo_description',
             ],
             self::TAB_GLOBAL => [
                 'is_website_offline'
+            ],
+            self::TAB_CONTENT => [
+                'main_stage', 'main_stage_max_items_count',
             ],
         ];
     }

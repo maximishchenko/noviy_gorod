@@ -4,32 +4,35 @@
 $this->title = 'Новострой';
 ?>
 
+<?php if(isset($stage) && !empty($stage)): ?>
 <section class="banner banner-new">
-    <div class="banner__slider">
-        <div class="banner-new__wrapper" style="background-image: url(images/banner-image_0x0_cd6.webp);">
-            <div class="container container--big">
-            <div class="banner__item">
-                <div class="banner-new__wrap">
-                    <div class="banner-new__title">Квартиры в ипотеку от&nbsp;13&nbsp;432&nbsp;₽ в&nbsp;ЖК&nbsp;Новый&nbsp;Город</div>
-                </div>
-                <div class="banner-new__advantages">
-                    <div class="circle-btn circle-btn--active">Льготная ипотека</div>
-                    <div class="circle-btn circle-btn--active btn2 js-open-feedback3">
-                        <svg width="253" height="126" viewbox="0 0 253 126" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M212.096 37.7748L189.653 34.3466L183.049 27.1137C167.316 9.88277 144.915 0 121.583 0H104.035C100.221 0 96.4589 0.300674 92.7497 0.831764C92.6878 0.843004 92.626 0.848625 92.5642 0.859865C70.649 4.04359 50.9706 16.2249 38.3734 34.8777C16.0339 43.0239 0 63.9444 0 85.2835C0 94.4272 7.43807 101.863 16.579 101.863H26.2763C28.9992 115.536 41.0822 125.874 55.5453 125.874C70.0083 125.874 82.0913 115.536 84.8142 101.863H169.505C172.228 115.536 184.314 125.874 198.774 125.874C213.234 125.874 225.317 115.536 228.04 101.863H236.321C245.465 101.863 252.9 94.4272 252.9 85.2835C252.9 61.3676 235.742 41.3885 212.096 37.7748ZM121.586 11.24C141.439 11.24 160.499 19.5267 174.065 33.9841H110.894L101.714 11.3131C102.486 11.2878 103.259 11.24 104.035 11.24H121.586ZM90.1448 12.69L98.7659 33.9841H53.3113C63.0255 23.0729 75.9206 15.6433 90.1448 12.69ZM55.5453 114.634C45.2831 114.634 36.9346 106.285 36.9346 96.0261C36.9346 85.764 45.2831 77.4155 55.5453 77.4155C65.8074 77.4155 74.1559 85.764 74.1559 96.0261C74.1559 106.288 65.8074 114.634 55.5453 114.634ZM198.774 114.634C188.512 114.634 180.163 106.285 180.163 96.0261C180.163 85.764 188.512 77.4155 198.774 77.4155C209.033 77.4155 217.382 85.764 217.382 96.0261C217.382 106.288 209.036 114.634 198.774 114.634Z"
-                        ></path>
-                        </svg>
-                        Парковки под навесом
-                    </div>
-                    <div class="circle-btn circle-btn--active">Закрытая территория</div>
-                </div>
+  <div class="banner__slider">
+    <div class="banner-new__wrapper" style="background-image: url(<?= $stage->background; ?>);">
+      <div class="container container--big">
+        <div class="banner__item">
+          
+          <div class="banner-new__wrap">
+            <div class="banner-new__title">
+              <?= $stage->text; ?>
             </div>
-            </div>
-        </div>
-    </div>
-</section>
+          </div>
 
+          <div class="banner-new__advantages">
+            <?php if(isset($stage->stageItems) && !empty($stage->stageItems)): ?>
+              <?php foreach($stage->stageItems as $stageItem): ?>
+                <div class="circle-btn circle-btn--active">
+                  <?= $stageItem->name; ?>
+                </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 
 

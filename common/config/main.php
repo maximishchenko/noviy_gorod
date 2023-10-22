@@ -1,4 +1,7 @@
 <?php
+
+use backend\modules\content\models\Stage;
+
 return [
     'name' => 'Новострой',
     'timezone'=> 'Europe/Moscow',
@@ -14,7 +17,7 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'configManager' => [
-            'class' => 'yii2tech\config\Manager',
+            'class' => yii2tech\config\Manager::class,
             'autoRestoreValues' => true,
             'cacheDuration' => 3600,
             'storage' => [
@@ -54,6 +57,23 @@ return [
                     ],
                     'inputOptions' => [
                         'type' => 'textarea',
+                    ],
+                ],
+                'contentMainStage' => [
+                    'path' => 'main_stage',
+                    'label' => Yii::t('app', "CONTENT_MAIN_STAGE"),
+                    'description' => Yii::t('app', "CONTENT_MAIN_STAGE DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+                'contentMainStageMaxItemsCount' => [
+                    'path' => 'main_stage_max_items_count',
+                    'label' => Yii::t('app', "CONTENT_MAIN_STAGE_MAX_ITEMS_COUNT"),
+                    'description' => Yii::t('app', "CONTENT_MAIN_STAGE_MAX_ITEMS_COUNT DESCRIPTION"),
+                    'value' => 3,
+                    'rules' => [
+                        ['required'],
                     ],
                 ],
                 'seoDefaultKeywords' => [
