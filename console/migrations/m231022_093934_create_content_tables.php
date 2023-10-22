@@ -59,10 +59,28 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-stage_item-updated_by', '{{%stage_item}}', 'updated_by');
         
         $this->addForeignKey('fk-stage_item-stage', '{{%stage_item}}', 'stage_id', '{{%stage}}', 'id', 'CASCADE', 'RESTRICT');
+
+        $this->createTable('{{%lead}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string(),
+            'phone' => $this->string(),
+            'email' => $this->string(),
+            'subject' => $this->string(),
+            'body' => $this->text(),
+            'created_at' => $this->integer(),
+        ], $tableOptions);
+        
+        $this->createIndex('idx-lead-id', '{{%lead}}', 'id');
+        $this->createIndex('idx-lead-name', '{{%lead}}', 'name');
+        $this->createIndex('idx-lead-phone', '{{%lead}}', 'phone');
+        $this->createIndex('idx-lead-email', '{{%lead}}', 'email');
+        $this->createIndex('idx-lead-subject', '{{%lead}}', 'subject');
+        $this->createIndex('idx-lead-created_at', '{{%lead}}', 'created_at');
     }
 
     public function safeDown()
     {
+        $this->dropTable('{{%lead}}');
         $this->dropTable('{{%stage_item}}');  
         $this->dropTable('{{%stage}}');  
     }
