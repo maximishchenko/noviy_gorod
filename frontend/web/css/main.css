@@ -2618,7 +2618,7 @@ h3 {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   background: #fff;
   -webkit-transition: background 0.25s ease-in-out, color 0.25s ease-in-out;
   -o-transition: background 0.25s ease-in-out, color 0.25s ease-in-out;
@@ -3073,14 +3073,14 @@ article .room__btn {
   }
 }
 
-.banner.banner-new .circle-btn:hover {
+/* .banner.banner-new .circle-btn:hover {
   background-color: #fff;
   color: #0e213b;
-}
-
+} */
+/* 
 .banner.banner-new .circle-btn:hover svg {
   fill: #0e213b;
-}
+} */
 
 @media only screen and (min-width: 43.75rem) {
 
@@ -9000,6 +9000,7 @@ article .room__btn {
 
 .footer__contacts-item {
   margin-bottom: 1.5rem;
+  max-width: 400px;
 }
 
 @media only screen and (min-width: 48rem) {
