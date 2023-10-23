@@ -1,6 +1,6 @@
 
     
-    <div class="modal modal--feedback hidden">
+    <div class="modal modal--feedback">
       <div class="modal__close"></div>
       <div class="page-title">Оставить заявку</div>
       <div class="choose-feedback__text">Заполните форму ниже и наши менеджеры свяжутся с вами</div>
@@ -34,7 +34,7 @@
         <input type="hidden" name="af_action" value="ba7a29dfbe88f84d6542e86da379062f" />
       </form>
     </div>
-    <div class="modal modal--feedback2 hidden">
+    <div class="modal modal--feedback2">
       <div class="modal__close"></div>
       <div class="page-title">Оставьте свои контакты</div>
       <div class="choose-feedback__text">И мы вышлем Вам презентацию. Обещаем, никакого спама</div>
@@ -67,7 +67,7 @@
         <input type="hidden" name="af_action" value="212974c527fb06a2d7b76f3401f8736f" />
       </form>
     </div>
-    <div class="modal modal--feedback3 hidden">
+    <div class="modal modal--feedback3">
       <div class="modal__close"></div>
       <div class="page-title">
         Последние 40 парковок <br />
@@ -103,7 +103,7 @@
         <input type="hidden" name="af_action" value="d2a9191d2d7d3b5c8b7bc3cbdeedf0ed" />
       </form>
     </div>
-    <div class="modal modal--thanks hidden">
+    <div class="modal modal--thanks">
       <div class="modal__close"></div>
       <div class="page-title">Спасибо</div>
       <div class="choose-feedback__text">Ваша заявка успешно отправлена</div>
