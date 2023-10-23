@@ -25,6 +25,7 @@
         "yii2tech/sitemap": "^1.1",
         "npm-asset/swiper": "*",
         "npm-asset/jquery": "*",
+        "npm-asset/ion-rangeslider": "*",
         "andrewdanilov/yii2-breadcrumbs": "~1.0.0",
         "andrewdanilov/yii2-thumbs": "~1.1.0"
     },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29a509d816f6ef41dfa3e7d508f5af18",
+    "content-hash": "dbe768e478089e61abbd91d5a6c634e1",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -714,6 +714,18 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.6.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/ion-rangeslider",
+            "version": "2.3.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/ion-rangeslider/-/ion-rangeslider-2.3.1.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -6439,5 +6451,5 @@
         "php": ">=7.4.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

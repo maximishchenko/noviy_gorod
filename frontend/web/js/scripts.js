@@ -178,19 +178,20 @@ $(function () {
       (a /= 2), (i[0].scrollLeft = i[0].scrollLeft + a);
     }
     // TODO переписать, т.к. AjaxForm - компонент MODX
-    // if (
-    //   ($(function () {
-    //     $(".ajax_form").append('<input type="text" name="org" value="" class="_org" style="visibility:hidden; padding: 0; border:none;"/>'),
-    //       (AjaxForm.Message.success = function () {}),
-    //       (AjaxForm.Message.error = function () {}),
-    //       $(document).on("af_complete", function (e, t) {
-    //         !0 === t.success && ($(".modal--active").removeClass("modal--active"), $(".modal--thanks").addClass("modal--active"));
-    //       });
-    //   }),
-    //   $(".js-range-slider").length && $(".js-range-slider").ionRangeSlider({ min: 25, max: 100, type: "double", step: 5 }),
-    //   $(".modal.hidden").removeClass("hidden"),
-    //   $(".mortgage__item").length)
-    // )
+    if (
+      (
+      //   $(function () {
+      //   $(".ajax_form").append('<input type="text" name="org" value="" class="_org" style="visibility:hidden; padding: 0; border:none;"/>'),
+      //     (AjaxForm.Message.success = function () {}),
+      //     (AjaxForm.Message.error = function () {}),
+      //     $(document).on("af_complete", function (e, t) {
+      //       !0 === t.success && ($(".modal--active").removeClass("modal--active"), $(".modal--thanks").addClass("modal--active"));
+      //     });
+      // }),
+      $(".js-range-slider").length && $(".js-range-slider").ionRangeSlider({ min: 25, max: 100, type: "double", step: 5 }),
+      $(".modal.hidden").removeClass("hidden"),
+      $(".mortgage__item").length)
+    )
       for (var r = $(".mortgage__item"), o = 0; o < r.length; o++) {
         var s = $(".mortgage__item").eq(o).find(".mortgage__item-text").prop("scrollHeight");
         $(window).width() >= 768 ? s < 175 && $(".mortgage__item").eq(o).find(".page-btn").hide() : s < 205 && $(".mortgage__item").eq(o).find(".page-btn").hide();
