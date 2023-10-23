@@ -2,52 +2,63 @@
 
 namespace backend\modules\catalog\models\search;
 
+use backend\modules\catalog\models\Entrance;
+use backend\modules\catalog\models\House;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Layout;
 
-/**
- * LayoutSearch represents the model behind the search form of `backend\modules\catalog\models\Layout`.
- */
 class LayoutSearch extends Layout
 {
-    /**
-     * {@inheritdoc}
-     */
+
+    public $house;
+
+    public $entrance;
+
     public function rules()
     {
         return [
             [['id', 'entrance_id', 'count_rooms', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'image', 'comment'], 'safe'],
+            [['name', 'image', 'comment', 'house', 'entrance'], 'safe'],
             [['total_area'], 'number'],
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Layout::find();
-
-        // add conditions that should always apply here
+        $query->with(['entrance']);
+        $query->joinWith(['house']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
         ]);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'name',
+                'count_rooms',
+                'total_area',
+                'sort',
+                'status',
+                'entrance' => [
+                    'asc' => [Entrance::tableName() . '.number' => SORT_ASC],
+                    'desc' => [Entrance::tableName() . '.number' => SORT_DESC],
+                ],
+                'house' => [
+                   'asc' => [House::tableName() . '.name' => SORT_ASC],
+                   'desc' => [House::tableName() . '.name' => SORT_DESC],
+                ]
+           ]
+       ]);
 
         $this->load($params);
 
@@ -57,7 +68,6 @@ class LayoutSearch extends Layout
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'entrance_id' => $this->entrance_id,
@@ -69,6 +79,8 @@ class LayoutSearch extends Layout
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            House::tableName() . '.id' => $this->house,
+            Entrance::tableName() . '.id' => $this->entrance,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -4,6 +4,7 @@ namespace backend\modules\catalog\models;
 
 use backend\modules\catalog\models\query\LayoutQuery;
 use backend\traits\fileTrait;
+use common\models\Sort;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -75,11 +76,14 @@ class Layout extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'entrance_id' => Yii::t('app', 'Entrance ID'),
-            'name' => Yii::t('app', 'Name'),
+            'entrance_id' => Yii::t('app', 'Layout Entrance ID'),
+            'name' => Yii::t('app', 'Layout Name'),
+            'house' => Yii::t('app', 'House of Layout'),
+            'entrance' => Yii::t('app', 'Entrance of Layout'),
             'image' => Yii::t('app', 'Image'),
-            'count_rooms' => Yii::t('app', 'Count Rooms'),
-            'total_area' => Yii::t('app', 'Total Area'),
+            'imageFile' => Yii::t('app', 'Layout Image'),
+            'count_rooms' => Yii::t('app', 'Layout Count Rooms'),
+            'total_area' => Yii::t('app', 'Layout Total Area'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
@@ -87,6 +91,19 @@ class Layout extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_by' => Yii::t('app', 'Updated By'),
+        ];
+    }
+
+    public function attributeHints()
+    {
+        return [
+            'entrance_id' => Yii::t('app', 'Layout Entrance ID'),
+            'name' => Yii::t('app', 'Layout Name Hint'),
+            'count_rooms' => Yii::t('app', 'Layout Count Rooms Hint'),
+            'total_area' => Yii::t('app', 'Layout Total Area Hint'),
+            'comment' => Yii::t('app', 'Comment Hint'),
+            'sort' => Yii::t('app', 'Sort Hint. Default value is {sortDefault}', ['sortDefault' => Sort::DEFAULT_SORT_VALUE]),
+            'status' => Yii::t('app', 'Status Hint'),
         ];
     }
 
@@ -98,6 +115,11 @@ class Layout extends \yii\db\ActiveRecord
     public function getEntrance()
     {
         return $this->hasOne(Entrance::class, ['id' => 'entrance_id']);
+    }
+
+    public function getHouse()
+    {
+        return $this->hasOne(House::class, ['id' => 'house_id'])->viaTable(Entrance::tableName(), ['id' => 'entrance_id']);
     }
 
     public static function find()

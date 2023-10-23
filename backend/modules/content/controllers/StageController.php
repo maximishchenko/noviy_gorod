@@ -91,9 +91,7 @@ class StageController extends Controller
         $model->save();
         Yii::$app->session->setFlash('danger', Yii::t('app', 'Record deleted'));
         return $this->redirect(Yii::$app->request->referrer);
-    }
-
-    
+    }    
 
     public function actionItems($id)
     {

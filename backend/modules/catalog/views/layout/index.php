@@ -1,27 +1,25 @@
 <?php
 
-use backend\modules\catalog\models\Layout;
+use backend\modules\catalog\models\Entrance;
+use backend\modules\catalog\models\House;
+use backend\widgets\LinkColumn;
+use backend\widgets\ListButtonsWidget;
+use backend\widgets\SetColumn;
+use common\models\Status;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
-
-/** @var yii\web\View $this */
-/** @var backend\modules\catalog\models\search\LayoutSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('app', 'Layouts');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CATALOG_MODULE'), 'url' => ['/catalog']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="layout-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Layout'), ['create'], ['class' => 'btn btn-success']) ?>
+    <p class="text-right">
+        <?= ListButtonsWidget::widget() ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,24 +27,57 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'entrance_id',
-            'name',
-            'image',
+            [
+                'attribute' => 'id',
+                'contentOptions' => ['style' => 'width:100px;'],
+            ],
+            [
+                'class' => LinkColumn::className(),
+                'attribute' => 'name',
+                'contentOptions' => ['class' => 'text-wrap'],
+                'headerOptions' => [
+                    'class' => 'sort-numerical',
+                ],
+            ],
+            [
+                'attribute' => 'house',
+                'format' => 'raw',
+                'filter' => ArrayHelper::map(House::find()->orderBy(['name' => SORT_ASC])->all(), 'id', 'nameWithPrefix'),
+                'value' => function($data) {
+                    return $data->house->nameWithPrefix;
+                }
+            ],
+            [
+                'attribute' => 'entrance',
+                'format' => 'raw',
+                'filter' => ArrayHelper::map(Entrance::find()->orderBy(['number' => SORT_ASC])->all(), 'id', 'numberWithPrefix'),
+                'value' => function($data) {
+                    return $data->entrance->numberWithPrefix;
+                }
+            ],
             'count_rooms',
-            //'total_area',
-            //'comment:ntext',
-            //'sort',
-            //'status',
-            //'created_at',
-            //'updated_at',
-            //'created_by',
-            //'updated_by',
+            'total_area',
+            [
+                'attribute' => 'sort',
+                'contentOptions' => ['style' => 'width:100px;'],
+            ],
+            [
+                'class' => SetColumn::className(),
+                'filter' => Status::getStatusesArray(),
+                'attribute' => 'status',
+                'name' => function($data) {
+                    return ArrayHelper::getValue(Status::getStatusesArray(), $data->status);
+                },
+                'contentOptions' => ['style' => 'width:100px;'],
+                'cssCLasses' => [
+                    Status::STATUS_ACTIVE => 'success',
+                    Status::STATUS_BLOCKED => 'danger',
+                ],
+            ],
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Layout $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'contentOptions' => ['style' => 'width:80px;'],
+                'template' => '{delete}',
             ],
         ],
     ]); ?>
