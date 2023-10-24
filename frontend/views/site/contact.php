@@ -21,11 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="contacts__item">
           <div class="contacts__item-title">Телефон</div>
-          <a class="contacts__item-text" href="tel:+78792261420">+7 (879) 226-14-20</a>
+          <?= Html::a(Yii::$app->configManager->getItemValue('contactPhone'), 'tel:' . Yii::$app->configManager->getItemValue('contactPhone'), ['class' => 'contacts__item-text']); ?>
         </div>
         <div class="contacts__item">
           <div class="contacts__item-title">E-mail</div>
-          <a class="contacts__item-text" href="mailto:Dom-Kliuch@yandex.ru">Dom-Kliuch@yandex.ru</a>
+          <?= Html::mailto(Yii::$app->configManager->getItemValue('contactEmail'), Yii::$app->configManager->getItemValue('contactEmail'), ['class' => 'contacts__item-text']); ?>
         </div>
       </div>
       <div id="map" style="background-color: grey;">

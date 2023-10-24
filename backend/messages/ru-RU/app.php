@@ -164,4 +164,5 @@ return [
     'Update Layout: {name}' => '{name}',
     'House of Layout' => 'Дом/литер',
     'Entrance of Layout' => 'Подъезд',
+    'Current Entrance Layouts' => 'Планировки в текущем подъезде',
 ];

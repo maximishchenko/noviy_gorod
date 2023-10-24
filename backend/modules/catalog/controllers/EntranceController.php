@@ -3,8 +3,10 @@
 namespace backend\modules\catalog\controllers;
 
 use backend\modules\catalog\models\Entrance;
+use backend\modules\catalog\models\Layout;
 use backend\modules\catalog\models\search\EntranceSearch;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -59,6 +61,10 @@ class EntranceController extends Controller
     {
         $model = $this->findModel($id);
 
+        $layouts = new ActiveDataProvider([
+            'query' => Layout::find()->where(['entrance_id' => $id])->orderBy(['name' => SORT_ASC])
+        ]);
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record changed'));
             return $this->refresh();
@@ -66,6 +72,7 @@ class EntranceController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'layouts' => $layouts,
         ]);
     }
 
