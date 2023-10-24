@@ -3,15 +3,15 @@ const less = require('gulp-less');
 const sourcemaps = require('gulp-sourcemaps');
 
 function less_compile (){
-    return src('./less/style.less')
+    return src('./frontend/web/less/style.less')
         .pipe(less())
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('./'))
-        .pipe(dest('./css/'))
+        .pipe(dest('./frontend/web/css/'))
 }
 
 exports.default = function () {
-  watch('./less/**/*.less', less_compile)
+  watch('./frontend/web/less/*.less', less_compile)
 }
 
 exports.less = less_compile;
