@@ -6,14 +6,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Apartment;
 
-/**
- * ApartmentSearch represents the model behind the search form of `backend\modules\catalog\models\Apartment`.
- */
 class ApartmentSearch extends Apartment
 {
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -22,30 +16,18 @@ class ApartmentSearch extends Apartment
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Apartment::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -56,7 +38,6 @@ class ApartmentSearch extends Apartment
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'layout_id' => $this->layout_id,

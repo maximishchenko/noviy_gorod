@@ -1,3 +1,4 @@
+<?php if(isset($this->params['breadcrumbs'])): ?>
 <div class="bread">
     <div class="container">
     <?= andrewdanilov\breadcrumbs\Breadcrumbs::widget([
@@ -12,3 +13,4 @@
     ]) ?>
     </div>
 </div>
+<?php endif; ?>
