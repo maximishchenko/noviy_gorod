@@ -1,28 +1,39 @@
 .apartments-list {
   @label-width: 60px;
   margin: 0 auto 80px;
-  padding: 0 10px;
   width: fit-content;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: @label-width repeat(10, 1fr);
+  font-size: 14px;
+  border: 1px solid black;
 
   &__floor {
     @item-height: 90px;
-    display: flex;  
+    // display: grid;
+    // grid-template-columns: @label-width repeat(10, 1fr);
+    box-sizing: content-box;
     flex-direction: row;
     align-items: center;
     border: 3px solid black;
     height: @item-height;
-    font-size: 14px;
+    
 
     &:not(:first-child) {
       border-top: 0;
+    }
+
+    &__label, &__item {
+      border: 1px solid black;
+      border-collapse: collapse;
+      height: @item-height;
+
     }
     
     &__label {
       display: flex;
       align-items: center;
       padding: 0 5px;
-      border-left: 0;
-      height: @item-height;
       box-sizing: border-box;
       font-weight: 600;
       width: @label-width;
@@ -32,14 +43,11 @@
     
     &__item {
       padding: 5px;
-      border: 1px solid black;
-      border-right: 0;
       box-sizing: border-box;
-      height: @item-height;
-      width: 130px;
 
       &__title {
         font-weight: 600;
+        text-align: center;
       }
 
       &__content {
@@ -49,7 +57,8 @@
 
   }
   @media screen and (max-width: 1400px) {
-    width: auto;
+    width: calc(100% - 20px);
+    font-size: 12px;
     
     &__floor {
       @item-height: 50px;
@@ -64,8 +73,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: calc((100% - @label-width) / 10);
-        max-width: 130px;
         height: @item-height;
         
         &:hover &__content {
@@ -107,6 +114,16 @@
             top: -5px;
           }
         }
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+
+    &__floor{
+
+      &__label, &__item {
+        height: 35px;
       }
     }
   }

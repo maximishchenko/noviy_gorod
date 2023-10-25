@@ -79,7 +79,7 @@ $(function () {
     }),
     $(function () {
       $(window).scroll(function () {
-        $(window).scrollTop() > 10 ? $(".header").addClass("header--hide") : $(".header").removeClass("header--hide");
+        $(window).scrollTop() > 0 ? $(".header").addClass("header--hide") : $(".header").removeClass("header--hide");
       });
     }),
     $(function () {
@@ -203,5 +203,5 @@ $(function () {
         n && (n.closest(".liter__image svg path") ? e.classList.add("tooltip--active") : e.classList.remove("tooltip--active"), (e.style.left = t.pageX - 60 + "px"), (e.style.top = t.pageY - 40 + "px"));
       });
     };
-    $(".js-hover").length && l(), $(window).scrollTop() > 10 ? $(".header").addClass("header--hide") : $(".header").removeClass("header--hide");
+    $(".js-hover").length && l(), $(window).scrollTop() > 0 ? $(".header").addClass("header--hide") : $(".header").removeClass("header--hide");
   });

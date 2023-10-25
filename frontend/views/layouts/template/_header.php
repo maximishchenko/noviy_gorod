@@ -12,12 +12,10 @@ use yii\helpers\Html;
                 <?= Html::a('Акции', ['/offers'], ['class' => 'header__nav-link']); ?>
             </nav>
         </div>
-        <div class="header__logo">
-            <a href="<?= Yii::$app->homeUrl; ?>">
-                <?= Html::img('/images/logo.svg', ['class' => 'header__logo__img']); ?>
-                <div class="header__logo__text">Новый Город</div>
-            </a>
-        </div>
+        <a href="<?= Yii::$app->homeUrl; ?>" class="header__logo">
+            <?= Html::img('/images/logo.svg', ['class' => 'header__logo__img']); ?>
+            <div class="header__logo__text">Новый Город</div>
+        </a>
         <div class="header__right">
             <nav class="header__nav">
                 <?= Html::a('Другие наши проекты', ['#'], ['class' => 'header__nav-link']); ?>
