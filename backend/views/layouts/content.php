@@ -13,7 +13,7 @@ use common\widgets\Alert;
                     <h1 class="m-0">
                         <?php
                         if (!is_null($this->title)) {
-                            echo \yii\helpers\Html::encode($this->title);
+                            echo \yii\helpers\Html::decode($this->title);
                         } else {
                             echo \yii\helpers\Inflector::camelize($this->context->id);
                         }

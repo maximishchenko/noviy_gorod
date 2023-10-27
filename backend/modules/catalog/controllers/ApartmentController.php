@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use backend\modules\catalog\models\Apartment;
+use backend\modules\catalog\models\Entrance;
 use backend\modules\catalog\models\search\ApartmentSearch;
 use Yii;
 use yii\web\Controller;
@@ -75,6 +76,33 @@ class ApartmentController extends Controller
         Yii::$app->session->setFlash('danger', Yii::t('app', 'Record deleted'));
 
         return $this->redirect(['index']);
+    }
+    
+
+    public function actionDeleteImage(int $id)
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(Apartment::UPLOAD_PATH, $model->image);
+        $model->removeSingleFileIfExist($file);
+        $model->image = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', Yii::t('app', 'Record deleted'));
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionFloorList($id)
+    {
+        $entrance = Entrance::find()
+            ->where(['id' => $id])
+            ->one();
+
+        echo "<option value=''>-</option>";
+        if($entrance){
+            for ($i = 1; $i <= $entrance->count_floors; $i++) {
+                echo "<option value='". $i ."'>" . $i . "</option>";
+            }
+        }
+
     }
 
     protected function findModel($id)

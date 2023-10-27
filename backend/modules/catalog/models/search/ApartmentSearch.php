@@ -11,8 +11,8 @@ class ApartmentSearch extends Apartment
     public function rules()
     {
         return [
-            [['id', 'layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'image', 'status', 'comment'], 'safe'],
+            [['id', 'layout_id', 'sort', 'created_at', 'updated_at', 'apartment_floor', 'created_by', 'updated_by'], 'integer'],
+            [['image', 'status', 'comment'], 'safe'],
         ];
     }
 
@@ -40,6 +40,7 @@ class ApartmentSearch extends Apartment
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'apartment_floor' => $this->apartment_floor,
             'layout_id' => $this->layout_id,
             'sort' => $this->sort,
             'created_at' => $this->created_at,
@@ -48,8 +49,7 @@ class ApartmentSearch extends Apartment
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'image', $this->image])
+        $query->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 

@@ -13,7 +13,7 @@ class m231022_181408_create_catalog_module_tables extends Migration
 
         $this->createTable('{{%house}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(),
+            'name' => $this->string()->notNull(),
             'comment' => $this->text(),
             'sort' => $this->integer(),
             'status' => $this->smallInteger(),
@@ -34,9 +34,9 @@ class m231022_181408_create_catalog_module_tables extends Migration
 
         $this->createTable('{{%entrance}}', [
             'id' => $this->primaryKey(),
-            'house_id' => $this->integer(),
-            'number' => $this->integer(),
-            'count_foors' => $this->integer(),
+            'house_id' => $this->integer()->notNull(),
+            'number' => $this->integer()->notNull(),
+            'count_floors' => $this->integer()->notNull(),
             'comment' => $this->text(),
             'sort' => $this->integer(),
             'status' => $this->smallInteger(),
@@ -49,7 +49,7 @@ class m231022_181408_create_catalog_module_tables extends Migration
         $this->createIndex('idx-entrance-id', '{{%entrance}}', 'id');
         $this->createIndex('idx-entrance-house_id', '{{%entrance}}', 'house_id');
         $this->createIndex('idx-entrance-number', '{{%entrance}}', 'number');
-        $this->createIndex('idx-entrance-count_foors', '{{%entrance}}', 'count_foors');
+        $this->createIndex('idx-entrance-count_floors', '{{%entrance}}', 'count_floors');
         $this->createIndex('idx-entrance-sort', '{{%entrance}}', 'sort');
         $this->createIndex('idx-entrance-status', '{{%entrance}}', 'status');
         $this->createIndex('idx-entrance-created_at', '{{%entrance}}', 'created_at');
@@ -61,11 +61,10 @@ class m231022_181408_create_catalog_module_tables extends Migration
 
         $this->createTable('{{%layout}}', [
             'id' => $this->primaryKey(),
-            'entrance_id' => $this->integer(),
-            'name' => $this->string(),
+            'entrance_id' => $this->integer()->notNull(),
             'image' => $this->string(),
-            'count_rooms' => $this->integer(),
-            'total_area' => $this->decimal(65, 2),
+            'count_rooms' => $this->integer()->notNull(),
+            'total_area' => $this->decimal(65, 2)->notNull(),
             'comment' => $this->text(),
             'sort' => $this->integer(),
             'status' => $this->smallInteger(),
@@ -77,7 +76,6 @@ class m231022_181408_create_catalog_module_tables extends Migration
 
         $this->createIndex('idx-layout-id', '{{%layout}}', 'id');
         $this->createIndex('idx-layout-entrance_id', '{{%layout}}', 'entrance_id');
-        $this->createIndex('idx-layout-name', '{{%layout}}', 'name');
         $this->createIndex('idx-layout-image', '{{%layout}}', 'image');
         $this->createIndex('idx-layout-count_rooms', '{{%layout}}', 'count_rooms');
         $this->createIndex('idx-layout-total_area', '{{%layout}}', 'total_area');
@@ -92,10 +90,11 @@ class m231022_181408_create_catalog_module_tables extends Migration
         
         $this->createTable('{{%apartment}}', [
             'id' => $this->primaryKey(),
-            'layout_id' => $this->integer(),
-            'name' => $this->string(),
+            'layout_id' => $this->integer()->notNull(),
+            'apartment_floor' => $this->integer()->notNull(),
+            'slug' => $this->string(),
             'image' => $this->string(),
-            'status' => $this->string(),
+            'status' => $this->string()->notNull(),
             'comment' => $this->text(),
             'sort' => $this->integer(),
             'created_at' => $this->integer(),
@@ -106,7 +105,8 @@ class m231022_181408_create_catalog_module_tables extends Migration
         
         $this->createIndex('idx-apartment-id', '{{%apartment}}', 'id');
         $this->createIndex('idx-apartment-layout_id', '{{%apartment}}', 'layout_id');
-        $this->createIndex('idx-apartment-name', '{{%apartment}}', 'name');
+        $this->createIndex('idx-apartment-slug', '{{%apartment}}', 'slug');
+        $this->createIndex('idx-apartment-apartment_floor', '{{%apartment}}', 'apartment_floor');
         $this->createIndex('idx-apartment-image', '{{%apartment}}', 'image');
         $this->createIndex('idx-apartment-status', '{{%apartment}}', 'status');
         $this->createIndex('idx-apartment-sort', '{{%apartment}}', 'sort');

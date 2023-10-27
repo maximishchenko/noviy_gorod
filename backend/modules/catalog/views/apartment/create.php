@@ -1,17 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-
-/** @var yii\web\View $this */
-/** @var backend\modules\catalog\models\Apartment $model */
-
-$this->title = Yii::t('app', 'Create Apartment');
+$this->title = Yii::t('app', 'Add new Record');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CATALOG_MODULE'), 'url' => ['/catalog']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apartments'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="apartment-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

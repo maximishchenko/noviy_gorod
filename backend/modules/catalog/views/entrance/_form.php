@@ -35,7 +35,7 @@ use yii\bootstrap5\ActiveForm;
                             </div>
                             <div class="col-md-6">
                                 <?= $form->field($model, 'number')->textInput(['type' => 'number']) ?>
-                                <?= $form->field($model, 'count_foors')->textInput(['type' => 'number']) ?>
+                                <?= $form->field($model, 'count_floors')->textInput(['type' => 'number']) ?>
                                 <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                             </div>
                         </div>

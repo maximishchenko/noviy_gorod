@@ -14,7 +14,6 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property int|null $entrance_id
- * @property string|null $name
  * @property string|null $image
  * @property int|null $count_rooms
  * @property float|null $total_area
@@ -67,7 +66,6 @@ class Layout extends \yii\db\ActiveRecord
             [['entrance_id', 'count_rooms', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['total_area'], 'number'],
             [['comment'], 'string'],
-            [['name', 'image'], 'string', 'max' => 255],
             [['entrance_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entrance::class, 'targetAttribute' => ['entrance_id' => 'id']],
         ];
     }
@@ -77,7 +75,7 @@ class Layout extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'entrance_id' => Yii::t('app', 'Layout Entrance ID'),
-            'name' => Yii::t('app', 'Layout Name'),
+            'nameWithCountRoomsAndTotalArea' => Yii::t('app', 'Name with count rooms and total area'),
             'house' => Yii::t('app', 'House of Layout'),
             'entrance' => Yii::t('app', 'Entrance of Layout'),
             'image' => Yii::t('app', 'Image'),
@@ -98,7 +96,6 @@ class Layout extends \yii\db\ActiveRecord
     {
         return [
             'entrance_id' => Yii::t('app', 'Layout Entrance ID'),
-            'name' => Yii::t('app', 'Layout Name Hint'),
             'count_rooms' => Yii::t('app', 'Layout Count Rooms Hint'),
             'total_area' => Yii::t('app', 'Layout Total Area Hint'),
             'comment' => Yii::t('app', 'Comment Hint'),
@@ -120,6 +117,16 @@ class Layout extends \yii\db\ActiveRecord
     public function getHouse()
     {
         return $this->hasOne(House::class, ['id' => 'house_id'])->viaTable(Entrance::tableName(), ['id' => 'entrance_id']);
+    }
+
+    public function getNameWithCountRoomsAndTotalArea()
+    {
+        return Yii::t('app', '{count_rooms} - suffix {total_area}', ['count_rooms' => $this->count_rooms, 'total_area' => $this->total_area]);
+    }
+
+    public function getNameWithHouseAndSection()
+    {
+        return Yii::t('app', 'House {house_name}, entrance {entrance_number}, {count_rooms} - suffix {total_area}', ['house_name' => $this->house->name, 'entrance_number' => $this->entrance->number, 'count_rooms' => $this->count_rooms, 'total_area' => $this->total_area]);
     }
 
     public static function find()

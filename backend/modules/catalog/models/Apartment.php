@@ -4,16 +4,19 @@ namespace backend\modules\catalog\models;
 
 use backend\modules\catalog\models\query\ApartmentQuery;
 use backend\traits\fileTrait;
+use common\models\ApartmentStatus;
+use common\models\Sort;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%apartment}}".
  *
  * @property int $id
- * @property int|null $layout_id
- * @property string|null $name
+ * @property int $layout_id
+ * @property int $apartment_floor
  * @property string|null $image
  * @property string|null $status
  * @property string|null $comment
@@ -62,8 +65,12 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['comment'], 'string'],
-            [['name', 'image', 'status'], 'string', 'max' => 255],
+            [['image', 'status'], 'string', 'max' => 255],
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],
+            
+            ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
+            ['status', 'in', 'range' => array_keys(ApartmentStatus::getStatusesArray())],
+            [['apartment_floor', 'layout_id', 'status'], 'required'],
         ];
     }
 
@@ -71,9 +78,12 @@ class Apartment extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'apartmentName' => Yii::t('app', 'Apartment Name'),
             'layout_id' => Yii::t('app', 'Layout ID'),
-            'name' => Yii::t('app', 'Name'),
+            'apartment_floor' => Yii::t('app', 'Apartment Floor'),
+            'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
+            'imageFile' => Yii::t('app', 'Apartment Image'),
             'status' => Yii::t('app', 'Status'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
@@ -84,9 +94,40 @@ class Apartment extends \yii\db\ActiveRecord
         ];
     }
 
+    public function attributeHints()
+    {
+        return [
+
+        ];
+    }
+
     public function getLayout()
     {
         return $this->hasOne(Layout::class, ['id' => 'layout_id']);
+    }
+
+    public function getLayoutItems()
+    {
+        $layouts = Layout::find()->all();
+        return ArrayHelper::map($layouts,'id','nameWithHouseAndSection');
+    }
+
+    public function getFloors()
+    {
+        $floors = [];
+        $entrance = Entrance::find()->where(['id' => $this->layout->entrance_id])->one();
+        if ($entrance) {
+            for ($floor = 1; $floor <= $entrance->count_floors; $floor++) {
+                $floors[$floor] = $floor;
+            }
+        }
+
+        return $floors;
+    }
+
+    public function getApartmentName()
+    {
+        return $this->layout->nameWithCountRoomsAndTotalArea;
     }
 
     public static function find()

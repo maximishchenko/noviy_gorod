@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'house.nameWithPrefix',
                 'filter' => ArrayHelper::map(House::find()->orderBy(['name' => SORT_ASC])->all(), 'id', 'nameWithPrefix'),
             ],
-            'count_foors',
+            'count_floors',
             [
                 'attribute' => 'sort',
                 'contentOptions' => ['style' => 'width:100px;'],

@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => LinkColumn::className(),
-                'attribute' => 'name',
+                'attribute' => 'nameWithCountRoomsAndTotalArea',
                 'contentOptions' => ['class' => 'text-wrap'],
                 'headerOptions' => [
                     'class' => 'sort-numerical',

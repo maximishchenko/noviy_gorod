@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'count_foors') ?>
+    <?= $form->field($model, 'count_floors') ?>
 
     <?= $form->field($model, 'comment') ?>
 

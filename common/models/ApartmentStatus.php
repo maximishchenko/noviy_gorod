@@ -16,9 +16,9 @@ class ApartmentStatus extends Status
     public static function getStatusesArray(): array
     {
         return [
-            self::STATUS_ACTIVE => Yii::t('app', 'Status Active'),
+            self::STATUS_ACTIVE => Yii::t('app', 'Status Active for reserved'),
             self::STATUS_RESERVED => Yii::t('app', 'Status Reserved'),
-            self::STATUS_BLOCKED => Yii::t('app', 'Status Blocked'),
+            self::STATUS_BLOCKED => Yii::t('app', 'Status Blocked for display'),
         ];
     }
 }

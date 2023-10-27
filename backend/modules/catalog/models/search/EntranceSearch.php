@@ -11,7 +11,7 @@ class EntranceSearch extends Entrance
     public function rules()
     {
         return [
-            [['id', 'number', 'house_id', 'count_foors', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'number', 'house_id', 'count_floors', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['number', 'comment'], 'safe'],
         ];
     }
@@ -42,7 +42,7 @@ class EntranceSearch extends Entrance
             'id' => $this->id,
             'house_id' => $this->house_id,
             'number' => $this->number,
-            'count_foors' => $this->count_foors,
+            'count_floors' => $this->count_floors,
             'sort' => $this->sort,
             'status' => $this->status,
             'created_at' => $this->created_at,

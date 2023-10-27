@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property int|null $house_id
  * @property string|null $number
- * @property int|null $count_foors
+ * @property int|null $count_floors
  * @property string|null $comment
  * @property int|null $sort
  * @property int|null $status
@@ -60,14 +60,14 @@ class Entrance extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['house_id', 'count_foors', 'number', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['house_id', 'count_floors', 'number', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['comment'], 'string'],
             [['house_id'], 'exist', 'skipOnError' => true, 'targetClass' => House::class, 'targetAttribute' => ['house_id' => 'id']],
             
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
             ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
 
-            [['number', 'count_foors', 'house_id'], 'required'],
+            [['number', 'count_floors', 'house_id'], 'required'],
         ];
     }
 
@@ -77,7 +77,7 @@ class Entrance extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'house_id' => Yii::t('app', 'Entrance House ID'),
             'number' => Yii::t('app', 'Entrance Number'),
-            'count_foors' => Yii::t('app', 'Count Foors'),
+            'count_floors' => Yii::t('app', 'Count Foors'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
@@ -93,7 +93,7 @@ class Entrance extends \yii\db\ActiveRecord
         return [
             'number' => Yii::t('app', 'Entrance Number Hint'),
             'house_id' => Yii::t('app', 'Entrance House ID Hint'),
-            'count_foors' => Yii::t('app', 'Entrance Count Floors Hint'),
+            'count_floors' => Yii::t('app', 'Entrance Count Floors Hint'),
             'comment' => Yii::t('app', 'Comment Hint'),
             'sort' => Yii::t('app', 'Sort Hint. Default value is {sortDefault}', ['sortDefault' => Sort::DEFAULT_SORT_VALUE]),
             'status' => Yii::t('app', 'Status Hint'),

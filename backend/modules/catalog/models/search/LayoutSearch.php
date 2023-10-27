@@ -19,7 +19,7 @@ class LayoutSearch extends Layout
     {
         return [
             [['id', 'entrance_id', 'count_rooms', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'image', 'comment', 'house', 'entrance'], 'safe'],
+            [['image', 'comment', 'house', 'entrance'], 'safe'],
             [['total_area'], 'number'],
         ];
     }
@@ -44,7 +44,7 @@ class LayoutSearch extends Layout
         $dataProvider->setSort([
             'attributes' => [
                 'id',
-                'name',
+                // 'name',
                 'count_rooms',
                 'total_area',
                 'sort',
@@ -83,8 +83,7 @@ class LayoutSearch extends Layout
             Entrance::tableName() . '.id' => $this->entrance,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'image', $this->image])
+        $query->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
