@@ -67,7 +67,7 @@ AppAsset::register($this);
 <footer class="footer mt-auto py-3 text-muted">
     <?= $this->render('//layouts/template/_footer', []); ?>
 </footer>
-<?= $this->render('//layouts/template/_modal'); ?>
+<?= $this->render('//layouts/template/form/_modal'); ?>
 
 <!-- Скрипты перед </body> -->
 <?php Script::getScripts(Script::BEFORE_END_BODY); ?>

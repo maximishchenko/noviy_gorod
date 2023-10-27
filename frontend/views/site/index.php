@@ -1467,36 +1467,4 @@ $this->title = 'Новострой';
         </div>
       </section>
       
-      <section class="choose-feedback">
-        <div class="container">
-          <div class="page-title">Поможем в выборе</div>
-          <div class="choose-feedback__text">Если у вас есть вопросы или вы не нашли нужной вам информации, оставьте свой номер — мы позвоним, чтобы ответить на все ваши вопросы.</div>
-
-          <form class="choose-feedback__form ajax_form" action="#" method="post" onsubmit="ym(93020423,'reachGoal','B24_FORM_5_END')">
-            <input type="hidden" name="f_form" value="Помощь в выборе" />
-            <input type="hidden" name="f_link" value="https://61-kvartal.ru/" />
-            <div class="choose-feedback__form-info">
-              <div class="input-group">
-                <input type="text" name="f_name" placeholder="имя" />
-              </div>
-              <div class="choose-feedback__inputs">
-                <div class="input-group">
-                  <input type="text" name="f_phone" placeholder="телефон" required />
-                  <span class="error_f_phone"></span>
-                </div>
-              </div>
-              <div class="choose-feedback__inputs">
-                <div class="input-group">
-                  <textarea name="f_comment" placeholder="Комментарий" required></textarea>
-                </div>
-              </div>
-              <div class="policy">Нажимая кнопку «Отправить», вы подтверждаете свое <a href="/soglasie-na-obrabotku-personalnyix-dannyix/">согласие</a> на обработку персональных данных</div>
-            </div>
-            <button class="send-btn">
-              <div class="send-btn__icon"></div>
-              <div class="send-btn__text">Отправить</div>
-            </button>
-            <input type="hidden" name="af_action" value="0a2e65e0b3748193ebfa3395633ded71" />
-          </form>
-        </div>
-      </section>
+<?= $this->render('//layouts/template/form/_inline'); ?>

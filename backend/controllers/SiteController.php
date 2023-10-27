@@ -9,14 +9,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 
-/**
- * Site controller
- */
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [

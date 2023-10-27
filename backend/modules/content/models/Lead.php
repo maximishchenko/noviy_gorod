@@ -19,24 +19,12 @@ use yii\behaviors\TimestampBehavior;
  */
 class Lead extends \yii\db\ActiveRecord
 {
+    const FEEDBACK_CONTACT_FORM_SUBJECT = 'Сообщение формы обратной связи';
+    
     public static function tableName()
     {
         return '{{%lead}}';
     }
-    
-    public function behaviors()
-    {
-        return[
-            [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => false,
-                'value' => function () {
-                    return date('U');
-                },
-            ],
-        ];
-    }  
 
     public function rules()
     {

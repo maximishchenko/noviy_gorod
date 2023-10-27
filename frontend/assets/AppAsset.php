@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
         'css/style.css',
     ];
     public $js = [
+        'js/app.js',
         'js/scripts.js'
     ];
     public $depends = [
