@@ -27,7 +27,8 @@
         "npm-asset/jquery": "*",
         "npm-asset/ion-rangeslider": "*",
         "andrewdanilov/yii2-breadcrumbs": "~1.0.0",
-        "andrewdanilov/yii2-thumbs": "~1.1.0"
+        "andrewdanilov/yii2-thumbs": "~1.1.0",
+        "aki/yii2-bot-telegram": "^3.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

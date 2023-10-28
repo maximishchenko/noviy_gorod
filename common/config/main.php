@@ -12,10 +12,20 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'bootstrap' => [
-        'configManager',
+        'configManager',        
+        'queue',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'components' => [
+    'components' => [        
+        'telegram' => [
+            'class' => 'aki\telegram\Telegram',
+            'botToken' => '',
+        ],
+        'queue' => [
+            'class' => \yii\queue\file\Queue::class,
+            'path' => '@console/runtime/queue',
+            'as log' => \yii\queue\LogBehavior::class,
+        ],
         'configManager' => [
             'class' => yii2tech\config\Manager::class,
             'autoRestoreValues' => true,
@@ -106,6 +116,25 @@ return [
                         'type' => 'checkbox',
                     ],
                 ],
+
+                'reportTelegramChatID' => [
+                    'path' => 'report_telegram_chat_id',
+                    'label' => Yii::t('app', "REPORT_TELEGRAM_CHAT_ID"),
+                    'description' => Yii::t('app', "REPORT_TELEGRAM_CHAT_ID DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+
+                'reportEmail' => [
+                    'path' => 'report_email',
+                    'label' => Yii::t('app', "REPORT_Email"),
+                    'description' => Yii::t('app', "REPORT_Email DESCRIPTION"),
+                    'value' => "novostroy.ooo@yandex.ru",
+                    'rules' => [
+                    ],
+                ],
+
             ],
         ],
 

@@ -51,9 +51,6 @@ class User extends commonUser
         ];
     }  
 
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%user}}';
@@ -85,10 +82,6 @@ class User extends commonUser
         ];
     } 
 
-    /**
-     * {@inheritdoc}
-     * @return UserQuery the active query used by this AR class.
-     */
     public static function find()
     {
         return new UserQuery(get_called_class());
@@ -99,9 +92,6 @@ class User extends commonUser
         return (!empty($this->name) && !empty($this->surname)) ? $this->name . " " . $this->surname : $this->username; 
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -133,9 +123,6 @@ class User extends commonUser
         return $scenarios;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -157,5 +144,12 @@ class User extends commonUser
             'is_personal_data_agreement' => Yii::t('app', 'Client Personal Data Agreement'),
             'is_adv_agreement' => Yii::t('app', 'Client Adv Agreement'),
         ];
+    }
+    
+    public function beforeSave($insert)
+    {
+        $this->generateAuthKey();
+        $this->setPassword($this->newPassword);
+        return parent::beforeSave($insert);
     }
 }

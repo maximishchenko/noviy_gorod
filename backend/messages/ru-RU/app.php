@@ -177,4 +177,6 @@ return [
     'Apartment Image' => 'Изображение расположения',
     'Update Apartment: {name}' => '{name}',
     'Apartment Name' => 'Название',
+    'REPORT_Email' => 'Email для отправки уведомлений',
+    'REPORT_Email DESCRIPTION' => 'Адреса электронной почты, через запятую, без пробела'
 ];

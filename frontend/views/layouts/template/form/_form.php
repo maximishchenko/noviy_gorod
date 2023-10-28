@@ -21,6 +21,8 @@ $contact = new Lead();
     ]); ?>
   
     <div class="choose-feedback__form-info">
+
+      <?= $form->field($contact, 'subject', ['template' => '{input}'])->textInput(['placeholder' => 'Тема', 'value' => Lead::FEEDBACK_CONTACT_FORM_SUBJECT, 'hidden' => true])?>
       
       <div class="input-group">
           <?= $form->field($contact, 'name', ['template' => '{input}'])->textInput(['placeholder' => 'Имя', 'required' => ''])?>
