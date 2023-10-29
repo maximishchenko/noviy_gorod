@@ -1,7 +1,5 @@
 <?php
 
-use backend\modules\content\models\Stage;
-
 return [
     'name' => 'Новострой',
     'timezone'=> 'Europe/Moscow',
@@ -132,6 +130,18 @@ return [
                     'description' => Yii::t('app', "REPORT_Email DESCRIPTION"),
                     'value' => "novostroy.ooo@yandex.ru",
                     'rules' => [
+                    ],
+                ],
+
+                'catalogItemsPerPage' => [
+                    'path' => 'catalog_items_per_page',
+                    'label' => Yii::t('app', "Catalog Items Per Page"),
+                    'description' => Yii::t('app', "Catalog Items Per Page DESCRIPTION"),
+                    'value' => 8,
+                    'rules' => [
+                    ],
+                    'inputOptions' => [
+                        'type' => 'number',
                     ],
                 ],
 

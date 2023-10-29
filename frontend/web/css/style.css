@@ -370,6 +370,19 @@
 .apartment-area:after {
   content: " м2";
 }
+.pagination__item.pagination__item.pagination__item--active a {
+  color: #fff;
+}
+.pagination__item a {
+  color: #1e293c;
+}
+.pagination__item:hover a {
+  color: #fff;
+}
+.hidden__input {
+  visibility: hidden;
+  display: none;
+}
 .container {
   display: block;
   margin: 0 auto;

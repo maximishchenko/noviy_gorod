@@ -45,7 +45,7 @@ class Setting extends \yii\base\Model
                 'is_website_offline', 'report_email', 
             ],
             self::TAB_CONTENT => [
-                'main_stage', 'main_stage_max_items_count',
+                'main_stage', 'main_stage_max_items_count', 'catalog_items_per_page'
             ],
         ];
     }

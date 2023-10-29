@@ -13,4 +13,14 @@ class LayoutQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function minRooms()
+    {
+        return $this->min('count_rooms');
+    }
+
+    public function maxRooms()
+    {
+        return $this->max('count_rooms');
+    }
 }

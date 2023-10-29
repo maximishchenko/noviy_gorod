@@ -5,6 +5,7 @@ namespace backend\modules\catalog\models;
 use backend\modules\catalog\models\query\HouseQuery;
 use common\models\Sort;
 use common\models\Status;
+use frontend\traits\cacheParamsTrait;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -26,7 +27,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class House extends \yii\db\ActiveRecord
 {
-
+    use cacheParamsTrait;
+    
     const NAME_PREFIX = 'Литер ';
 
     public static function tableName()

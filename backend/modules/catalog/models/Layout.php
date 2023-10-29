@@ -5,6 +5,7 @@ namespace backend\modules\catalog\models;
 use backend\modules\catalog\models\query\LayoutQuery;
 use backend\traits\fileTrait;
 use common\models\Sort;
+use frontend\traits\cacheParamsTrait;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -31,6 +32,8 @@ use yii\behaviors\TimestampBehavior;
 class Layout extends \yii\db\ActiveRecord
 {
     use fileTrait;
+
+    use cacheParamsTrait;
 
     const UPLOAD_PATH = 'upload/layout/';
 

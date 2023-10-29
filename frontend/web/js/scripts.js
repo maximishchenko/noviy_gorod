@@ -177,7 +177,14 @@ $(function () {
         a = i.width();
       (a /= 2), (i[0].scrollLeft = i[0].scrollLeft + a);
     }
-    // TODO переписать, т.к. AjaxForm - компонент MODX
+    
+    let rangeParams = document.querySelector('.room-search__title');
+    let minArea = rangeParams.getAttribute('data-min-area');
+    let maxArea = rangeParams.getAttribute('data-max-area');
+    let fromSliderValue = document.getElementById('minArea');
+    let toSliderValue = document.getElementById('maxArea');
+    let fromValue = (fromSliderValue.value != '') ? fromSliderValue.value : minArea;
+    let toValue = (toSliderValue.value != '') ? toSliderValue.value : maxArea;
     if (
       (
 
@@ -189,9 +196,31 @@ $(function () {
       //       !0 === t.success && ($(".modal--active").removeClass("modal--active"), $(".modal--thanks").addClass("modal--active"));
       //     });
       // }),
-
-
-      $(".js-range-slider").length && $(".js-range-slider").ionRangeSlider({ min: 25, max: 100, type: "double", step: 5 }),
+      
+      $(".js-range-slider").length && $(".js-range-slider").ionRangeSlider({ 
+        min: minArea, 
+        max: maxArea, 
+        from: fromValue, 
+        to: toValue, 
+        type: "double", 
+        step: 5 ,
+        onStart: function (data) {
+            // fired then range slider is ready
+        },
+        onChange: function (data) {
+            // fired on every range slider update
+        },
+        onFinish: function (data) {
+            // fired on pointer release
+            fromSliderValue.value = Number(data.from);
+            toSliderValue.value = Number(data.to);
+            // console.log(data.from);
+            // console.log(data.to);
+        },
+        onUpdate: function (data) {
+            // fired on changing slider with Update method
+        }
+      }),
       $(".modal.hidden").removeClass("hidden"),
       $(".mortgage__item").length)
     )

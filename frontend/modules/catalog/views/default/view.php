@@ -1,3 +1,7 @@
+<?php
+
+use yii\helpers\Html;
+?>
 
 <section class="room">
         <div class="container">
@@ -9,7 +13,8 @@
                   <a class="room__image" href="/images/podezd-1-etazh-2-12-1-28,70_0x0_a4a.webp" data-fancybox="room">
                     <img src="/images/podezd-1-etazh-2-12-1-28,70_0x0_a4a.webp">
                     <div class="room__image-zoom">
-                      <img src="/images/zoom-icon.svg">
+                      <!-- <img src="/images/zoom-icon.svg"> -->
+                      <?= Html::img('/static/sprite.svg#zoom-icon'); ?>
                     </div>
                   </a>
                 </div>
@@ -20,7 +25,7 @@
                       <path class="is-active" opacity="0.8" d="M257.623 547.64V416.182L305.538 415.772V404.305H334.205V407.581L413.244 408.4L412.425 555.012H341.986V547.64H257.623Z" fill="white"></path>
                     </svg>
                     <div class="room__image-zoom">
-                      <img src="/images/zoom-icon.svg">
+                      <?= Html::img('/static/sprite.svg#zoom-icon'); ?>
                     </div>
                   </a>
                 </div>

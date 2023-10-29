@@ -178,5 +178,7 @@ return [
     'Update Apartment: {name}' => '{name}',
     'Apartment Name' => 'Название',
     'REPORT_Email' => 'Email для отправки уведомлений',
-    'REPORT_Email DESCRIPTION' => 'Адреса электронной почты, через запятую, без пробела'
+    'REPORT_Email DESCRIPTION' => 'Адреса электронной почты, через запятую, без пробела',
+    'Catalog Items Per Page' => 'Кол-во квартир каталога',
+    'Catalog Items Per Page DESCRIPTION' => 'Кол-во квартир на одной странице каталога',
 ];
