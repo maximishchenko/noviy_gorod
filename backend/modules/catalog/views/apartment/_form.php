@@ -41,7 +41,7 @@ use yii\bootstrap5\ActiveForm;
                                         $( "select#apartment_floor" ).html( data );
                                     })'                 
                             ]) ?>
-                            <?= $form->field($model, 'apartment_floor', ['inputOptions' => ['id' => 'apartment_floor']])->dropDownList($model->getFloors(), ['prompt' => '']) ?>
+                            <?= $form->field($model, 'apartment_floor', ['inputOptions' => ['id' => 'apartment_floor']])->dropDownList($model->getFloors(), ['options' => [$selectValue => ['Selected'=>'selected']]], ['prompt' => '']) ?>
                             <?= $form->field($model, 'sort')->textInput() ?>
                             <?= $form->field($model, 'status')->dropDownList(ApartmentStatus::getStatusesArray(), ['prompt' => '']) ?>
                         </div>

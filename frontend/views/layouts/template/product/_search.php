@@ -21,7 +21,9 @@ $apartmentSort = new ApartmentSort();
   <div class="room-search__filter-wrap">
     <div class="room-search__select">
       <div class="room-search__select-top">
-        <span>Выбрать литер</span>
+        <span>
+          <?= $searchModel->getHouseNameById(); ?>
+        </span>
         <!-- TODO sprite -->
         <?= Html::img('/static/svg/select-arrow.svg'); ?>
         <input type="hidden" name="house" value="" />

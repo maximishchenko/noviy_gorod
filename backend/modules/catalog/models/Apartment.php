@@ -8,6 +8,7 @@ use common\models\ApartmentStatus;
 use common\models\Sort;
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 
@@ -57,13 +58,20 @@ class Apartment extends \yii\db\ActiveRecord
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
             ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => ['apartmentName'],
+                'slugAttribute' => 'slug',
+                'immutable' => true,
+                'ensureUnique'=>true,
+            ],
         ];
     }  
 
     public function rules()
     {
         return [
-            [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'apartment_floor'], 'integer'],
             [['comment'], 'string'],
             [['image', 'status'], 'string', 'max' => 255],
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],

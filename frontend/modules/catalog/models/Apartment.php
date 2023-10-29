@@ -67,6 +67,19 @@ class Apartment extends backendApartment
         }, House::getCacheDuration(), House::getCacheDependency());
     }
 
+    public function getHouseNameById(): string
+    {
+        $house = null;
+        $queryParams = Yii::$app->request->queryParams;
+        if ($queryParams['house']) {
+            $house = House::find()->where(['id' => $queryParams['house']])->one();
+        }
+        if ($house !== null) {
+            return 'Литер ' . $house->name;
+        }
+        return 'Выберите литер';
+    }
+
     public function isCountRoomsChecked(int $countRooms): ?string
     {
         $queryParams = Yii::$app->request->queryParams;

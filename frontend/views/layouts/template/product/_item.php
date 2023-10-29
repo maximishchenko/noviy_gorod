@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 ?>
-<a class="flats__item" href="/filter/<?= $model->id; ?>/">
+<a class="flats__item" href="/filter/<?= $model->slug; ?>">
     <div class="flats__item-title">
         <?= $model->layout->count_rooms; ?>-комнатная квартира <?= $model->layout->total_area; ?> м<sup>2</sup>
     </div>
