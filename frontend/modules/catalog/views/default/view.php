@@ -25,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
           <?php if ($model->layout->image): ?>
           <div class="room__top-item" data-id="2">
-            <a class="room__image" href="/images/podezd-1-etazh-2-12-1_0x0_a4a.webp" data-fancybox="entrance">
-              <img src="/images/podezd-1-etazh-2-12-1_0x0_a4a.webp">
+            <a class="room__image" href="<?= $model->layout->thumb; ?>" data-fancybox="entrance">
+              <img src="<?= $model->layout->thumb; ?>">
               <svg width="662" height="747" viewBox="0 0 662 747" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="is-active" opacity="0.8" d="M257.623 547.64V416.182L305.538 415.772V404.305H334.205V407.581L413.244 408.4L412.425 555.012H341.986V547.64H257.623Z" fill="white"></path>
               </svg>

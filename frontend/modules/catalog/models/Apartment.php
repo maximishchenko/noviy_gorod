@@ -5,8 +5,8 @@ namespace frontend\modules\catalog\models;
 use backend\modules\catalog\models\Apartment as backendApartment;
 use backend\modules\catalog\models\Entrance;
 use backend\modules\catalog\models\House;
-use backend\modules\catalog\models\Layout;
-use backend\modules\catalog\models\query\LayoutQuery;
+use frontend\modules\catalog\models\Layout;
+use frontend\modules\catalog\models\query\LayoutQuery;
 use common\models\Status;
 use frontend\modules\catalog\models\query\ApartmentQuery;
 use frontend\traits\cacheParamsTrait;
@@ -48,6 +48,11 @@ class Apartment extends backendApartment
     public function getMaxRoomsCount(): int
     {
         return $this->getRooms()->maxRooms();
+    }
+
+    public function getLayout()
+    {
+        return $this->hasOne(Layout::class, ['id' => 'layout_id']);
     }
 
     public function getMinTotalArea(): int
