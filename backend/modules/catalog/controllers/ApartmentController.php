@@ -4,6 +4,7 @@ namespace backend\modules\catalog\controllers;
 
 use backend\modules\catalog\models\Apartment;
 use backend\modules\catalog\models\Entrance;
+use backend\modules\catalog\models\Layout;
 use backend\modules\catalog\models\search\ApartmentSearch;
 use Yii;
 use yii\web\Controller;
@@ -92,13 +93,11 @@ class ApartmentController extends Controller
 
     public function actionFloorList($id)
     {
-        $entrance = Entrance::find()
-            ->where(['id' => $id])
-            ->one();
+        $layout = Layout::find()->where(['id' => $id])->one();
 
         echo "<option value=''>-</option>";
-        if($entrance){
-            for ($i = 1; $i <= $entrance->count_floors; $i++) {
+        if($layout){
+            for ($i = 1; $i <= $layout->entrance->count_floors; $i++) {
                 echo "<option value='". $i ."'>" . $i . "</option>";
             }
         }

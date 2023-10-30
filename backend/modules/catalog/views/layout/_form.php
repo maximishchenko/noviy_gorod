@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
                             <?= $form->field($model, 'status')->checkbox() ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($model, 'entrance_id')->textInput() ?>
+                            <?= $form->field($model, 'entrance_id')->dropDownList($model->getEntrancesItems(), ['prompt' => '']) ?>
                             <?= $form->field($model, 'total_area')->textInput(['maxlength' => true]) ?>
                             <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                         </div>
@@ -81,4 +81,4 @@ use yii\widgets\ActiveForm;
 
 </div>
 
-<?= $this->render('//layouts/forms/_buttons', ['formId' => 'house-form']); ?>
+<?= $this->render('//layouts/forms/_buttons', ['formId' => 'layout-form']); ?>
