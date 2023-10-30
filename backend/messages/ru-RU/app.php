@@ -181,4 +181,5 @@ return [
     'REPORT_Email DESCRIPTION' => 'Адреса электронной почты, через запятую, без пробела',
     'Catalog Items Per Page' => 'Кол-во квартир каталога',
     'Catalog Items Per Page DESCRIPTION' => 'Кол-во квартир на одной странице каталога',
+    'Apartment Number' => 'Номер квартиры',
 ];

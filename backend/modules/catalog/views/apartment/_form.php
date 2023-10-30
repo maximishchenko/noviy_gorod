@@ -34,6 +34,7 @@ use yii\bootstrap5\ActiveForm;
 
                     <div class="row">
                         <div class="col-md-6">
+                            <?= $form->field($model, 'number')->textInput(['type' => 'number']) ?>
                             <?= $form->field($model, 'layout_id')->dropDownList($model->getLayoutItems(), [
                                     'prompt' => '',
                                     'onchange'=>'
