@@ -42,7 +42,7 @@ class Setting extends \yii\base\Model
                 'seo_keywords', 'seo_description',
             ],
             self::TAB_GLOBAL => [
-                'is_website_offline', 'report_email', 'location', 'mapApiKey'
+                'is_website_offline', 'report_email', 'location', 'mapApiKey', 'anotherProjectsUrl'
             ],
             self::TAB_CONTENT => [
                 'main_stage', 'main_stage_max_items_count', 'catalog_items_per_page'

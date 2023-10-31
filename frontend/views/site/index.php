@@ -1031,4 +1031,4 @@ $this->title = 'Новострой';
   </div>
 </section>
       
-<?= $this->render('//layouts/template/form/_inline'); ?>
+<?= $this->render('//layouts/template/form/_inline', ['title' => 'Поможем в выборе']); ?>

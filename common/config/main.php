@@ -160,6 +160,16 @@ return [
                     'rules' => [
                     ],
                 ],
+                'anotherProjectsUrl' => [
+                    'path' => 'anotherProjectsUrl',
+                    'label' => Yii::t('app', "Another Projects Url"),
+                    'description' => Yii::t('app', "Another Projects Url DESCRIPTION"),
+                    'value' => "http://yandex.ru",
+                    'rules' => [
+                        ['required'],
+                        ['url']
+                    ],
+                ],
 
 
             ],
