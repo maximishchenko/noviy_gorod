@@ -6,22 +6,6 @@ use frontend\modules\catalog\models\query\LayoutQuery;
 use frontend\traits\cacheParamsTrait;
 use backend\modules\catalog\models\Layout as backendLayout;
 
-/**
- * This is the model class for table "{{%layout}}".
- *
- * @property int $id
- * @property int|null $entrance_id
- * @property string|null $image
- * @property int|null $count_rooms
- * @property float|null $total_area
- * @property string|null $comment
- * @property int|null $sort
- * @property int|null $status
- * @property int|null $created_at
- * @property int|null $updated_at
- * @property int|null $created_by
- * @property int|null $updated_by
- */
 class Layout extends backendLayout
 {
     use cacheParamsTrait;
@@ -37,4 +21,9 @@ class Layout extends backendLayout
     {
         return (isset($this->image) && !empty($this->image)) ? '/' . static::UPLOAD_PATH . $this->image : static::NO_IMAGE;
     }
+
+    // public function getApartment($floor)
+    // {
+    //     return $this->hasOne(Apartment::class, ['id' => 'layout_id'])->onCondition(['apartment_floor' => $floor])->one();
+    // }
 }

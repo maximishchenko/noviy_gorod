@@ -1,5 +1,12 @@
 <?php
 
+use backend\widgets\LinkColumn;
+use backend\widgets\SetColumn;
+use common\models\ApartmentStatus;
+use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+
 $this->title = Yii::t('app', 'Update Layout: {name}', [
     'name' => $model->nameWithCountRoomsAndTotalArea,
 ]);
@@ -13,4 +20,50 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
     ]) ?>
 
+<?php if($apartments->getCount()): ?>
+    <div class="row__section">
+    <h2>
+        <?= Yii::t('app', 'Current Layout Apartments'); ?>
+    </h2>
+    <?= GridView::widget([
+        'dataProvider' => $apartments,
+        'filterModel' => false,
+        'layout' => "{items}\n{pager}",
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            [
+                'attribute' => 'id',
+                'contentOptions' => ['style' => 'width:100px;'],
+            ],
+            [
+                'class' => LinkColumn::className(),
+                'attribute' => 'apartmentName',
+                'contentOptions' => ['class' => 'text-wrap'],
+                'headerOptions' => [
+                    'class' => 'sort-numerical',
+                ],
+                'value' => function($data) {
+                    return Html::a($data->apartmentName, ['/catalog/apartment/update', 'id' => $data->id], []);
+                }
+            ],
+            [
+                'class' => SetColumn::className(),
+                'filter' => ApartmentStatus::getStatusesArray(),
+                'attribute' => 'status',
+                'name' => function($data) {
+                    return ArrayHelper::getValue(ApartmentStatus::getStatusesArray(), $data->status);
+                },
+                'contentOptions' => ['style' => 'width:100px;'],
+                'cssCLasses' => [
+                    ApartmentStatus::STATUS_RESERVED => 'info',
+                    ApartmentStatus::STATUS_ACTIVE => 'success',
+                    ApartmentStatus::STATUS_BLOCKED => 'danger',
+                ],
+            ],
+        ],
+    ]); ?>
+
+    </div>
+    <?php endif; ?>
 </div>

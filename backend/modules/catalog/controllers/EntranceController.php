@@ -62,7 +62,7 @@ class EntranceController extends Controller
         $model = $this->findModel($id);
 
         $layouts = new ActiveDataProvider([
-            'query' => Layout::find()->where(['entrance_id' => $id])->orderBy(['name' => SORT_ASC])
+            'query' => Layout::find()->where(['entrance_id' => $id])
         ]);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {

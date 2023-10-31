@@ -12,7 +12,10 @@ class SiteController extends BaseController
     {
         $stageModel = new Stage();
         $apartmentModel = new Apartment();
-        return $this->render('index', ['stage' => $stageModel->getStage(), 'apartmentModel' => $apartmentModel]);
+        return $this->render('index', [
+            'stage' => $stageModel->getStage(), 
+            'apartmentModel' => $apartmentModel,
+        ]);
     }
 
     public function actionPolicy()

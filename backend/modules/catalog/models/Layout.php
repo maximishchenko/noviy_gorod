@@ -126,7 +126,7 @@ class Layout extends \yii\db\ActiveRecord
     public function getEntrancesItems()
     {
         $entrances = Entrance::find()->orderBy(['number' => SORT_ASC])->all();
-        return ArrayHelper::map($entrances,'id','numberWithPrefix');
+        return ArrayHelper::map($entrances,'id','numberWithHouseAndPrefix');
     }
 
     public function getHouse()

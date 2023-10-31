@@ -4,7 +4,7 @@ namespace frontend\modules\catalog\models;
 
 use backend\modules\catalog\models\Apartment as backendApartment;
 use backend\modules\catalog\models\Entrance;
-use backend\modules\catalog\models\House;
+use frontend\modules\catalog\models\House;
 use common\models\ApartmentStatus;
 use frontend\modules\catalog\models\Layout;
 use frontend\modules\catalog\models\query\LayoutQuery;
@@ -111,11 +111,25 @@ class Apartment extends backendApartment
         return $this->hasOne(House::class, ['id' => 'house_id'])->via('entrance');
     }
 
-    public function getApartmentsByCountRooms($countRooms)
+    public function getApartmentsByFloorAndLayout(int $floor, int $layout_id): Apartment
+    {
+        return self::getDb()->cache(function() use ($floor, $layout_id) {
+            return self::find()->active()->where(['apartment_floor' => $floor, 'layout_id' => $layout_id])->one();
+        }, self::getCacheDuration(), self::getCacheDependency());
+    }
+
+    public function getApartmentsByCountRooms(int $countRooms): array
     {
         return self::getDb()->cache(function() use ($countRooms) {
             return self::find()->where([self::tableName() . '.status' => ApartmentStatus::STATUS_ACTIVE, Layout::tableName() . '.count_rooms' => $countRooms])->joinWith(['layout'])->all();
         }, self::getCacheDuration(), self::getCacheDependency());
+    }
+
+    public function getActiveHouses(): House
+    {
+        return House::getDb()->cache(function () {
+            return House::find()->active()->orderBy(['id' => SORT_ASC])->one();
+        }, House::getCacheDuration(), House::getCacheDependency());
     }
 
     public function getApartmentroomsCount(): array

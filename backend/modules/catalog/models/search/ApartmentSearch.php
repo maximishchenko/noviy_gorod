@@ -5,14 +5,21 @@ namespace backend\modules\catalog\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Apartment;
+use backend\modules\catalog\models\Entrance;
+use backend\modules\catalog\models\House;
 
 class ApartmentSearch extends Apartment
 {
+
+    public $house;
+
+    public $entrance;
+    
     public function rules()
     {
         return [
             [['id', 'layout_id', 'sort', 'created_at', 'updated_at', 'apartment_floor', 'created_by', 'updated_by'], 'integer'],
-            [['image', 'status', 'comment'], 'safe'],
+            [['image', 'status', 'comment', 'entrance', 'house'], 'safe'],
         ];
     }
 
@@ -23,12 +30,31 @@ class ApartmentSearch extends Apartment
 
     public function search($params)
     {
-        $query = Apartment::find();
+        $query = Apartment::find()->joinWith(['entrance', 'house']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
         ]);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                // 'name',
+                'layout_id',
+                'apartment_floor',
+                'sort',
+                'status',
+                'entrance' => [
+                    'asc' => [Entrance::tableName() . '.number' => SORT_ASC],
+                    'desc' => [Entrance::tableName() . '.number' => SORT_DESC],
+                ],
+                'house' => [
+                   'asc' => [House::tableName() . '.name' => SORT_ASC],
+                   'desc' => [House::tableName() . '.name' => SORT_DESC],
+                ]
+           ]
+       ]);
 
         $this->load($params);
 
@@ -47,6 +73,7 @@ class ApartmentSearch extends Apartment
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            Entrance::tableName() . '.id' => $this->entrance,
         ]);
 
         $query->andFilterWhere(['like', 'image', $this->image])

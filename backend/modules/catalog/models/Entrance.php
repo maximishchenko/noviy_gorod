@@ -125,4 +125,9 @@ class Entrance extends \yii\db\ActiveRecord
     {
         return self::NAME_PREFIX . " " . $this->number;
     }
+
+    public function getNumberWithHouseAndPrefix()
+    {
+        return $this->house->nameWithPrefix . ', ' . self::NAME_PREFIX . ' ' . $this->number;
+    }
 }

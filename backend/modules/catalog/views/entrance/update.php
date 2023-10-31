@@ -39,13 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => LinkColumn::className(),
-                'attribute' => 'name',
+                'attribute' => 'nameWithCountRoomsAndTotalArea',
                 'contentOptions' => ['class' => 'text-wrap'],
                 'headerOptions' => [
                     'class' => 'sort-numerical',
                 ],
                 'value' => function($data) {
-                    return Html::a($data->name, ['/catalog/layout/update', 'id' => $data->id], []);
+                    return Html::a($data->nameWithCountRoomsAndTotalArea, ['/catalog/layout/update', 'id' => $data->id], []);
                 }
             ],
             [

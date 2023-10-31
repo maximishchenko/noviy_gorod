@@ -188,4 +188,7 @@ return [
     'Location DESCRIPTION' => 'Координаты местоположения',
     'Another Projects Url' => 'Url раздела "Другие проекты"',
     'Another Projects Url DESCRIPTION' => 'Ссылка, подставляемая в меню',
+    'Entrance Name' => 'Подъезд',
+    'Apartment House' => 'Дом | Литер',
+    'Current Layout Apartments' => 'Квартиры текущей планировки',
 ];

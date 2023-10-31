@@ -87,6 +87,8 @@ class Apartment extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'entrance' => Yii::t('app', 'Entrance Name'),
+            'house' => Yii::t('app', 'Apartment House'),
             'apartmentName' => Yii::t('app', 'Apartment Name'),
             'layout_id' => Yii::t('app', 'Layout ID'),
             'apartment_floor' => Yii::t('app', 'Apartment Floor'),
@@ -137,7 +139,17 @@ class Apartment extends \yii\db\ActiveRecord
 
     public function getApartmentName()
     {
-        return $this->layout->nameWithCountRoomsAndTotalArea;
+        return 'Кв. № ' . $this->number . ' (' . $this->layout->nameWithCountRoomsAndTotalArea . ')';
+    }
+
+    public function getEntrance()
+    {
+        return $this->hasOne(Entrance::class, ['id' => 'entrance_id'])->viaTable(Layout::tableName(), ['id' => 'layout_id']);
+    }
+
+    public function getHouse()
+    {
+        return $this->hasOne(House::class, ['id' => 'house_id'])->via('entrance');
     }
 
     public static function find()

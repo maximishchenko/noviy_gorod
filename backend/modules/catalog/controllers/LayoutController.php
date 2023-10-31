@@ -2,9 +2,11 @@
 
 namespace backend\modules\catalog\controllers;
 
+use backend\modules\catalog\models\Apartment;
 use backend\modules\catalog\models\Layout;
 use backend\modules\catalog\models\search\LayoutSearch;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -60,6 +62,10 @@ class LayoutController extends Controller
     {
         $model = $this->findModel($id);
 
+        $apartments = new ActiveDataProvider([
+            'query' => Apartment::find()->where(['layout_id' => $id])
+        ]);
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Record changed'));
             return $this->refresh();
@@ -67,6 +73,7 @@ class LayoutController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'apartments' => $apartments,
         ]);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use backend\modules\catalog\models\Entrance;
+use backend\modules\catalog\models\House;
 use backend\modules\catalog\models\Layout;
 use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
@@ -38,11 +40,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
             [
+                'attribute' => 'house',
+                'format' => 'raw',
+                'filter' => ArrayHelper::map(House::find()->all(), 'id', 'nameWithPrefix'),
+                'value' => function ($data) {
+                    return $data->entrance->house->nameWithPrefix ;
+                }
+            ],
+            [
+                'attribute' => 'entrance',
+                'format' => 'raw',
+                'filter' => ArrayHelper::map(Entrance::find()->all(), 'id', 'numberWithPrefix'),
+                'value' => function ($data) {
+                    return $data->entrance->numberWithPrefix ;
+                }
+            ],
+            [
                 'attribute' => 'layout_id',
                 'format' => 'raw',
-                'filter' => ArrayHelper::map(Layout::find()->all(), 'id', 'nameWithCountRoomsAndTotalArea'),
+                'filter' => ArrayHelper::map(Layout::find()->all(), 'id', 'nameWithHouseAndSection'),
                 'value' => function ($data) {
-                    return $data->layout->nameWithCountRoomsAndTotalArea;
+                    return $data->layout->nameWithHouseAndSection;
                 }
             ],
             'apartment_floor',

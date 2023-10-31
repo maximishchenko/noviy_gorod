@@ -26,9 +26,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Entrance[] $entrances
  */
 class House extends \yii\db\ActiveRecord
-{
-    use cacheParamsTrait;
-    
+{    
     const NAME_PREFIX = 'Литер ';
 
     public static function tableName()
