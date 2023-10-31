@@ -38,6 +38,6 @@ exports.default = function () {
   watch('./frontend/web/less/**/*.less', less_compile)
   watch('frontend/web/static/svg/**/*.svg', sprite)
 }
-// exports.less = less_compile;
+exports.less = less_compile;
 
-exports.default = series(less_compile, sprite);
+// exports.default = series(less_compile, sprite);

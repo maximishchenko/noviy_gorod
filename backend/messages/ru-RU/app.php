@@ -182,4 +182,8 @@ return [
     'Catalog Items Per Page' => 'Кол-во квартир каталога',
     'Catalog Items Per Page DESCRIPTION' => 'Кол-во квартир на одной странице каталога',
     'Apartment Number' => 'Номер квартиры',
+    'MAP API KEY' => 'API-ключ сервисов картографии',
+    "MAP API KEY DESCRIPTION" => 'Yandex Map API Key',
+    'Location' => 'Координаты',
+    'Location DESCRIPTION' => 'Координаты местоположения',
 ];

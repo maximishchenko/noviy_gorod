@@ -10,6 +10,20 @@ use yii\web\Controller;
 class BaseController extends Controller
 {
     
+    public function actions() {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+    
+    public function init()
+    {
+        parent::init();
+        \Yii::$app->errorHandler->errorAction = 'error/index';
+    }    
+
     public function beforeAction($action)
     {
         $this->setUrlRedirect();

@@ -144,6 +144,23 @@ return [
                         'type' => 'number',
                     ],
                 ],
+                'location' => [
+                    'path' => 'location',
+                    'label' => Yii::t('app', "Location"),
+                    'description' => Yii::t('app', "Location DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+                'mapApiKey' => [
+                    'path' => 'mapApiKey',
+                    'label' => Yii::t('app', "MAP API KEY"),
+                    'description' => Yii::t('app', "MAP API KEY DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+
 
             ],
         ],
