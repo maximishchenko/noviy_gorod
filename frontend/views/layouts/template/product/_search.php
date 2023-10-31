@@ -29,7 +29,6 @@ $apartmentSort = new ApartmentSort();
         <input type="hidden" name="house" value="" />
       </div>
 
-      <!-- TODO hidden input -->
       <div class="room-search__select-inside">
         <?php foreach($searchModel->getHouses() as $house): ?>
         <div class="room-search__select-inside-link" data-id="<?= $house->id; ?>">

@@ -5,10 +5,12 @@ namespace backend\modules\catalog\models;
 use backend\modules\catalog\models\query\LayoutQuery;
 use backend\traits\fileTrait;
 use common\models\Sort;
+use common\models\Status;
 use frontend\traits\cacheParamsTrait;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%layout}}".
@@ -70,6 +72,10 @@ class Layout extends \yii\db\ActiveRecord
             [['total_area'], 'number'],
             [['comment'], 'string'],
             [['entrance_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entrance::class, 'targetAttribute' => ['entrance_id' => 'id']],
+            
+            ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
+            ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
+
         ];
     }
 
@@ -115,6 +121,12 @@ class Layout extends \yii\db\ActiveRecord
     public function getEntrance()
     {
         return $this->hasOne(Entrance::class, ['id' => 'entrance_id']);
+    }
+
+    public function getEntrancesItems()
+    {
+        $entrances = Entrance::find()->orderBy(['number' => SORT_ASC])->all();
+        return ArrayHelper::map($entrances,'id','numberWithPrefix');
     }
 
     public function getHouse()

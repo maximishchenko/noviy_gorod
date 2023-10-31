@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property int $id
  * @property int $layout_id
+ * @property int $number
  * @property int $apartment_floor
  * @property string|null $image
  * @property string|null $status
@@ -71,7 +72,7 @@ class Apartment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'apartment_floor'], 'integer'],
+            [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'number', 'apartment_floor'], 'integer'],
             [['comment'], 'string'],
             [['image', 'status'], 'string', 'max' => 255],
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],
@@ -89,6 +90,7 @@ class Apartment extends \yii\db\ActiveRecord
             'apartmentName' => Yii::t('app', 'Apartment Name'),
             'layout_id' => Yii::t('app', 'Layout ID'),
             'apartment_floor' => Yii::t('app', 'Apartment Floor'),
+            'number' => Yii::t('app', 'Apartment Number'),
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
             'imageFile' => Yii::t('app', 'Apartment Image'),

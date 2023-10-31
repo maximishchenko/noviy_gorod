@@ -5,12 +5,14 @@ namespace frontend\modules\catalog\models;
 use backend\modules\catalog\models\Apartment as backendApartment;
 use backend\modules\catalog\models\Entrance;
 use backend\modules\catalog\models\House;
+use common\models\ApartmentStatus;
 use frontend\modules\catalog\models\Layout;
 use frontend\modules\catalog\models\query\LayoutQuery;
 use common\models\Status;
 use frontend\modules\catalog\models\query\ApartmentQuery;
 use frontend\traits\cacheParamsTrait;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%apartment}}".
@@ -107,6 +109,22 @@ class Apartment extends backendApartment
     public function getHouse()
     {
         return $this->hasOne(House::class, ['id' => 'house_id'])->via('entrance');
+    }
+
+    public function getApartmentsByCountRooms($countRooms)
+    {
+        return self::getDb()->cache(function() use ($countRooms) {
+            return self::find()->where([self::tableName() . '.status' => ApartmentStatus::STATUS_ACTIVE, Layout::tableName() . '.count_rooms' => $countRooms])->joinWith(['layout'])->all();
+        }, self::getCacheDuration(), self::getCacheDependency());
+    }
+
+    public function getApartmentroomsCount(): array
+    {
+        $rooms = Layout::getDb()->cache(function() {
+            return Layout::find()->select(['count_rooms'])->distinct()->asArray()->all();
+        }, Layout::getCacheDuration(), Layout::getCacheDependency());
+        $rooms = ArrayHelper::getColumn($rooms, 'count_rooms');
+        return $rooms;
     }
 
     protected function getRooms(): LayoutQuery

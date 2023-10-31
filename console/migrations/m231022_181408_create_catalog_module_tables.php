@@ -91,6 +91,7 @@ class m231022_181408_create_catalog_module_tables extends Migration
         $this->createTable('{{%apartment}}', [
             'id' => $this->primaryKey(),
             'layout_id' => $this->integer()->notNull(),
+            'number' => $this->integer()->notNull(),
             'apartment_floor' => $this->integer()->notNull(),
             'slug' => $this->string(),
             'image' => $this->string(),
@@ -106,6 +107,7 @@ class m231022_181408_create_catalog_module_tables extends Migration
         $this->createIndex('idx-apartment-id', '{{%apartment}}', 'id');
         $this->createIndex('idx-apartment-layout_id', '{{%apartment}}', 'layout_id');
         $this->createIndex('idx-apartment-slug', '{{%apartment}}', 'slug');
+        $this->createIndex('idx-apartment-number', '{{%apartment}}', 'number');
         $this->createIndex('idx-apartment-apartment_floor', '{{%apartment}}', 'apartment_floor');
         $this->createIndex('idx-apartment-image', '{{%apartment}}', 'image');
         $this->createIndex('idx-apartment-status', '{{%apartment}}', 'status');
