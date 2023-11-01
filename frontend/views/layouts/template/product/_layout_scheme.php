@@ -1,8 +1,3 @@
-<?php
-
-use frontend\modules\catalog\models\Apartment;
-
-?>
 <h2 style="text-align: center; margin-bottom: 1rem;">
   <?= $entrance->numberWithPrefix; ?>
 </h2>
@@ -18,8 +13,7 @@ use frontend\modules\catalog\models\Apartment;
 
     <?php foreach($entrance->layouts as $layout): ?>
 
-      <?php  $apartment = $apartmentModel->getApartmentsByFloorAndLayout($floor, $layout->id);
-      // Apartment::find()->active()->where(['apartment_floor' => $floor, 'layout_id' => $layout->id])->one(); ?>
+      <?php  $apartment = $apartmentModel->getApartmentsByFloorAndLayout($floor, $layout->id); ?>
 
       <?php if ($apartment->number): ?>
       <div class="apartments-list__floor__item">

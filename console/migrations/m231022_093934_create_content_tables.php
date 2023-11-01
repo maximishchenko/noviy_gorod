@@ -76,6 +76,36 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-lead-email', '{{%lead}}', 'email');
         $this->createIndex('idx-lead-subject', '{{%lead}}', 'subject');
         $this->createIndex('idx-lead-created_at', '{{%lead}}', 'created_at');
+
+        
+        $this->createTable('{{%offer}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string(),
+            'slug' => $this->string(),
+            'preview_text' => $this->text(),
+            'description_text' => $this->text(),
+            'preview_image' => $this->string(),
+            'description_image' => $this->string(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+        
+        $this->createIndex('idx-offer-id', '{{%offer}}', 'id');
+        $this->createIndex('idx-offer-name', '{{%offer}}', 'name');
+        $this->createIndex('idx-offer-slug', '{{%offer}}', 'slug');
+        $this->createIndex('idx-offer-preview_image', '{{%offer}}', 'preview_image');
+        $this->createIndex('idx-offer-description_image', '{{%offer}}', 'description_image');
+        $this->createIndex('idx-offer-sort', '{{%offer}}', 'sort');
+        $this->createIndex('idx-offer-status', '{{%offer}}', 'status');
+        $this->createIndex('idx-offer-created_at', '{{%offer}}', 'created_at');
+        $this->createIndex('idx-offer-updated_at', '{{%offer}}', 'updated_at');
+        $this->createIndex('idx-offer-created_by', '{{%offer}}', 'created_by');
+        $this->createIndex('idx-offer-updated_by', '{{%offer}}', 'updated_by');
     }
 
     public function safeDown()

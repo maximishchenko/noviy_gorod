@@ -81,6 +81,8 @@ return [
                 'contact' => 'site/contact',
                 'filter' => 'catalog/default/index',
                 'filter/<slug>' => 'catalog/default/view',
+                'offer' => 'content/offer/index',
+                'offer/<slug>' => 'content/offer/view',
             ],
         ],
     ],

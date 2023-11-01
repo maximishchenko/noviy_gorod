@@ -9,7 +9,7 @@ use yii\helpers\Html;
             <nav class="header__nav">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'header__nav-link']); ?>
                 <?= Html::a('Ипотека', ['/mortgage'], ['class' => 'header__nav-link']); ?>
-                <?= Html::a('Акции', ['/offers'], ['class' => 'header__nav-link']); ?>
+                <?= Html::a('Акции', ['/offer'], ['class' => 'header__nav-link']); ?>
             </nav>
         </div>
         <a href="<?= Yii::$app->homeUrl; ?>" class="header__logo">
@@ -37,7 +37,7 @@ use yii\helpers\Html;
         <div class="mobile-menu">
             <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Ипотека', ['/mortgage'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Акции', ['/offers'], ['class' => 'mobile-menu__link']); ?>
+            <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Ход строительства', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Паркинг', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Кладовые помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
