@@ -26,4 +26,14 @@ use yii\helpers\Url;
                 'linkUrl' => Url::to(['/content/stage'])
             ]) ?>
         </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= SmallBox::widget([
+                'title' => Yii::t('app', 'Offer'),
+                'text' => Yii::t('app', 'Offer Edit'),
+                'icon' => 'fas fa-shopping-cart',
+                'theme' => 'warning',
+                'linkText' => Yii::t('app', 'GO_LINK'),
+                'linkUrl' => Url::to(['/content/offer'])
+            ]) ?>
+        </div>
 </div>

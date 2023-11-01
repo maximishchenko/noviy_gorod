@@ -110,6 +110,7 @@ class m231022_093934_create_content_tables extends Migration
 
     public function safeDown()
     {
+        $this->dropTable('{{%offer}}');
         $this->dropTable('{{%lead}}');
         $this->dropTable('{{%stage_item}}');  
         $this->dropTable('{{%stage}}');  
