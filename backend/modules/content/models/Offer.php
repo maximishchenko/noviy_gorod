@@ -128,4 +128,25 @@ class Offer extends \yii\db\ActiveRecord
     {
         return new OfferQuery(get_called_class());
     }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->uploadFile('previewImageFile', 'preview_image', self::UPLOAD_PATH);
+            $this->uploadFile('descriptionImageFile', 'description_image', self::UPLOAD_PATH);
+            return true;
+        }
+        return false;
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $this->deleteSingleFile('preview_image', self::UPLOAD_PATH);
+            $this->deleteSingleFile('description_image', self::UPLOAD_PATH);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

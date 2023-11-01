@@ -179,23 +179,16 @@ $(function () {
     }
     
     let rangeParams = document.querySelector('.room-search__title');
-    let minArea = rangeParams.getAttribute('data-min-area');
-    let maxArea = rangeParams.getAttribute('data-max-area');
-    let fromSliderValue = document.getElementById('minArea');
-    let toSliderValue = document.getElementById('maxArea');
-    let fromValue = (fromSliderValue.value != '') ? fromSliderValue.value : minArea;
-    let toValue = (toSliderValue.value != '') ? toSliderValue.value : maxArea;
+    if (rangeParams) {
+      var minArea = rangeParams.getAttribute('data-min-area');
+      var maxArea = rangeParams.getAttribute('data-max-area');
+      var fromSliderValue = document.getElementById('minArea');
+      var toSliderValue = document.getElementById('maxArea');
+      var fromValue = (fromSliderValue.value != '') ? fromSliderValue.value : minArea;
+      var toValue = (toSliderValue.value != '') ? toSliderValue.value : maxArea;
+    }
     if (
       (
-
-      //   $(function () {
-      //   $(".ajax_form").append('<input type="text" name="org" value="" class="_org" style="visibility:hidden; padding: 0; border:none;"/>'),
-      //     (AjaxForm.Message.success = function () {}),
-      //     (AjaxForm.Message.error = function () {}),
-      //     $(document).on("af_complete", function (e, t) {
-      //       !0 === t.success && ($(".modal--active").removeClass("modal--active"), $(".modal--thanks").addClass("modal--active"));
-      //     });
-      // }),
       
       $(".js-range-slider").length && $(".js-range-slider").ionRangeSlider({ 
         min: minArea, 
