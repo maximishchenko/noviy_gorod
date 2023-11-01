@@ -5,7 +5,7 @@ use yii\helpers\Html;
 <section class="page-error"> 
   <div class="container"> 
     <div class="page-error__title">
-        <span>404</span>
+      404
     </div>
     <div class="page-error__subtitle">
         Страница не найдена
