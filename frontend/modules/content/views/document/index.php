@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php foreach($category->documents as $document): ?>
                             <a class="docs__item" href="<?= $document->filePath; ?>" target="_blank">
                                 <div class="docs__item-date">
-                                    <?= Yii::$app->formatter->asDatetime($category->updated_at, 'dd.mm.YYYY'); ?>
+                                    <?= Yii::$app->formatter->asDatetime($category->updated_at, 'dd.MM.YYYY'); ?>
                                 </div>
                                 <div class="docs__item-title">
                                     <?= $document->name; ?>
