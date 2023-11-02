@@ -83,6 +83,7 @@ return [
                 'filter/<slug>' => 'catalog/default/view',
                 'offer' => 'content/offer/index',
                 'gallery' => 'content/gallery/index',
+                'parking' => 'content/parking/index',
             ],
         ],
     ],

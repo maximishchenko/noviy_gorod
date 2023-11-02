@@ -39,7 +39,7 @@ class GalleryUpload extends \yii\db\ActiveRecord
             // [['gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::class, 'targetAttribute' => ['gallery_id' => 'id']],
             
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
-            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
+            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, video/*'],
             [['file'], 'safe']
         ];
     }

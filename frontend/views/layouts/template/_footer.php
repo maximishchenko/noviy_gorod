@@ -33,7 +33,7 @@ use yii\helpers\Html;
                 <?= Html::a('Кладовые помещения', ['#'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Паркинг', ['#'], ['class' => 'footer__links-item']); ?>
+                <?= Html::a('Паркинг', ['/parking'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Документы', ['#'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Контакты', ['/contact'], ['class' => 'footer__links-item']); ?>
               </div>

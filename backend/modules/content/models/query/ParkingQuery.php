@@ -2,7 +2,7 @@
 
 namespace backend\modules\content\models\query;
 
-class GalleryQuery extends \yii\db\ActiveQuery
+class ParkingQuery extends \yii\db\ActiveQuery
 {
     public function all($db = null)
     {

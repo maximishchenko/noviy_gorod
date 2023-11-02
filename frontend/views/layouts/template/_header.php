@@ -28,7 +28,7 @@ use yii\helpers\Html;
         </div>
         <div class="header__menu">
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Паркинг', ['#'], ['class' => 'header__menu-link']); ?>
+            <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Кладовые помещения', ['#'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Коммерческие помещения', ['#'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Документы', ['#'], ['class' => 'header__menu-link']); ?>
@@ -39,7 +39,7 @@ use yii\helpers\Html;
             <?= Html::a('Ипотека', ['/mortgage'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Паркинг', ['#'], ['class' => 'mobile-menu__link']); ?>
+            <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Кладовые помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Коммерческие помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Документы', ['#'], ['class' => 'mobile-menu__link']); ?>

@@ -141,10 +141,39 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-gallery_upload-sort', '{{%gallery_upload}}', 'sort');
         
         $this->addForeignKey('fk-gallery_upload-gallery', '{{%gallery_upload}}', 'gallery_id', '{{%gallery}}', 'id', 'CASCADE', 'RESTRICT');
+        
+        $this->createTable('{{%parking}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'image' => $this->string(),
+            'layout_image' => $this->string(),
+            'description' => $this->text(),
+            'callback_button_name' => $this->string(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-parking-id', '{{%parking}}', 'id');
+        $this->createIndex('idx-parking-name', '{{%parking}}', 'name');
+        $this->createIndex('idx-parking-image', '{{%parking}}', 'image');
+        $this->createIndex('idx-parking-layout_image', '{{%parking}}', 'layout_image');
+        $this->createIndex('idx-parking-callback_button_name', '{{%parking}}', 'callback_button_name');
+        $this->createIndex('idx-parking-sort', '{{%parking}}', 'sort');
+        $this->createIndex('idx-parking-status', '{{%parking}}', 'status');
+        $this->createIndex('idx-parking-created_at', '{{%parking}}', 'created_at');
+        $this->createIndex('idx-parking-updated_at', '{{%parking}}', 'updated_at');
+        $this->createIndex('idx-parking-created_by', '{{%parking}}', 'created_by');
+        $this->createIndex('idx-parking-updated_by', '{{%parking}}', 'updated_by');
     }
 
     public function safeDown()
     {
+        $this->dropTable('{{%parking}}');
         $this->dropTable('{{%gallery_upload}}');
         $this->dropTable('{{%gallery}}');
         $this->dropTable('{{%offer}}');
