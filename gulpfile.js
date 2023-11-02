@@ -40,4 +40,4 @@ exports.default = function () {
 }
 exports.less = less_compile;
 
-// exports.default = series(less_compile, sprite);
+exports.default = series(less_compile, sprite);

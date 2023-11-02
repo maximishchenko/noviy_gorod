@@ -76,7 +76,7 @@ class Parking extends \yii\db\ActiveRecord
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
             ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
-            [['layoutImageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
+            [['layoutImageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, svg'],
         ];
     }
 
