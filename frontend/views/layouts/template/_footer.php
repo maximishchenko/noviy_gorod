@@ -31,7 +31,7 @@ use yii\helpers\Html;
               <div class="footer__links-items">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Кладовые помещения', ['#'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Ход строительства', ['#'], ['class' => 'footer__links-item']); ?>
+                <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Паркинг', ['#'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Документы', ['#'], ['class' => 'footer__links-item']); ?>

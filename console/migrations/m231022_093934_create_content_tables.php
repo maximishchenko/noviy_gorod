@@ -106,10 +106,47 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-offer-updated_at', '{{%offer}}', 'updated_at');
         $this->createIndex('idx-offer-created_by', '{{%offer}}', 'created_by');
         $this->createIndex('idx-offer-updated_by', '{{%offer}}', 'updated_by');
+        
+        $this->createTable('{{%gallery}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+        
+        $this->createIndex('idx-gallery-id', '{{%gallery}}', 'id');
+        $this->createIndex('idx-gallery-name', '{{%gallery}}', 'name');
+        $this->createIndex('idx-gallery-sort', '{{%gallery}}', 'sort');
+        $this->createIndex('idx-gallery-status', '{{%gallery}}', 'status');
+        $this->createIndex('idx-gallery-created_at', '{{%gallery}}', 'created_at');
+        $this->createIndex('idx-gallery-updated_at', '{{%gallery}}', 'updated_at');
+        $this->createIndex('idx-gallery-created_by', '{{%gallery}}', 'created_by');
+        $this->createIndex('idx-gallery-updated_by', '{{%gallery}}', 'updated_by');
+        
+        $this->createTable('{{%gallery_upload}}', [
+            'id' => $this->primaryKey(),
+            'gallery_id' => $this->integer()->notNull(),
+            'file_name' => $this->string(),
+            'sort' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-gallery_upload-id', '{{%gallery_upload}}', 'id');
+        $this->createIndex('idx-gallery_upload-gallery_id', '{{%gallery_upload}}', 'gallery_id');
+        $this->createIndex('idx-gallery_upload-file_name', '{{%gallery_upload}}', 'file_name');
+        $this->createIndex('idx-gallery_upload-sort', '{{%gallery_upload}}', 'sort');
+        
+        $this->addForeignKey('fk-gallery_upload-gallery', '{{%gallery_upload}}', 'gallery_id', '{{%gallery}}', 'id', 'CASCADE', 'RESTRICT');
     }
 
     public function safeDown()
     {
+        $this->dropTable('{{%gallery_upload}}');
+        $this->dropTable('{{%gallery}}');
         $this->dropTable('{{%offer}}');
         $this->dropTable('{{%lead}}');
         $this->dropTable('{{%stage_item}}');  

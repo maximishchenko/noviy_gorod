@@ -205,4 +205,9 @@ return [
     'Offer Preview Hint' => 'Текст предварительного просмотра акции',
     'Offer Description Hint' => 'Текст детального описания акции',
     'Update Offer: {name}' => '{name}',
+    'Galleries' => 'Ход строительства',
+    'Gallery' => 'Ход строительства',
+    'Gallery Edit' => 'Галерея раздела Ход строительства',
+    'Update Gallery: {name}' => '{name}',
+    'Gallery Files' => 'Файлы изображений',
 ];
