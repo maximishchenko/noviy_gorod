@@ -94,7 +94,7 @@ class Gallery extends \yii\db\ActiveRecord
 
     public function getUploads()
     {
-        return $this->hasMany(GalleryUpload::class, ['gallery_id' => 'id']);
+        return $this->hasMany(GalleryUpload::class, ['gallery_id' => 'id'])->orderBy([GalleryUpload::tableName().'.sort' => SORT_ASC]);
     }
 
     public static function find()

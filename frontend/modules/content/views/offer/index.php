@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Акции';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -13,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if($offers): ?>
       <?php foreach($offers as $offer): ?>
       <div class="news__item">
-          <img class="news__item-img" src="<?= $offer->previewThumb; ?>" alt="" />
+          <?= Html::img($offer->previewThumb, ['class' => 'news__item-img', 'alt' => $offer->name]); ?>
           <div class="news__item-title"><?= $offer->name; ?></div>
         <div class="room__btn js-open-feedback">Оставить заявку</div>
       </div>

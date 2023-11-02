@@ -4,10 +4,12 @@ namespace frontend\modules\content\models;
 
 use backend\modules\content\models\Offer as backendOffer;
 use frontend\modules\content\models\query\OfferQuery;
+use frontend\traits\cacheParamsTrait;
 
 class Offer extends backendOffer
 {
-
+    use cacheParamsTrait;
+    
     const NO_IMAGE = '/static/sprite.svg#noimage';
     
     public static function find()

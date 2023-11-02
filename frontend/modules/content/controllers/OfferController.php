@@ -9,7 +9,9 @@ class OfferController extends BaseController
 {
     public function actionIndex()
     {
-        $offers = Offer::find()->active()->ordered()->all();
+        $offers = Offer::getDb()->cache(function() {
+            return Offer::find()->active()->ordered()->all();
+        }, Offer::getCacheDuration(), Offer::getCacheDependency());
 
         return $this->render('index', ['offers' => $offers]);
     }

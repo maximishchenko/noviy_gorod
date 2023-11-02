@@ -80,4 +80,6 @@ use yii\bootstrap5\ActiveForm;
 
 </div>
 
+<?php $this->registerJsFile("@web/js/sortable.js"); ?>
+
 <?= $this->render('//layouts/forms/_buttons', ['formId' => 'gallery-form']); ?>
