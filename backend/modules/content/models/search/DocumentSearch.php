@@ -4,15 +4,16 @@ namespace backend\modules\content\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\content\models\Offer;
+use backend\modules\content\models\Document;
 
-class OfferSearch extends Offer
+class DocumentSearch extends Document
 {
     public function rules()
     {
         return [
-            [['id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'slug', 'preview_text', 'preview_image', 'comment'], 'safe'],
+            [['id', 'category_id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['file_name', 'file_extension', 'comment'], 'safe'],
+            [['file_size'], 'number'],
         ];
     }
 
@@ -21,9 +22,9 @@ class OfferSearch extends Offer
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($id, $params)
     {
-        $query = Offer::find();
+        $query = Document::find()->where(['category_id' => $id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -33,13 +34,13 @@ class OfferSearch extends Offer
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'category_id' => $this->category_id,
+            'file_size' => $this->file_size,
             'sort' => $this->sort,
             'status' => $this->status,
             'created_at' => $this->created_at,
@@ -48,10 +49,8 @@ class OfferSearch extends Offer
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'preview_text', $this->preview_text])
-            ->andFilterWhere(['like', 'preview_image', $this->preview_image])
+        $query->andFilterWhere(['like', 'file_name', $this->file_name])
+            ->andFilterWhere(['like', 'file_extension', $this->file_extension])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;

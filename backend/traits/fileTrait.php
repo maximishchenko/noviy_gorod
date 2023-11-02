@@ -130,9 +130,16 @@ trait fileTrait
         $filePath = self::$frontendPath . $path . $img;
         return $filePath;
     }
-
-    public function removeOldFileOnUpdate()
+    
+    public function setFileExtensionAttribute(string $file, string $attribute)
     {
+        $file = UploadedFile::getInstance($this, $file);
+        $this->$attribute = $file->extension;
+    }
 
+    public function setFileSizeAttribute(string $file, string $attribute)
+    {
+        $file = UploadedFile::getInstance($this, $file);
+        $this->$attribute = $file->size;
     }
 }

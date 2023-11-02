@@ -83,9 +83,7 @@ class m231022_093934_create_content_tables extends Migration
             'name' => $this->string(),
             'slug' => $this->string(),
             'preview_text' => $this->text(),
-            'description_text' => $this->text(),
             'preview_image' => $this->string(),
-            'description_image' => $this->string(),
             'comment' => $this->text(),
             'sort' => $this->integer(),
             'status' => $this->smallInteger(),
@@ -99,7 +97,6 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-offer-name', '{{%offer}}', 'name');
         $this->createIndex('idx-offer-slug', '{{%offer}}', 'slug');
         $this->createIndex('idx-offer-preview_image', '{{%offer}}', 'preview_image');
-        $this->createIndex('idx-offer-description_image', '{{%offer}}', 'description_image');
         $this->createIndex('idx-offer-sort', '{{%offer}}', 'sort');
         $this->createIndex('idx-offer-status', '{{%offer}}', 'status');
         $this->createIndex('idx-offer-created_at', '{{%offer}}', 'created_at');
@@ -169,10 +166,64 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-parking-updated_at', '{{%parking}}', 'updated_at');
         $this->createIndex('idx-parking-created_by', '{{%parking}}', 'created_by');
         $this->createIndex('idx-parking-updated_by', '{{%parking}}', 'updated_by');
+        
+        $this->createTable('{{%document_category}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-document_category-id', '{{%document_category}}', 'id');
+        $this->createIndex('idx-document_category-name', '{{%document_category}}', 'name');
+        $this->createIndex('idx-document_category-sort', '{{%document_category}}', 'sort');
+        $this->createIndex('idx-document_category-status', '{{%document_category}}', 'status');
+        $this->createIndex('idx-document_category-created_at', '{{%document_category}}', 'created_at');
+        $this->createIndex('idx-document_category-updated_at', '{{%document_category}}', 'updated_at');
+        $this->createIndex('idx-document_category-created_by', '{{%document_category}}', 'created_by');
+        $this->createIndex('idx-document_category-updated_by', '{{%document_category}}', 'updated_by');
+
+        $this->createTable('{{%document}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'category_id' => $this->integer(),
+            'file_name' => $this->string(),
+            'file_extension' => $this->string(),
+            'file_size' => $this->decimal(65,2),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-document-id', '{{%document}}', 'id');
+        $this->createIndex('idx-document-category_id', '{{%document}}', 'category_id');
+        $this->createIndex('idx-document-name', '{{%document}}', 'name');
+        $this->createIndex('idx-document-file_name', '{{%document}}', 'file_name');
+        $this->createIndex('idx-document-file_extension', '{{%document}}', 'file_extension');
+        $this->createIndex('idx-document-file_size', '{{%document}}', 'file_size');
+        $this->createIndex('idx-document-sort', '{{%document}}', 'sort');
+        $this->createIndex('idx-document-status', '{{%document}}', 'status');
+        $this->createIndex('idx-document-created_at', '{{%document}}', 'created_at');
+        $this->createIndex('idx-document-updated_at', '{{%document}}', 'updated_at');
+        $this->createIndex('idx-document-created_by', '{{%document}}', 'created_by');
+        $this->createIndex('idx-document-updated_by', '{{%document}}', 'updated_by');
+
+        $this->addForeignKey('fk-document-document_category', '{{%document}}', 'category_id', '{{%document_category}}', 'id', 'CASCADE', 'RESTRICT');
     }
 
     public function safeDown()
     {
+        $this->dropTable('{{%document}}');
+        $this->dropTable('{{%document_category}}');
         $this->dropTable('{{%parking}}');
         $this->dropTable('{{%gallery_upload}}');
         $this->dropTable('{{%gallery}}');

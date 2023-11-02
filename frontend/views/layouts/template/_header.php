@@ -31,7 +31,7 @@ use yii\helpers\Html;
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Кладовые помещения', ['#'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Коммерческие помещения', ['#'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Документы', ['#'], ['class' => 'header__menu-link']); ?>
+            <?= Html::a('Документы', ['/documents'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Способы оплаты', ['#'], ['class' => 'header__menu-link']); ?>
         </div>
         <div class="mobile-menu">
@@ -42,7 +42,7 @@ use yii\helpers\Html;
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Кладовые помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Коммерческие помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Документы', ['#'], ['class' => 'mobile-menu__link']); ?>
+            <?= Html::a('Документы', ['/documents'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Способы оплаты', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Другие наши проекты', Yii::$app->configManager->getItemValue('anotherProjectsUrl'), ['class' => 'mobile-menu__link', 'target' => 'blank']); ?>
             <?= Html::a('Контакты', ['/contact'], ['class' => 'mobile-menu__link']); ?>

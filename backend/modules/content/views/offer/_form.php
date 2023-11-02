@@ -37,8 +37,6 @@ use yii\bootstrap5\ActiveForm;
                         </div>
                         <div class="col-md-6">
                             <?= $form->field($model, 'preview_text')->textarea(['rows' => 6]) ?>
-
-                            <?= $form->field($model, 'description_text')->textarea(['rows' => 6]) ?>
                             
                             <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                         </div>
@@ -59,7 +57,7 @@ use yii\bootstrap5\ActiveForm;
             <div class="accordion-body">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <?= $form->field($model, 'previewImageFile')->fileInput() ?>
                         <?php if(isset($model->preview_image) && !empty($model->preview_image)): ?>
                             <div class="row">
@@ -67,19 +65,6 @@ use yii\bootstrap5\ActiveForm;
                                     'id' => $model->id,
                                     'filePath' => $model->getUrl(Offer::UPLOAD_PATH, $model->preview_image),
                                     'url' => 'delete-preview-image',
-                                    'fancyboxGalleryName' => "SingleCategoryImage",
-                                ]); ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                    <div class="col-md-6">
-                        <?= $form->field($model, 'descriptionImageFile')->fileInput() ?>
-                        <?php if(isset($model->description_image) && !empty($model->description_image)): ?>
-                            <div class="row">
-                                <?= SingleImagePreviewWidget::widget([
-                                    'id' => $model->id,
-                                    'filePath' => $model->getUrl(Offer::UPLOAD_PATH, $model->description_image),
-                                    'url' => 'delete-description-image',
                                     'fancyboxGalleryName' => "SingleCategoryImage",
                                 ]); ?>
                             </div>

@@ -84,6 +84,7 @@ return [
                 'offer' => 'content/offer/index',
                 'gallery' => 'content/gallery/index',
                 'parking' => 'content/parking/index',
+                'documents' => 'content/document/index',
             ],
         ],
     ],

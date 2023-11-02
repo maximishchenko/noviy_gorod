@@ -4,15 +4,15 @@ namespace backend\modules\content\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\content\models\Offer;
+use backend\modules\content\models\DocumentCategory;
 
-class OfferSearch extends Offer
+class DocumentCategorySearch extends DocumentCategory
 {
     public function rules()
     {
         return [
             [['id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'slug', 'preview_text', 'preview_image', 'comment'], 'safe'],
+            [['name', 'comment'], 'safe'],
         ];
     }
 
@@ -23,7 +23,7 @@ class OfferSearch extends Offer
 
     public function search($params)
     {
-        $query = Offer::find();
+        $query = DocumentCategory::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -33,8 +33,6 @@ class OfferSearch extends Offer
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
@@ -49,9 +47,6 @@ class OfferSearch extends Offer
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'preview_text', $this->preview_text])
-            ->andFilterWhere(['like', 'preview_image', $this->preview_image])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;

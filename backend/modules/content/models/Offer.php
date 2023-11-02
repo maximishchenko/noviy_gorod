@@ -38,8 +38,6 @@ class Offer extends \yii\db\ActiveRecord
     const UPLOAD_PATH = 'upload/offer/';
 
     public $previewImageFile;
-
-    public $descriptionImageFile;
     
     public function behaviors()
     {
@@ -75,9 +73,9 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['preview_text', 'description_text', 'comment'], 'string'],
+            [['preview_text', 'comment'], 'string'],
             [['sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'slug', 'preview_image', 'description_image'], 'string', 'max' => 255],
+            [['name', 'slug', 'preview_image'], 'string', 'max' => 255],
 
             [['name', 'preview_text'], 'required'],
             [['name'], 'unique'],
@@ -95,11 +93,8 @@ class Offer extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Offer Name'),
             'slug' => Yii::t('app', 'Slug'),
             'preview_text' => Yii::t('app', 'Offer Preview Text'),
-            'description_text' => Yii::t('app', 'Offer Description Text'),
             'preview_image' => Yii::t('app', 'Offer Preview Image'),
-            'description_image' => Yii::t('app', 'Offer Description Image'),
             'previewImageFile' => Yii::t('app', 'Offer Preview Image'),
-            'descriptionImageFile' => Yii::t('app', 'Offer Description Image'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
@@ -115,9 +110,7 @@ class Offer extends \yii\db\ActiveRecord
         return [
             'name' => Yii::t('app', 'Offer Name Hint'),
             'preview_text' => Yii::t('app', 'Offer Preview Hint'),
-            'description_text' => Yii::t('app', 'Offer Description Hint'),
             'previewImageFile' => Yii::t('app', 'Offer preview imageFile Hint {extensions}', ['extensions' => 'png, jpg, jpeg, webp']),
-            'descriptionImageFile' => Yii::t('app', 'Offer description imageFile Hint {extensions}', ['extensions' => 'png, jpg, jpeg, webp']),
             'comment' => Yii::t('app', 'Comment Hint'),
             'sort' => Yii::t('app', 'Sort Hint. Default value is {sortDefault}', ['sortDefault' => Sort::DEFAULT_SORT_VALUE]),
             'status' => Yii::t('app', 'Status Hint'),
@@ -133,7 +126,6 @@ class Offer extends \yii\db\ActiveRecord
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile('previewImageFile', 'preview_image', self::UPLOAD_PATH);
-            $this->uploadFile('descriptionImageFile', 'description_image', self::UPLOAD_PATH);
             return true;
         }
         return false;
@@ -143,7 +135,6 @@ class Offer extends \yii\db\ActiveRecord
     {
         if (parent::beforeDelete()) {
             $this->deleteSingleFile('preview_image', self::UPLOAD_PATH);
-            $this->deleteSingleFile('description_image', self::UPLOAD_PATH);
             return true;
         } else {
             return false;
