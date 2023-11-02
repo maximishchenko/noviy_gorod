@@ -22,7 +22,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $preview_image
  * @property string|null $description_image
  * @property string|null $previewImageFile
- * @property string|null $descriptionImageFile
  * @property string|null $comment
  * @property int|null $sort
  * @property int|null $status
@@ -82,7 +81,6 @@ class Offer extends \yii\db\ActiveRecord
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
             ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
             [['previewImageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
-            [['descriptionImageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
         ];
     }
 
