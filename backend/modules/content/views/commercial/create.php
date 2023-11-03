@@ -1,11 +1,12 @@
 <?php
 
+
 $this->title = Yii::t('app', 'Add new Record');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Parkings'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Commercials'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parking-create">
+<div class="commercial-create">
 
     <?= $this->render('_form', [
         'model' => $model,

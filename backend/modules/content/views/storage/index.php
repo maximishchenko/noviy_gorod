@@ -1,30 +1,33 @@
 <?php
 
+use backend\modules\content\models\Storage;
 use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\Status;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Parkings');
+$this->title = Yii::t('app', 'Storages');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parking-index">
+<div class="storage-index">
+    
     
     <p class="text-right">
         <?= ListButtonsWidget::widget() ?>
     </p>
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
 
             [
                 'attribute' => 'id',
@@ -59,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => SetColumn::className(),
                 'filter' => false,
                 'value' => function($data) {
-                    return ($data->id == Yii::$app->configManager->getItemValue('contentParkingStage')) ? Yii::t('app', 'Used') : Yii::t('app', 'Not Used');
+                    return ($data->id == Yii::$app->configManager->getItemValue('contentStorageStage')) ? Yii::t('app', 'Used') : Yii::t('app', 'Not Used');
                 },
                 'contentOptions' => ['style' => 'width:100px;'],
                 'cssCLasses' => [
@@ -78,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('app', 'Set Default Item'),
                             'data' => [
                                 'method' => 'post',
-                                'confirm' => Yii::t('app', 'Do set parking item answer'),
+                                'confirm' => Yii::t('app', 'Do set storage item answer'),
                             ]
                         ]);
                     },

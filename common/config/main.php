@@ -83,6 +83,22 @@ return [
                     'rules' => [
                     ],
                 ],
+                'contentStorageStage' => [
+                    'path' => 'storage_stage',
+                    'label' => Yii::t('app', "CONTENT_STORAGE_STAGE"),
+                    'description' => Yii::t('app', "CONTENT_STORAGE_STAGE DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
+                'contentCommercialStage' => [
+                    'path' => 'commercial_stage',
+                    'label' => Yii::t('app', "CONTENT_COMMERCIAL_STAGE"),
+                    'description' => Yii::t('app', "CONTENT_COMMERCIAL_STAGE DESCRIPTION"),
+                    'value' => "",
+                    'rules' => [
+                    ],
+                ],
                 'contentMainStageMaxItemsCount' => [
                     'path' => 'main_stage_max_items_count',
                     'label' => Yii::t('app', "CONTENT_MAIN_STAGE_MAX_ITEMS_COUNT"),
