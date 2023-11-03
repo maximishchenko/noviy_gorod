@@ -4,17 +4,17 @@ use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\Status;
+use yii\helpers\Html;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Parkings');
+$this->title = Yii::t('app', 'Commercials');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parking-index">
-    
+<div class="commercial-index">
+
     <p class="text-right">
         <?= ListButtonsWidget::widget() ?>
     </p>
@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
 
             [
                 'attribute' => 'id',
@@ -78,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('app', 'Set Default Item'),
                             'data' => [
                                 'method' => 'post',
-                                'confirm' => Yii::t('app', 'Do set parking item answer'),
+                                'confirm' => Yii::t('app', 'Do set commercial item answer'),
                             ]
                         ]);
                     },

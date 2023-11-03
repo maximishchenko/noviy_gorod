@@ -2,9 +2,8 @@
 
 namespace backend\modules\content\models\query;
 
-class DocumentCategoryQuery extends \yii\db\ActiveQuery
+class StorageQuery extends \yii\db\ActiveQuery
 {
-    
     public function all($db = null)
     {
         return parent::all($db);

@@ -58,6 +58,26 @@ use yii\helpers\Url;
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <?= SmallBox::widget([
+                'title' => Yii::t('app', 'Storage'),
+                'text' => Yii::t('app', 'Storage Edit'),
+                'icon' => 'fa fa-shopping-basket',
+                'theme' => 'warning',
+                'linkText' => Yii::t('app', 'GO_LINK'),
+                'linkUrl' => Url::to(['/content/storage'])
+            ]) ?>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= SmallBox::widget([
+                'title' => Yii::t('app', 'Commercial'),
+                'text' => Yii::t('app', 'Commercial Edit'),
+                'icon' => 'fa fa-building',
+                'theme' => 'warning',
+                'linkText' => Yii::t('app', 'GO_LINK'),
+                'linkUrl' => Url::to(['/content/commercial'])
+            ]) ?>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= SmallBox::widget([
                 'title' => Yii::t('app', 'Document'),
                 'text' => Yii::t('app', 'Document Edit'),
                 'icon' => 'fa fa-file',

@@ -166,6 +166,63 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-parking-updated_at', '{{%parking}}', 'updated_at');
         $this->createIndex('idx-parking-created_by', '{{%parking}}', 'created_by');
         $this->createIndex('idx-parking-updated_by', '{{%parking}}', 'updated_by');
+
+        $this->createTable('{{%storage}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'image' => $this->string(),
+            'layout_image' => $this->string(),
+            'description' => $this->text(),
+            'callback_button_name' => $this->string(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-storage-id', '{{%storage}}', 'id');
+        $this->createIndex('idx-storage-name', '{{%storage}}', 'name');
+        $this->createIndex('idx-storage-image', '{{%storage}}', 'image');
+        $this->createIndex('idx-storage-layout_image', '{{%storage}}', 'layout_image');
+        $this->createIndex('idx-storage-callback_button_name', '{{%storage}}', 'callback_button_name');
+        $this->createIndex('idx-storage-sort', '{{%storage}}', 'sort');
+        $this->createIndex('idx-storage-status', '{{%storage}}', 'status');
+        $this->createIndex('idx-storage-created_at', '{{%storage}}', 'created_at');
+        $this->createIndex('idx-storage-updated_at', '{{%storage}}', 'updated_at');
+        $this->createIndex('idx-storage-created_by', '{{%storage}}', 'created_by');
+        $this->createIndex('idx-storage-updated_by', '{{%storage}}', 'updated_by');
+
+        
+        $this->createTable('{{%commercial}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'image' => $this->string(),
+            'layout_image' => $this->string(),
+            'description' => $this->text(),
+            'callback_button_name' => $this->string(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-commercial-id', '{{%commercial}}', 'id');
+        $this->createIndex('idx-commercial-name', '{{%commercial}}', 'name');
+        $this->createIndex('idx-commercial-image', '{{%commercial}}', 'image');
+        $this->createIndex('idx-commercial-layout_image', '{{%commercial}}', 'layout_image');
+        $this->createIndex('idx-commercial-callback_button_name', '{{%storage}}', 'callback_button_name');
+        $this->createIndex('idx-commercial-sort', '{{%commercial}}', 'sort');
+        $this->createIndex('idx-commercial-status', '{{%commercial}}', 'status');
+        $this->createIndex('idx-commercial-created_at', '{{%commercial}}', 'created_at');
+        $this->createIndex('idx-commercial-updated_at', '{{%commercial}}', 'updated_at');
+        $this->createIndex('idx-commercial-created_by', '{{%commercial}}', 'created_by');
+        $this->createIndex('idx-commercial-updated_by', '{{%commercial}}', 'updated_by');
         
         $this->createTable('{{%document_category}}', [
             'id' => $this->primaryKey(),
@@ -224,12 +281,14 @@ class m231022_093934_create_content_tables extends Migration
     {
         $this->dropTable('{{%document}}');
         $this->dropTable('{{%document_category}}');
+        $this->dropTable('{{%commercial}}');
+        $this->dropTable('{{%storage}}');
         $this->dropTable('{{%parking}}');
         $this->dropTable('{{%gallery_upload}}');
         $this->dropTable('{{%gallery}}');
         $this->dropTable('{{%offer}}');
         $this->dropTable('{{%lead}}');
         $this->dropTable('{{%stage_item}}');  
-        $this->dropTable('{{%stage}}');  
+        $this->dropTable('{{%stage}}');
     }
 }
