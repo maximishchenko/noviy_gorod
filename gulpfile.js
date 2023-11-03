@@ -34,10 +34,11 @@ function less_compile () {
 
 
 
-exports.default = function () {
+exports.watch = function () {
   watch('./frontend/web/less/**/*.less', less_compile)
   watch('frontend/web/static/svg/**/*.svg', sprite)
 }
+
 exports.less = less_compile;
 
 exports.default = series(less_compile, sprite);
