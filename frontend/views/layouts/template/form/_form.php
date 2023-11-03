@@ -7,19 +7,19 @@ use frontend\modules\content\models\Lead;
 $contact = new Lead();
 ?>
    
-    <?php $form = ActiveForm::begin([
-        'id' => 'calback-form-modal',
-        'action' => ['/feedback'],
-        'method' => 'post',
-        'options' => [
-            'class' => "choose-feedback__form ajax_form",
-            'data-feedback-form' => '',
-        ],
-        'enableAjaxValidation' => false,
-        'enableClientValidation' => false,
-        'enableClientScript' => false,
-    ]); ?>
-  
+  <?php $form = ActiveForm::begin([
+      'id' => 'calback-form-modal',
+      'action' => ['/feedback'],
+      'method' => 'post',
+      'options' => [
+          'class' => "choose-feedback__form ajax_form",
+          'data-feedback-form' => '',
+      ],
+      'enableAjaxValidation' => false,
+      'enableClientValidation' => false,
+      'enableClientScript' => false,
+  ]); ?>
+
     <div class="choose-feedback__form-info">
 
       <?= $form->field($contact, 'subject', ['template' => '{input}'])->textInput(['placeholder' => 'Тема', 'value' => Lead::FEEDBACK_CONTACT_FORM_SUBJECT, 'hidden' => true])?>
@@ -46,8 +46,7 @@ $contact = new Lead();
         <a href="/policy">согласие</a> на обработку персональных данных
       </div>
     </div>
-    <button class="send-btn">
-      <?php $buttonText = "<div class='send-btn__icon'></div><div class='send-btn__text'>Отправить</div>"; ?>
-      <?= Html::submitButton($buttonText, ['class' => 'send-btn'])?>
-    </button>
+    <?php $buttonText = "<div class='send-btn__icon'></div><div class='send-btn__text'>Отправить</div>"; ?>
+    <?= Html::submitButton($buttonText, ['class' => 'send-btn'])?>
   <?php ActiveForm::end(); ?>
+    
