@@ -1,6 +1,7 @@
 <?php
 $this->title = Yii::$app->name;
 $this->params['breadcrumbs'] = [['label' => $this->title]];
+
 ?>
 <div class="container-fluid"> 
 

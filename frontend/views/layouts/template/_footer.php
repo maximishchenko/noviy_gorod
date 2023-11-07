@@ -30,7 +30,8 @@ use yii\helpers\Html;
               <div class="footer__links-title">ЖК Новый Город</div>
               <div class="footer__links-items">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Кладовые помещения', ['#'], ['class' => 'footer__links-item']); ?>
+                <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'footer__links-item']); ?>
+                <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Паркинг', ['/parking'], ['class' => 'footer__links-item']); ?>

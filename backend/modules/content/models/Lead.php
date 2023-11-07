@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\LeadQuery;
@@ -21,12 +23,12 @@ class Lead extends \yii\db\ActiveRecord
 {
     const FEEDBACK_CONTACT_FORM_SUBJECT = 'Сообщение формы обратной связи';
     
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%lead}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['body'], 'string'],
@@ -35,7 +37,7 @@ class Lead extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -48,7 +50,7 @@ class Lead extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function find()
+    public static function find(): LeadQuery
     {
         return new LeadQuery(get_called_class());
     }

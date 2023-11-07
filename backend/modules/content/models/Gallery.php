@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use Yii;
@@ -8,6 +10,7 @@ use yii\behaviors\TimestampBehavior;
 use backend\modules\content\models\query\GalleryQuery;
 use common\models\Sort;
 use common\models\Status;
+use yii\db\ActiveQuery;
 use yii\web\UploadedFile;
 
 /**
@@ -30,12 +33,12 @@ class Gallery extends \yii\db\ActiveRecord
 
     public $files;
 
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%gallery}}';
     }
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -54,7 +57,7 @@ class Gallery extends \yii\db\ActiveRecord
         ];
     }  
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['name'], 'required'],
@@ -71,7 +74,7 @@ class Gallery extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -87,28 +90,28 @@ class Gallery extends \yii\db\ActiveRecord
         ];
     }    
     
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [];
     }
 
-    public function getUploads()
+    public function getUploads(): ActiveQuery
     {
         return $this->hasMany(GalleryUpload::class, ['gallery_id' => 'id'])->orderBy([GalleryUpload::tableName().'.sort' => SORT_ASC]);
     }
 
-    public static function find()
+    public static function find(): GalleryQuery
     {
         return new GalleryQuery(get_called_class());
     }
 
-    public function afterSave($insert, $changedAttributes)
+    public function afterSave($insert, $changedAttributes): void
     {
         $this->setImageAttributes();
         parent::afterSave($insert, $changedAttributes);
     }
     
-    private function setImageAttributes()
+    private function setImageAttributes(): void
     {
         $this->files = UploadedFile::getInstances($this, 'files');
         if(isset($this->files) && !empty($this->files))

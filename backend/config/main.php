@@ -74,7 +74,8 @@ return [
         ],
         'urlManagerFrontend' => [
             'class' => 'yii\web\UrlManager',
-            'hostInfo' => Yii::$app->request->hostInfo,
+            // 'hostInfo' => Yii::$app->request->hostInfo,
+            'hostInfo' => $_SERVER['HTTP_HOST'],
             'baseUrl' => '',
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,

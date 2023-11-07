@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\DocumentCategoryQuery;
@@ -8,6 +10,7 @@ use common\models\Status;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%document_category}}".
@@ -26,7 +29,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class DocumentCategory extends \yii\db\ActiveRecord
 {
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -45,12 +48,12 @@ class DocumentCategory extends \yii\db\ActiveRecord
         ];
     }  
     
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%document_category}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['name'], 'required'],
@@ -67,7 +70,7 @@ class DocumentCategory extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -92,12 +95,12 @@ class DocumentCategory extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getDocument()
+    public function getDocument(): ActiveQuery
     {
         return $this->hasMany(Document::class, ['category_id' => 'id']);
     }
 
-    public static function find()
+    public static function find(): DocumentCategoryQuery
     {
         return new DocumentCategoryQuery(get_called_class());
     }

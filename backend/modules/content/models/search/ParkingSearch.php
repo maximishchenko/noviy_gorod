@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\content\models\Parking;
+use yii\data\DataProviderInterface;
 
 class ParkingSearch extends Parking
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -16,12 +19,12 @@ class ParkingSearch extends Parking
         ];
     }
 
-    public function scenarios()
+    public function scenarios(): array
     {
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($params): DataProviderInterface
     {
         $query = Parking::find();
 

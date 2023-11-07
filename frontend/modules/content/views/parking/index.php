@@ -1,10 +1,13 @@
 <?php
 
+use backend\modules\content\models\Parking;
 use yii\helpers\Html;
 
 $this->title = 'Паркинг';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
 <section class="parking-banner">
     <?php if(isset($activeItem) && !empty($activeItem)): ?>
     <div class="container" style="background: url(<?= $activeItem->thumb; ?>) no-repeat;">
@@ -22,6 +25,36 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <?php endif; ?>
 </section>
+
+
+<?php if(isset($stages) && !empty($stages)): ?>
+    <?php foreach($stages as $k => $stage): ?>
+        <?php if($k % 2): ?>
+            <section class="payment-info payment-info--parking payment-info--reverse">
+        <?php else: ?>
+            <section class="payment-info payment-info--parking1">
+        <?php endif; ?>
+            <div class="container">
+                <div class="payment-info__wrap"> 
+                    <div class="payment-info__left"> 
+                        <div class="payment-info__title">
+                            <?= $stage->name; ?>
+                        </div>
+                        <div class="payment-info__text">
+                            <?= $stage->description; ?>
+                        </div>
+                        <div class="page-btn js-open-feedback">
+                            <?= $stage->callback_button_name; ?>
+                        </div>
+                    </div>
+                    <div class="payment-info__image">
+                        <?= Html::img('/' . Parking::UPLOAD_PATH . $stage->image, []); ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endforeach; ?>
+<?php endif; ?>
 
 <?php if(isset($activeItem->layoutThumb) && !empty($activeItem->layoutThumb)): ?>
 <section>

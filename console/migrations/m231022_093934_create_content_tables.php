@@ -139,8 +139,9 @@ class m231022_093934_create_content_tables extends Migration
         
         $this->addForeignKey('fk-gallery_upload-gallery', '{{%gallery_upload}}', 'gallery_id', '{{%gallery}}', 'id', 'CASCADE', 'RESTRICT');
         
-        $this->createTable('{{%parking}}', [
+        $this->createTable('{{%premise}}', [
             'id' => $this->primaryKey(),
+            'premise_type' => $this->string(),
             'name' => $this->string()->notNull(),
             'image' => $this->string(),
             'layout_image' => $this->string(),
@@ -155,25 +156,25 @@ class m231022_093934_create_content_tables extends Migration
             'updated_by' => $this->integer(),
         ], $tableOptions);
 
-        $this->createIndex('idx-parking-id', '{{%parking}}', 'id');
-        $this->createIndex('idx-parking-name', '{{%parking}}', 'name');
-        $this->createIndex('idx-parking-image', '{{%parking}}', 'image');
-        $this->createIndex('idx-parking-layout_image', '{{%parking}}', 'layout_image');
-        $this->createIndex('idx-parking-callback_button_name', '{{%parking}}', 'callback_button_name');
-        $this->createIndex('idx-parking-sort', '{{%parking}}', 'sort');
-        $this->createIndex('idx-parking-status', '{{%parking}}', 'status');
-        $this->createIndex('idx-parking-created_at', '{{%parking}}', 'created_at');
-        $this->createIndex('idx-parking-updated_at', '{{%parking}}', 'updated_at');
-        $this->createIndex('idx-parking-created_by', '{{%parking}}', 'created_by');
-        $this->createIndex('idx-parking-updated_by', '{{%parking}}', 'updated_by');
+        $this->createIndex('idx-premise-id', '{{%premise}}', 'id');
+        $this->createIndex('idx-premise-premise_type', '{{%premise}}', 'premise_type');
+        $this->createIndex('idx-premise-name', '{{%premise}}', 'name');
+        $this->createIndex('idx-premise-image', '{{%premise}}', 'image');
+        $this->createIndex('idx-premise-layout_image', '{{%premise}}', 'layout_image');
+        $this->createIndex('idx-premise-callback_button_name', '{{%premise}}', 'callback_button_name');
+        $this->createIndex('idx-premise-sort', '{{%premise}}', 'sort');
+        $this->createIndex('idx-premise-status', '{{%premise}}', 'status');
+        $this->createIndex('idx-premise-created_at', '{{%premise}}', 'created_at');
+        $this->createIndex('idx-premise-updated_at', '{{%premise}}', 'updated_at');
+        $this->createIndex('idx-premise-created_by', '{{%premise}}', 'created_by');
+        $this->createIndex('idx-premise-updated_by', '{{%premise}}', 'updated_by');
 
-        $this->createTable('{{%storage}}', [
+        $this->createTable('{{%premise_advantage}}', [
             'id' => $this->primaryKey(),
+            'premise_id' => $this->integer()->notNull(),
             'name' => $this->string()->notNull(),
             'image' => $this->string(),
-            'layout_image' => $this->string(),
-            'description' => $this->text(),
-            'callback_button_name' => $this->string(),
+            'text' => $this->text(),
             'comment' => $this->text(),
             'sort' => $this->integer(),
             'status' => $this->smallInteger(),
@@ -182,47 +183,19 @@ class m231022_093934_create_content_tables extends Migration
             'created_by' => $this->integer(),
             'updated_by' => $this->integer(),
         ], $tableOptions);
-
-        $this->createIndex('idx-storage-id', '{{%storage}}', 'id');
-        $this->createIndex('idx-storage-name', '{{%storage}}', 'name');
-        $this->createIndex('idx-storage-image', '{{%storage}}', 'image');
-        $this->createIndex('idx-storage-layout_image', '{{%storage}}', 'layout_image');
-        $this->createIndex('idx-storage-callback_button_name', '{{%storage}}', 'callback_button_name');
-        $this->createIndex('idx-storage-sort', '{{%storage}}', 'sort');
-        $this->createIndex('idx-storage-status', '{{%storage}}', 'status');
-        $this->createIndex('idx-storage-created_at', '{{%storage}}', 'created_at');
-        $this->createIndex('idx-storage-updated_at', '{{%storage}}', 'updated_at');
-        $this->createIndex('idx-storage-created_by', '{{%storage}}', 'created_by');
-        $this->createIndex('idx-storage-updated_by', '{{%storage}}', 'updated_by');
-
         
-        $this->createTable('{{%commercial}}', [
-            'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'image' => $this->string(),
-            'layout_image' => $this->string(),
-            'description' => $this->text(),
-            'callback_button_name' => $this->string(),
-            'comment' => $this->text(),
-            'sort' => $this->integer(),
-            'status' => $this->smallInteger(),
-            'created_at' => $this->integer(),
-            'updated_at' => $this->integer(),
-            'created_by' => $this->integer(),
-            'updated_by' => $this->integer(),
-        ], $tableOptions);
-
-        $this->createIndex('idx-commercial-id', '{{%commercial}}', 'id');
-        $this->createIndex('idx-commercial-name', '{{%commercial}}', 'name');
-        $this->createIndex('idx-commercial-image', '{{%commercial}}', 'image');
-        $this->createIndex('idx-commercial-layout_image', '{{%commercial}}', 'layout_image');
-        $this->createIndex('idx-commercial-callback_button_name', '{{%storage}}', 'callback_button_name');
-        $this->createIndex('idx-commercial-sort', '{{%commercial}}', 'sort');
-        $this->createIndex('idx-commercial-status', '{{%commercial}}', 'status');
-        $this->createIndex('idx-commercial-created_at', '{{%commercial}}', 'created_at');
-        $this->createIndex('idx-commercial-updated_at', '{{%commercial}}', 'updated_at');
-        $this->createIndex('idx-commercial-created_by', '{{%commercial}}', 'created_by');
-        $this->createIndex('idx-commercial-updated_by', '{{%commercial}}', 'updated_by');
+        $this->createIndex('idx-premise_advantage-id', '{{%premise_advantage}}', 'id');
+        $this->createIndex('idx-premise_advantage-premise_id', '{{%premise_advantage}}', 'premise_id');
+        $this->createIndex('idx-premise_advantage-name', '{{%premise_advantage}}', 'name');
+        $this->createIndex('idx-premise_advantage-image', '{{%premise_advantage}}', 'image');
+        $this->createIndex('idx-premise_advantage-sort', '{{%premise_advantage}}', 'sort');
+        $this->createIndex('idx-premise_advantage-status', '{{%premise_advantage}}', 'status');
+        $this->createIndex('idx-premise_advantage-created_at', '{{%premise_advantage}}', 'created_at');
+        $this->createIndex('idx-premise_advantage-updated_at', '{{%premise_advantage}}', 'updated_at');
+        $this->createIndex('idx-premise_advantage-created_by', '{{%premise_advantage}}', 'created_by');
+        $this->createIndex('idx-premise_advantage-updated_by', '{{%premise_advantage}}', 'updated_by');
+        
+        $this->addForeignKey('fk-premise_advantage-premise', '{{%premise_advantage}}', 'premise_id', '{{%premise}}', 'id', 'CASCADE', 'RESTRICT');
         
         $this->createTable('{{%document_category}}', [
             'id' => $this->primaryKey(),
@@ -281,9 +254,8 @@ class m231022_093934_create_content_tables extends Migration
     {
         $this->dropTable('{{%document}}');
         $this->dropTable('{{%document_category}}');
-        $this->dropTable('{{%commercial}}');
-        $this->dropTable('{{%storage}}');
-        $this->dropTable('{{%parking}}');
+        $this->dropTable('{{%premise_advantage}}');
+        $this->dropTable('{{%premise}}');
         $this->dropTable('{{%gallery_upload}}');
         $this->dropTable('{{%gallery}}');
         $this->dropTable('{{%offer}}');

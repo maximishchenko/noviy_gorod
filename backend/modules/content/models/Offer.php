@@ -38,7 +38,7 @@ class Offer extends \yii\db\ActiveRecord
 
     public $previewImageFile;
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -64,12 +64,12 @@ class Offer extends \yii\db\ActiveRecord
         ];
     }  
 
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%offer}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['preview_text', 'comment'], 'string'],
@@ -84,7 +84,7 @@ class Offer extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -103,7 +103,7 @@ class Offer extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'name' => Yii::t('app', 'Offer Name Hint'),
@@ -115,12 +115,12 @@ class Offer extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function find()
+    public static function find(): OfferQuery
     {
         return new OfferQuery(get_called_class());
     }
 
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile('previewImageFile', 'preview_image', self::UPLOAD_PATH);
@@ -129,7 +129,7 @@ class Offer extends \yii\db\ActiveRecord
         return false;
     }
 
-    public function beforeDelete()
+    public function beforeDelete(): bool
     {
         if (parent::beforeDelete()) {
             $this->deleteSingleFile('preview_image', self::UPLOAD_PATH);

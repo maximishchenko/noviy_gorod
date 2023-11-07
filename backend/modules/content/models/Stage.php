@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\StageQuery;
@@ -10,6 +12,7 @@ use common\models\Status;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%stage}}".
@@ -36,12 +39,12 @@ class Stage extends \yii\db\ActiveRecord
 
     public $imageFile;
     
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%stage}}';
     }
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -60,7 +63,7 @@ class Stage extends \yii\db\ActiveRecord
         ];
     }  
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['text', 'comment'], 'string'],
@@ -75,7 +78,7 @@ class Stage extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -93,7 +96,7 @@ class Stage extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'name' => Yii::t('app', 'Stage Name Hint'),
@@ -105,17 +108,17 @@ class Stage extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getStageItems()
+    public function getStageItems(): ActiveQuery
     {
         return $this->hasMany(StageItem::class, ['stage_id' => 'id']);
     }
 
-    public static function find()
+    public static function find(): StageQuery
     {
         return new StageQuery(get_called_class());
     }
 
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile('imageFile', 'image', self::UPLOAD_PATH);
@@ -124,7 +127,7 @@ class Stage extends \yii\db\ActiveRecord
         return false;
     }
 
-    public function beforeDelete()
+    public function beforeDelete(): bool
     {
         if (parent::beforeDelete()) {
             $this->deleteSingleFile('image', self::UPLOAD_PATH);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\DocumentQuery;
@@ -7,6 +9,7 @@ use backend\traits\fileTrait;
 use common\models\Sort;
 use common\models\Status;
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%document}}".
@@ -35,12 +38,12 @@ class Document extends \yii\db\ActiveRecord
 
     public $file;
 
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%document}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['category_id', 'name'], 'required'],
@@ -56,7 +59,7 @@ class Document extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -76,17 +79,17 @@ class Document extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getCategory()
+    public function getCategory(): ActiveQuery
     {
         return $this->hasOne(DocumentCategory::class, ['id' => 'category_id']);
     }
 
-    public static function find()
+    public static function find(): DocumentQuery
     {
         return new DocumentQuery(get_called_class());
     }
 
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile('file', 'file_name', self::UPLOAD_PATH);
@@ -97,7 +100,7 @@ class Document extends \yii\db\ActiveRecord
         return false;
     }
 
-    public function beforeDelete()
+    public function beforeDelete(): bool
     {
         if (parent::beforeDelete()) {
             $this->deleteSingleFile('file_name', self::UPLOAD_PATH);

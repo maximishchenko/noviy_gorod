@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\GalleryUploadQuery;
 use backend\traits\fileTrait;
 use common\models\Sort;
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%gallery_upload}}".
@@ -25,18 +28,16 @@ class GalleryUpload extends \yii\db\ActiveRecord
 
     public $file;
     
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%gallery_upload}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['gallery_id'], 'required'],
             [['gallery_id', 'sort'], 'integer'],
-            // [['file_name'], 'string', 'max' => 255],
-            // [['gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::class, 'targetAttribute' => ['gallery_id' => 'id']],
             
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
             [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp, video/*'],
@@ -44,7 +45,7 @@ class GalleryUpload extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -54,17 +55,17 @@ class GalleryUpload extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getGallery()
+    public function getGallery(): ActiveQuery
     {
         return $this->hasOne(Gallery::class, ['id' => 'gallery_id']);
     }
     
-    public static function find()
+    public static function find(): GalleryUploadQuery
     {
         return new GalleryUploadQuery(get_called_class());
     }
 
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile("file", "file_name", self::UPLOAD_PATH, true);
@@ -73,7 +74,7 @@ class GalleryUpload extends \yii\db\ActiveRecord
         return false;
     }
 
-    public function beforeDelete()
+    public function beforeDelete(): bool
     {
 
         if (parent::beforeDelete()) {

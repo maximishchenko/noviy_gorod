@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\StageItemQuery;
 use common\models\Sort;
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%stage_item}}".
@@ -24,12 +27,12 @@ use Yii;
  */
 class StageItem extends \yii\db\ActiveRecord
 {
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%stage_item}}';
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['stage_id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -39,7 +42,7 @@ class StageItem extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -55,7 +58,7 @@ class StageItem extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'name' => Yii::t('app', 'Stage Name Hint'),
@@ -65,12 +68,12 @@ class StageItem extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getStage()
+    public function getStage(): ActiveQuery
     {
         return $this->hasOne(Stage::class, ['id' => 'stage_id']);
     }
 
-    public static function find()
+    public static function find(): StageItemQuery
     {
         return new StageItemQuery(get_called_class());
     }

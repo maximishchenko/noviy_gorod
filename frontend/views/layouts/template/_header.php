@@ -29,8 +29,8 @@ use yii\helpers\Html;
         <div class="header__menu">
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Кладовые помещения', ['#'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Коммерческие помещения', ['#'], ['class' => 'header__menu-link']); ?>
+            <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'header__menu-link']); ?>
+            <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Документы', ['/documents'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Способы оплаты', ['#'], ['class' => 'header__menu-link']); ?>
         </div>
@@ -40,8 +40,8 @@ use yii\helpers\Html;
             <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Кладовые помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Коммерческие помещения', ['#'], ['class' => 'mobile-menu__link']); ?>
+            <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'mobile-menu__link']); ?>
+            <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Документы', ['/documents'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Способы оплаты', ['#'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Другие наши проекты', Yii::$app->configManager->getItemValue('anotherProjectsUrl'), ['class' => 'mobile-menu__link', 'target' => 'blank']); ?>

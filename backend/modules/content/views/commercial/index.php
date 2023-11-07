@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => SetColumn::className(),
                 'filter' => false,
                 'value' => function($data) {
-                    return ($data->id == Yii::$app->configManager->getItemValue('contentParkingStage')) ? Yii::t('app', 'Used') : Yii::t('app', 'Not Used');
+                    return ($data->id == Yii::$app->configManager->getItemValue('contentCommercialStage')) ? Yii::t('app', 'Used') : Yii::t('app', 'Not Used');
                 },
                 'contentOptions' => ['style' => 'width:100px;'],
                 'cssCLasses' => [

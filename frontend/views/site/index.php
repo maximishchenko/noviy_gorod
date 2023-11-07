@@ -76,8 +76,10 @@ $this->title = 'Новострой';
   </div>
 </section>
 
+<?php if($apartmentModel->getActiveHouses()): ?>
 <?php foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
 <?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel]); ?>
 <?php endforeach; ?>
+<?php endif; ?>
       
 <?= $this->render('//layouts/template/form/_inline', ['title' => 'Поможем в выборе']); ?>

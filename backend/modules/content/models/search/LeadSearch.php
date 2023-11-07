@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\content\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\content\models\Lead;
+use yii\data\DataProviderInterface;
 
 class LeadSearch extends Lead
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'created_at'], 'integer'],
@@ -16,12 +19,12 @@ class LeadSearch extends Lead
         ];
     }
 
-    public function scenarios()
+    public function scenarios(): array
     {
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($params): DataProviderInterface
     {
         $query = Lead::find();
 

@@ -1,14 +1,10 @@
 <?php
 
-namespace backend\modules\content\models;
+namespace frontend\modules\content\models;
 
-use backend\modules\content\models\Commercial as backendCommercial;
 use frontend\modules\content\models\query\CommercialQuery;
+use frontend\modules\content\models\Premise;
 
-class Commercial extends backendCommercial
+class Commercial extends Premise
 {
-    public static function find()
-    {
-        return new CommercialQuery(get_called_class());
-    }
 }
