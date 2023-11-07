@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace backend\modules\seo\models;
 
@@ -28,9 +29,6 @@ class Script extends \yii\db\ActiveRecord
     const AFTER_BEGIN_BODY = 'afterBeginBody';
     const BEFORE_END_BODY = 'beforeEndBody';
 
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%script}}';
@@ -45,10 +43,7 @@ class Script extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['code'], 'string'],
@@ -66,10 +61,7 @@ class Script extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -86,11 +78,7 @@ class Script extends \yii\db\ActiveRecord
     }
 
 
-    /**
-     * {@inheritdoc}
-     * @return ScriptQuery the active query used by this AR class.
-     */
-    public static function find()
+    public static function find(): ScriptQuery
     {
         return new ScriptQuery(get_called_class());
     } 

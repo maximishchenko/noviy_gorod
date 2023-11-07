@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace backend\modules\seo\models;
 
@@ -32,7 +33,7 @@ class Redirect extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%redirect}}';
     }
@@ -51,7 +52,7 @@ class Redirect extends \yii\db\ActiveRecord
     }
     
 
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -71,10 +72,7 @@ class Redirect extends \yii\db\ActiveRecord
     }  
 
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['redirect_code', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -90,10 +88,7 @@ class Redirect extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -111,11 +106,7 @@ class Redirect extends \yii\db\ActiveRecord
     }
 
 
-    /**
-     * {@inheritdoc}
-     * @return RedirectQuery the active query used by this AR class.
-     */
-    public static function find()
+    public static function find(): RedirectQuery
     {
         return new RedirectQuery(get_called_class());
     } 

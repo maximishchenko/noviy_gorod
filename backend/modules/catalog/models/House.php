@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\catalog\models;
 
 use backend\modules\catalog\models\query\HouseQuery;
 use common\models\Sort;
 use common\models\Status;
-use frontend\traits\cacheParamsTrait;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "{{%house}}".
@@ -29,12 +31,12 @@ class House extends \yii\db\ActiveRecord
 {    
     const NAME_PREFIX = 'Литер ';
 
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%house}}';
     }
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -53,7 +55,7 @@ class House extends \yii\db\ActiveRecord
         ];
     }  
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['comment'], 'string'],
@@ -67,7 +69,7 @@ class House extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -82,7 +84,7 @@ class House extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'name' => Yii::t('app', 'House Name Hint'),
@@ -92,17 +94,23 @@ class House extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getEntrances()
+    public function getEntrances(): ActiveQuery
     {
         return $this->hasMany(Entrance::class, ['house_id' => 'id']);
     }
 
-    public static function find()
+    public static function find(): HouseQuery
     {
         return new HouseQuery(get_called_class());
     }
 
-    public function getNameWithPrefix()
+    /**
+     * Возвращает название дома с учетом префикса
+     * Например, если указано 1/1, вернет - Литер 1/1
+     *
+     * @return string
+     */
+    public function getNameWithPrefix(): string
     {
         return static::NAME_PREFIX . " " . $this->name;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\catalog\models;
 
 use backend\modules\catalog\models\query\LayoutQuery;
@@ -10,6 +12,7 @@ use frontend\traits\cacheParamsTrait;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -41,12 +44,12 @@ class Layout extends \yii\db\ActiveRecord
 
     public $imageFile;
     
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%layout}}';
     }
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -65,7 +68,7 @@ class Layout extends \yii\db\ActiveRecord
         ];
     }  
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['entrance_id', 'count_rooms', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -79,7 +82,7 @@ class Layout extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -101,7 +104,7 @@ class Layout extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'entrance_id' => Yii::t('app', 'Layout Entrance ID'),
@@ -113,43 +116,43 @@ class Layout extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getApartments()
+    public function getApartments(): ActiveQuery
     {
         return $this->hasMany(Apartment::class, ['layout_id' => 'id']);
     }
 
-    public function getEntrance()
+    public function getEntrance(): ActiveQuery
     {
         return $this->hasOne(Entrance::class, ['id' => 'entrance_id']);
     }
 
-    public function getEntrancesItems()
+    public function getEntrancesItems(): array
     {
         $entrances = Entrance::find()->orderBy(['number' => SORT_ASC])->all();
         return ArrayHelper::map($entrances,'id','numberWithHouseAndPrefix');
     }
 
-    public function getHouse()
+    public function getHouse(): ActiveQuery
     {
         return $this->hasOne(House::class, ['id' => 'house_id'])->viaTable(Entrance::tableName(), ['id' => 'entrance_id']);
     }
 
-    public function getNameWithCountRoomsAndTotalArea()
+    public function getNameWithCountRoomsAndTotalArea(): string
     {
         return Yii::t('app', '{count_rooms} - suffix {total_area}', ['count_rooms' => $this->count_rooms, 'total_area' => $this->total_area]);
     }
 
-    public function getNameWithHouseAndSection()
+    public function getNameWithHouseAndSection(): string
     {
         return Yii::t('app', 'House {house_name}, entrance {entrance_number}, {count_rooms} - suffix {total_area}', ['house_name' => $this->house->name, 'entrance_number' => $this->entrance->number, 'count_rooms' => $this->count_rooms, 'total_area' => $this->total_area]);
     }
 
-    public static function find()
+    public static function find(): LayoutQuery
     {
         return new LayoutQuery(get_called_class());
     }
 
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile('imageFile', 'image', self::UPLOAD_PATH);
@@ -158,7 +161,7 @@ class Layout extends \yii\db\ActiveRecord
         return false;
     }
 
-    public function beforeDelete()
+    public function beforeDelete(): bool
     {
         if (parent::beforeDelete()) {
             $this->deleteSingleFile('image', self::UPLOAD_PATH);

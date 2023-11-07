@@ -1,14 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace backend\modules\catalog\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Entrance;
+use yii\data\DataProviderInterface;
 
 class EntranceSearch extends Entrance
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'number', 'house_id', 'count_floors', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -16,12 +18,12 @@ class EntranceSearch extends Entrance
         ];
     }
 
-    public function scenarios()
+    public function scenarios(): array
     {
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($params): DataProviderInterface
     {
         $query = Entrance::find();
 

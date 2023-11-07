@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace backend\modules\catalog\models;
 
 use backend\modules\catalog\models\query\EntranceQuery;
@@ -8,6 +10,7 @@ use common\models\Status;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -33,12 +36,12 @@ class Entrance extends \yii\db\ActiveRecord
 
     const NAME_PREFIX = 'Подъезд ';
 
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%entrance}}';
     }
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -57,7 +60,7 @@ class Entrance extends \yii\db\ActiveRecord
         ];
     }  
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['house_id', 'count_floors', 'number', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -71,7 +74,7 @@ class Entrance extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -88,7 +91,7 @@ class Entrance extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeHints()
+    public function attributeHints(): array
     {
         return [
             'number' => Yii::t('app', 'Entrance Number Hint'),
@@ -100,33 +103,33 @@ class Entrance extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getHouse()
+    public function getHouse(): ActiveQuery
     {
         return $this->hasOne(House::class, ['id' => 'house_id']);
     }
 
-    public function getLayouts()
+    public function getLayouts(): ActiveQuery
     {
         return $this->hasMany(Layout::class, ['entrance_id' => 'id']);
     }
 
-    public static function find()
+    public static function find(): EntranceQuery
     {
         return new EntranceQuery(get_called_class());
     }
 
-    public function getHousesItems()
+    public function getHousesItems(): array
     {
         $houses = House::find()->orderBy(['name' => SORT_ASC])->all();
         return ArrayHelper::map($houses,'id','nameWithPrefix');
     }
 
-    public function getNumberWithPrefix()
+    public function getNumberWithPrefix(): string
     {
         return self::NAME_PREFIX . " " . $this->number;
     }
 
-    public function getNumberWithHouseAndPrefix()
+    public function getNumberWithHouseAndPrefix(): string
     {
         return $this->house->nameWithPrefix . ', ' . self::NAME_PREFIX . ' ' . $this->number;
     }

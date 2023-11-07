@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace backend\modules\catalog\models\search;
 
@@ -7,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Apartment;
 use backend\modules\catalog\models\Entrance;
 use backend\modules\catalog\models\House;
+use yii\data\DataProviderInterface;
 
 class ApartmentSearch extends Apartment
 {
@@ -15,7 +17,7 @@ class ApartmentSearch extends Apartment
 
     public $entrance;
     
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'layout_id', 'sort', 'created_at', 'updated_at', 'apartment_floor', 'created_by', 'updated_by'], 'integer'],
@@ -23,12 +25,12 @@ class ApartmentSearch extends Apartment
         ];
     }
 
-    public function scenarios()
+    public function scenarios(): array
     {
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($params): DataProviderInterface
     {
         $query = Apartment::find()->joinWith(['entrance', 'house']);
 

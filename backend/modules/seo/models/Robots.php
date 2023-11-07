@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace backend\modules\seo\models;
 
@@ -15,10 +16,7 @@ class Robots extends Model
     public $filename = '@frontend/web/robots.txt';
 
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['filecontent'], 'required'],
@@ -26,17 +24,15 @@ class Robots extends Model
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'filecontent' => Yii::t('app', 'ROBOTSCONTENT'),
         ];
     }
 
-    public function createRobotsFile() {
+    public function createRobotsFile(): void
+    {
         if(!file_exists(Yii::getAlias($this->filename)) || !is_file(Yii::getAlias($this->filename))) {
             $content = 'User-agent: *';
             $fp = fopen(Yii::getAlias($this->filename),"wb");
@@ -45,15 +41,14 @@ class Robots extends Model
         }
     }
 
-    public function RobotsReadFile() {
-
+    public function RobotsReadFile(): string
+    {
         $filename = Yii::getAlias($this->filename);
         return file_get_contents($filename);
-
     }
 
-    public function RobotsWriteFile() {
-
+    public function RobotsWriteFile(): void
+    {
         $filename = Yii::getAlias($this->filename);
         $fp = fopen($filename, 'w');
         fwrite($fp, $this->filecontent);

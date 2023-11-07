@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace backend\modules\catalog\models\search;
 
@@ -7,6 +8,7 @@ use backend\modules\catalog\models\House;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Layout;
+use yii\data\DataProviderInterface;
 
 class LayoutSearch extends Layout
 {
@@ -15,7 +17,7 @@ class LayoutSearch extends Layout
 
     public $entrance;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'entrance_id', 'count_rooms', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
@@ -24,13 +26,13 @@ class LayoutSearch extends Layout
         ];
     }
     
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($params): DataProviderInterface
     {
         $query = Layout::find();
         $query->with(['entrance']);
