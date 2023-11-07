@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace backend\modules\content\models\query;
 
-class StageQuery extends \yii\db\ActiveQuery
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+
+class StageQuery extends ActiveQuery
 {
-    public function all($db = null): array
+    public function all($db = null): array | ActiveRecord
     {
         return parent::all($db);
     }
 
-    public function one($db = null): array
+    public function one($db = null): array | ActiveRecord
     {
         return parent::one($db);
     }

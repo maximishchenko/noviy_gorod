@@ -7,6 +7,10 @@ use yii\bootstrap5\ActiveForm;
 
 <div class="parking-form">
 
+<?php if (!$model->isNewRecord): ?>
+    <?= $this->render('_tabs', ['model' => $model]); ?>
+<?php endif; ?>
+
     <div class="alert alert-info">
         Внимание. Для отображения кнопки обратной связи на слайде необходимо заполнить ее название. Указанный текст будет отображе на фронтальной части.
         В случае отсутствия текст - кнопка не будет показана.

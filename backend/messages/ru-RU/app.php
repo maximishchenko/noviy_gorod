@@ -263,4 +263,6 @@ return [
     'Storage disabled' => 'Очищено значение по-умолчанию',
     'Commercials' => 'Коммерческие помещения',
     'Update Commercial: {name}' => '{name}',
+    'Primary Premises Block' => 'Данные помещения',
+    'Advantages Block' => 'Преимущества'
 ];

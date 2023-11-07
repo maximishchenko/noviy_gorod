@@ -116,6 +116,20 @@ class ParkingController extends Controller
         Yii::$app->session->setFlash('warning', Yii::t('app', 'Parking disabled'));
         return $this->redirect(Yii::$app->request->referrer);
     }
+      
+
+    // public function actionAdvantages($id)
+    // {
+    //     $model = $this->findModel($id);
+    //     $searchModel = new DocumentSearch();
+    //     $dataProvider = $searchModel->search($id, $this->request->queryParams);
+
+    //     return $this->render('document/index', [
+    //         'model' => $model,
+    //         'searchModel' => $searchModel,
+    //         'dataProvider' => $dataProvider,
+    //     ]);
+    // }
 
     protected function findModel($id)
     {
