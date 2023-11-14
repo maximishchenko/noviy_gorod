@@ -262,8 +262,8 @@
 .apartments-list {
   width: fit-content;
   display: grid;
+  gap: 10px;
   font-size: 14px;
-  border: 1px solid black;
 }
 .apartments-list-wraper {
   display: flex;
@@ -274,7 +274,7 @@
 .apartments-list__label,
 .apartments-list__item {
   border: 1px solid black;
-  border-collapse: collapse;
+  border-radius: 10px;
   height: 90px;
 }
 .apartments-list__label {
