@@ -12,6 +12,7 @@ use common\models\Status;
 use frontend\modules\catalog\models\query\ApartmentQuery;
 use frontend\traits\cacheParamsTrait;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -37,7 +38,7 @@ class Apartment extends backendApartment
 
     const NO_IMAGE = '/static/sprite.svg#noimage';
     
-    public static function find()
+    public static function find(): ApartmentQuery
     {
         return new ApartmentQuery(get_called_class());
     }
@@ -52,7 +53,7 @@ class Apartment extends backendApartment
         return $this->getRooms()->maxRooms();
     }
 
-    public function getLayout()
+    public function getLayout(): ActiveQuery
     {
         return $this->hasOne(Layout::class, ['id' => 'layout_id']);
     }
@@ -101,12 +102,12 @@ class Apartment extends backendApartment
         return (isset($this->image) && !empty($this->image)) ? '/' . static::UPLOAD_PATH . $this->image : static::NO_IMAGE;
     }
 
-    public function getEntrance()
+    public function getEntrance(): ActiveQuery
     {
         return $this->hasOne(Entrance::class, ['id' => 'entrance_id'])->viaTable(Layout::tableName(), ['id' => 'layout_id']);
     }
 
-    public function getHouse()
+    public function getHouse(): ActiveQuery
     {
         return $this->hasOne(House::class, ['id' => 'house_id'])->via('entrance');
     }

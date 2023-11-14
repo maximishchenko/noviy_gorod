@@ -13,7 +13,7 @@ class Stage extends backendStage
 {
     use cacheParamsTrait;
 
-    public static function find()
+    public static function find(): StageQuery
     {
         return new StageQuery(get_called_class());
     }
@@ -36,7 +36,7 @@ class Stage extends backendStage
         return $stage;
     }
 
-    public function getStageItems()
+    public function getStageItems(): yii\db\ActiveQuery
     {
         $stageItemsLimit = Yii::$app->configManager->getItemValue('contentMainStageMaxItemsCount');
         return StageItem::getDb()->cache(function() use ($stageItemsLimit) {

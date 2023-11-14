@@ -26,7 +26,7 @@ class Lead extends backendLead
         ];
     }  
 
-    public static function find()
+    public static function find(): LeadQuery
     {
         return new LeadQuery(get_called_class());
     } 

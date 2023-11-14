@@ -12,7 +12,7 @@ class Layout extends backendLayout
 
     const NO_IMAGE = '/static/sprite.svg#noimage';
 
-    public static function find()
+    public static function find(): LayoutQuery
     {
         return new LayoutQuery(get_called_class());
     }

@@ -104,7 +104,7 @@ class MetaTag
      */
     public function setH1Title()
     {
-        if (!Yii::$app->view->params[self::IS_H1_HIDDEN]) {
+        // if (!Yii::$app->view->params[self::IS_H1_HIDDEN]) {
             if ($this->seoTags !== null) {
                 if ($this->seoTags->h1_text) {
                     return '<h1>' . $this->seoTags->h1_text . '</h1>';
@@ -114,7 +114,7 @@ class MetaTag
             } else {
                 return '<h1>' . $this->setDefaultH1Title() . '</h1>';
             }
-        }
+        // }
     }
 
     /**
@@ -123,13 +123,13 @@ class MetaTag
      */
     public function setDescriptionSnippet()
     {
-        if (!Yii::$app->view->params[self::IS_DESCRIPTION_TEXT_HIDDEN]) {
+        // if (!Yii::$app->view->params[self::IS_DESCRIPTION_TEXT_HIDDEN]) {
             if ($this->seoTags !== null) {
                 if ($this->seoTags->description_text) {
                     return $this->seoTags->description_text;
                 }
             }
-        }
+        // }
     }
 
     /**

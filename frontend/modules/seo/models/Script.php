@@ -6,6 +6,7 @@ use backend\modules\seo\models\Script as backendScript;
 use frontend\modules\seo\models\query\ScriptQuery;
 use yii\web\View;
 use Yii;
+use yii\db\ActiveQuery;
 
 class Script extends backendScript
 {
@@ -13,7 +14,7 @@ class Script extends backendScript
      * {@inheritdoc}
      * @return ScriptQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): ScriptQuery
     {
         return new ScriptQuery(get_called_class());
     } 
