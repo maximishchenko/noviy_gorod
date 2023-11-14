@@ -9,6 +9,8 @@ use backend\traits\fileTrait;
 use common\models\Sort;
 use common\models\Status;
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 
 /**
@@ -38,6 +40,12 @@ class Premise extends \yii\db\ActiveRecord
 
     const UPLOAD_PATH = 'upload/premise/';
 
+    const SETTINGS_TYPE_PARKING = 'contentParkingStage';
+
+    const SETTINGS_TYPE_STORAGE = 'contentStorageStage';
+
+    const SETTINGS_TYPE_COMMERCIAL = 'contentCommercialStage';
+
     public $imageFile;
 
     public $layoutImageFile;
@@ -60,6 +68,43 @@ class Premise extends \yii\db\ActiveRecord
             return new self;
         }
     }
+
+    public static function getSettingsNamesArray(): array
+    {
+        return [
+            Parking::TYPE => self::SETTINGS_TYPE_PARKING,
+            Storage::TYPE => self::SETTINGS_TYPE_STORAGE,
+            Commercial::TYPE => self::SETTINGS_TYPE_COMMERCIAL
+        ];
+    }
+
+    public static function getTitleByPremiseType(): array
+    {
+        return [
+            Parking::TYPE => Yii::t('app', 'Parking'),
+            Storage::TYPE => Yii::t('app', 'Storage'),
+            Commercial::TYPE => Yii::t('app', 'Commercial'),
+        ];
+    }
+    
+    public function behaviors(): array
+    {
+        return[
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => function () {
+                    return date('U');
+                },
+            ],
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+        ];
+    }  
 
     public function rules(): array
     {

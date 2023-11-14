@@ -264,5 +264,9 @@ return [
     'Commercials' => 'Коммерческие помещения',
     'Update Commercial: {name}' => '{name}',
     'Primary Premises Block' => 'Данные помещения',
-    'Advantages Block' => 'Преимущества'
+    'Advantages Block' => 'Преимущества',
+    'Advantage Text' => 'Текст',
+    'Premise Advantage Items: {name}' => 'Преимущества: {name}',
+    'Record updated' => 'Запись изменена',
+    'Record disabled' => 'Запись отключена',
 ];

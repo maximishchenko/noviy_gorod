@@ -7,6 +7,7 @@ namespace backend\modules\content\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\content\models\Stage;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class StageSearch extends Stage
@@ -30,7 +31,11 @@ class StageSearch extends Stage
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
+            'sort'=> [
+                'defaultOrder' => [
+                    'id' => Sort::getBackendDefaultSort()
+                ]
+            ],
         ]);
 
         $this->load($params);

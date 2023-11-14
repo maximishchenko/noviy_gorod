@@ -7,6 +7,7 @@ namespace backend\modules\content\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\content\models\StageItem;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class StageItemSearch extends StageItem
@@ -24,13 +25,17 @@ class StageItemSearch extends StageItem
         return Model::scenarios();
     }
 
-    public function search($id, $params): DataProviderInterface
+    public function search(int $id, array $params): DataProviderInterface
     {
         $query = StageItem::find()->where(['stage_id' => $id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
+            'sort'=> [
+                'defaultOrder' => [
+                    'id' => Sort::getBackendDefaultSort()
+                ]
+            ],
         ]);
 
         $this->load($params);

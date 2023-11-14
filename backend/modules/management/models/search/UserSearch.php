@@ -5,6 +5,7 @@ namespace backend\modules\management\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\management\models\User;
+use common\models\Sort;
 use Yii;
 
 /**
@@ -47,7 +48,11 @@ class UserSearch extends User
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
+            'sort'=> [
+                'defaultOrder' => [
+                    'id' => Sort::getBackendDefaultSort()
+                ]
+            ],
         ]);
         $dataProvider->setSort([
             'attributes' => [
@@ -62,7 +67,7 @@ class UserSearch extends User
                 'status',
                 'email',
             ],
-            'defaultOrder' => ['id'=>SORT_DESC]
+            'defaultOrder' => ['id'=>Sort::getBackendDefaultSort()]
         ]);
 
         $this->load($params);

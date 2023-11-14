@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace backend\modules\content\models\search;
 
+use backend\modules\content\models\Premise;
+use common\models\Sort;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\content\models\Parking;
 use yii\data\DataProviderInterface;
+use yii\db\ActiveQuery;
 
-class ParkingSearch extends Parking
+class PremiseSearch extends Premise
 {
     public function rules(): array
     {
@@ -24,20 +26,20 @@ class ParkingSearch extends Parking
         return Model::scenarios();
     }
 
-    public function search($params): DataProviderInterface
+    public function search(ActiveQuery $query, array $params): DataProviderInterface
     {
-        $query = Parking::find();
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
+            'sort'=> [
+                'defaultOrder' => [
+                    'id' => Sort::getBackendDefaultSort()
+                ]
+            ],
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 

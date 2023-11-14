@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="storage-update">
 
-    <?= $this->render('_form', [
+    <?= $this->render('//layouts/content/premise/_form', [
         'model' => $model,
     ]) ?>
 

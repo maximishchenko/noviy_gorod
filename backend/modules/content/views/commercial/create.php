@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="commercial-create">
 
-    <?= $this->render('_form', [
+    <?= $this->render('//layouts/content/premise/_form', [
         'model' => $model,
     ]) ?>
 

@@ -13,7 +13,7 @@ class PremiseQuery extends ActiveQuery
 
     public function prepare($builder): Query
     {
-        if ($this->premise_type !== null) {
+        if (isset($this->premise_type) && $this->premise_type !== null) {
             $this->andWhere(['premise_type' => $this->premise_type]);
         }
         return parent::prepare($builder);

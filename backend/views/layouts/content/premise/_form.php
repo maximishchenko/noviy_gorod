@@ -7,13 +7,18 @@ use yii\bootstrap5\ActiveForm;
 ?>
 
 <div class="storage-form">
-<div class="alert alert-info">
-    Внимание. Для отображения кнопки обратной связи на слайде необходимо заполнить ее название. Указанный текст будет отображе на фронтальной части.
-    В случае отсутствия текст - кнопка не будет показана.
-</div>
+
+    <?php if (!$model->isNewRecord): ?>
+        <?= $this->render('_tabs', ['model' => $model]); ?>
+    <?php endif; ?>
+
+    <div class="alert alert-info">
+        Внимание. Для отображения кнопки обратной связи на слайде необходимо заполнить ее название. Указанный текст будет отображе на фронтальной части.
+        В случае отсутствия текст - кнопка не будет показана.
+    </div>
 
     <?php $form = ActiveForm::begin([
-        'id' => 'storage-form'
+        'id' => 'premise-form'
     ]); ?>
     <?= $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
 
@@ -28,7 +33,6 @@ use yii\bootstrap5\ActiveForm;
             </h2>
             <div id="primary" class="accordion-collapse collapse show" aria-labelledby="headPrimary" data-bs-parent="#backendAccordion">
                 <div class="accordion-body">
-
 
                         <div class="row">
                             <div class="col-md-6">   
@@ -102,4 +106,4 @@ use yii\bootstrap5\ActiveForm;
 
 </div>
 
-<?= $this->render('//layouts/forms/_buttons', ['formId' => 'storage-form']); ?>
+<?= $this->render('//layouts/forms/_buttons', ['formId' => 'premise-form']); ?>

@@ -6,6 +6,7 @@ namespace backend\modules\seo\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\seo\models\Script;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class ScriptSearch extends Script
@@ -29,7 +30,11 @@ class ScriptSearch extends Script
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id'=>SORT_DESC]],
+            'sort'=> [
+                'defaultOrder' => [
+                    'id' => Sort::getBackendDefaultSort()
+                ]
+            ],
         ]);
 
         $this->load($params);
