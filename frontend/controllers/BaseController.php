@@ -1,46 +1,60 @@
 <?php
 
+declare(strict_types=1);
+
 namespace frontend\controllers;
 
 use common\models\Status;
 use frontend\modules\seo\models\Redirect;
 use Yii;
+use yii\base\ExitException;
+use yii\base\InvalidRouteException;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\Response;
 
 class BaseController extends Controller
 {
     
-    public function actions() {
+    public function actions(): array
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
     }
-    
-    public function init()
+
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         parent::init();
         \Yii::$app->errorHandler->errorAction = 'error/index';
-    }    
+    }
 
-    public function beforeAction($action)
+    /**
+     * @param $action
+     * @return bool
+     */
+    public function beforeAction($action): bool
     {
         $this->setUrlRedirect();
         return parent::beforeAction($action);
     }
 
-    protected function processPageRequest($param='page')
-    {
-        if (Yii::$app->request->isAjax && isset($_POST[$param]))
-            $_GET[$param] = Yii::$app->request->post($param);
-    }
-
     /**
-     * Установка редиректа при наличии
-     *
+     * @param $param
      * @return void
      */
+    protected function processPageRequest(string $param='page'): void
+    {
+        if (Yii::$app->request->isAjax && isset($_POST[$param])) {
+            $_GET[$param] = Yii::$app->request->post($param);
+        }
+    }
+
     protected function setUrlRedirect()
     {
         $redirect = Redirect::find()
@@ -51,7 +65,7 @@ class BaseController extends Controller
             ])
             ->one();
             
-        if (isset($redirect) && !empty($redirect)) {
+        if (!empty($redirect)) {
             $headers = Yii::$app->getResponse()->getHeaders();
             $headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
             $headers->set('Expires', 'Sat, 26 Jul 1997 05:00:00 GMT');

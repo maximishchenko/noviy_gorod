@@ -8,15 +8,19 @@ use frontend\controllers\BaseController;
 class ErrorController extends BaseController
 {
 
-    public function actionIndex()
+    /**
+     * @return string|null
+     */
+    public function actionIndex(): ?string
     {
         $error = Yii::$app->response->statusCode;
         if ($error === 404) {
             return $this->render('page-not-found');
         }
+        return null;
     }
 
-    public function actionPageNotFound()
+    public function actionPageNotFound(): string
     {
         return $this->render('page-not-found');
     }

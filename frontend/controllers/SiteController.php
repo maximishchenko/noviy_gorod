@@ -8,7 +8,11 @@ use frontend\modules\content\models\Stage;
 class SiteController extends BaseController
 {
 
-    public function actionIndex()
+    /**
+     * Главная страница
+     * @return string
+     */
+    public function actionIndex(): string
     {
         $stageModel = new Stage();
         $apartmentModel = new Apartment();
@@ -18,12 +22,20 @@ class SiteController extends BaseController
         ]);
     }
 
-    public function actionPolicy()
+    /**
+     * Политика обработки персональных данных
+     * @return string
+     */
+    public function actionPolicy(): string
     {
         return $this->render('policy');
     }
 
-    public function actionContact()
+    /**
+     * Страница Контакты
+     * @return string
+     */
+    public function actionContact(): string
     {
         return $this->render('contact');
     }

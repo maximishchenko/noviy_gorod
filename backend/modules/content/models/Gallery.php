@@ -32,11 +32,7 @@ use yii\web\UploadedFile;
  */
 class Gallery extends \yii\db\ActiveRecord
 {
-
-    /**
-     * @var string
-     */
-    public string $files;
+    public $files;
 
     public static function tableName(): string
     {
