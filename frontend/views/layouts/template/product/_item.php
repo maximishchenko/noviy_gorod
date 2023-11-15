@@ -15,7 +15,7 @@ use yii\helpers\Html;
         <p><?= $model->layout->total_area; ?> м<sup>2</sup></p>
     </div>
 
-    <?php if($showCallbackButton): ?>
+    <?php if(isset($showCallbackButton) && !empty(($showCallbackButton))): ?>
     <div class="flats__item-link js-open-feedback">Оставить заявку</div>
     <?php endif; ?>
 </a>

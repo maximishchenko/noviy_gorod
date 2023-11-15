@@ -25,6 +25,7 @@ use yii\db\ActiveQuery;
  * @property int|null $created_by
  * @property int|null $updated_by
  *
+ * @property-read \yii\db\ActiveQuery $document
  * @property Document $id0
  */
 class DocumentCategory extends \yii\db\ActiveRecord

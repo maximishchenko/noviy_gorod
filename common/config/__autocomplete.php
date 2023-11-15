@@ -24,6 +24,14 @@ class Yii {
  * 
  */
 class __Application {
+    /**
+     * @var mixed|object|\yii2tech\config\Manager|null
+     */
+    public $configManager;
+    /**
+     * @var mixed|object|\yii\queue\file\Queue|null
+     */
+    public $queue;
 }
 
 /**

@@ -1,16 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\controllers;
 
-use backend\modules\content\models\Commercial as ModelsCommercial;
-use frontend\modules\content\models\Commercial;
 use frontend\controllers\BaseController;
 use frontend\modules\content\models\Premise;
 use Yii;
 
 class CommercialController extends BaseController
 {
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $activeItemId = Yii::$app->configManager->getItemValue('contentCommercialStage');
 

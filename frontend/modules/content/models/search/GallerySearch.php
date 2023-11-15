@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\models\search;
 
@@ -8,7 +9,10 @@ use frontend\modules\content\models\Gallery;
 class GallerySearch extends Gallery
 {
 
-    public function search($params)
+    /**
+     * @throws \Throwable
+     */
+    public function search($params): ActiveDataProvider
     {
         $query = Gallery::getDb()->cache(function() {
             return Gallery::find()->active()->ordered();
@@ -20,12 +24,6 @@ class GallerySearch extends Gallery
         ]);
 
         $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
 
         return $dataProvider;
     }

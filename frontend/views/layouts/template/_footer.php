@@ -42,9 +42,9 @@ use yii\helpers\Html;
             <div class="footer__links-col">
               <div class="footer__links-title">Способы оплаты</div>
               <div class="footer__links-items">
-                <?= Html::a('Ипотека', ['/mortgage'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Рассрочка', ['#'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Материнский капитал', ['#'], ['class' => 'footer__links-item']); ?>
+                <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'footer__links-item']); ?>
+                <?php // echo Html::a('Рассрочка', ['#'], ['class' => 'footer__links-item']); ?>
+                <?php // echo Html::a('Материнский капитал', ['#'], ['class' => 'footer__links-item']); ?>
               </div>
             </div>
           </div>

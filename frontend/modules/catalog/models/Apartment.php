@@ -30,6 +30,19 @@ use yii\helpers\ArrayHelper;
  * @property int|null $created_by
  * @property int|null $updated_by
  *
+ * @property-read \frontend\modules\catalog\models\query\LayoutQuery $totalArea
+ * @property-read int $minTotalArea
+ * @property-read \yii\db\ActiveQuery $entrance
+ * @property-read array $houses
+ * @property-read int $maxTotalArea
+ * @property-read null|string $maxRoomsCount
+ * @property-read string $houseNameById
+ * @property-read \frontend\modules\catalog\models\House|null $activeHouses
+ * @property-read \yii\db\ActiveQuery $house
+ * @property-read array $apartmentroomsCount
+ * @property-read string $thumb
+ * @property-read \frontend\modules\catalog\models\query\LayoutQuery $rooms
+ * @property-read null|string $minRoomsCount
  * @property Layout $layout
  */
 class Apartment extends backendApartment
@@ -43,12 +56,12 @@ class Apartment extends backendApartment
         return new ApartmentQuery(get_called_class());
     }
 
-    public function getMinRoomsCount(): int
+    public function getMinRoomsCount(): ?string
     {
         return $this->getRooms()->minRooms();
     }
 
-    public function getMaxRoomsCount(): int
+    public function getMaxRoomsCount(): ?string
     {
         return $this->getRooms()->maxRooms();
     }
@@ -68,6 +81,18 @@ class Apartment extends backendApartment
         return round($this->getTotalArea()->max('total_area'), 0, PHP_ROUND_HALF_UP);
     }
 
+    public static function getMinArea(): ?float
+    {
+        $params = Yii::$app->request->queryParams;
+        return (!empty($params['minArea'])) ? $params['minArea'] : null;
+    }
+
+    public static function getMaxArea(): ?float
+    {
+        $params = Yii::$app->request->queryParams;
+        return (!empty($params['maxArea'])) ? $params['maxArea'] : null;
+    }
+
     public function getHouses(): array
     {
         return House::getDb()->cache(function() {
@@ -79,7 +104,7 @@ class Apartment extends backendApartment
     {
         $house = null;
         $queryParams = Yii::$app->request->queryParams;
-        if ($queryParams['house']) {
+        if (!empty($queryParams['house'])) {
             $house = House::find()->where(['id' => $queryParams['house']])->one();
         }
         if ($house !== null) {
@@ -88,10 +113,10 @@ class Apartment extends backendApartment
         return 'Выберите литер';
     }
 
-    public function isCountRoomsChecked(int $countRooms): ?string
+    public function isCountRoomsChecked(?int $countRooms): ?string
     {
         $queryParams = Yii::$app->request->queryParams;
-        if (isset($queryParams) && !empty($queryParams) && $queryParams['countRooms'] == $countRooms) {
+        if (!empty($queryParams['countRooms']) && $queryParams['countRooms'] == $countRooms) {
             return 'checked';
         }
         return null;

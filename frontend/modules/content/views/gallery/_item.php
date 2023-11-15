@@ -1,6 +1,11 @@
 <?php
 
+use frontend\modules\catalog\models\Apartment;
 use yii\helpers\Html;
+
+/**
+ * @var $model Apartment
+ */
 ?>
 
 <div class="construction-progress__item" data-fancybox-trigger="gallery_<?= $model->id; ?>">
@@ -8,7 +13,9 @@ use yii\helpers\Html;
         <?= $model->name; ?>
     </div>
     <div class="construction-progress__item-image">
-      <?= Html::img($model->uploads[0]->image); ?>
+        <?php if (!empty($model->uploads)): ?>
+            <?= Html::img($model->uploads[0]->image); ?>
+        <?php endif; ?>
       <div class="send-btn">
         <div class="send-btn__icon"></div>
         <div class="send-btn__text"><?= $model->getUploads()->count(); ?> фото</div>

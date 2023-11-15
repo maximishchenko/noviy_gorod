@@ -25,13 +25,18 @@ use yii\web\UploadedFile;
  * @property int|null $updated_at
  * @property int|null $created_by
  * @property int|null $updated_by
+ * @property \yii\web\UploadedFile $files
  *
+ * @property-read \yii\db\ActiveQuery $uploads
  * @property GalleryUpload[] $galleryUploads
  */
 class Gallery extends \yii\db\ActiveRecord
 {
 
-    public $files;
+    /**
+     * @var string
+     */
+    public string $files;
 
     public static function tableName(): string
     {

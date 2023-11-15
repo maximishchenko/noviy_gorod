@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\models;
 
@@ -6,13 +7,18 @@ use backend\modules\content\models\Offer as backendOffer;
 use frontend\modules\content\models\query\OfferQuery;
 use frontend\traits\cacheParamsTrait;
 
+/**
+ *
+ * @property-read string $descriptionThumb
+ * @property-read string $previewThumb
+ */
 class Offer extends backendOffer
 {
     use cacheParamsTrait;
     
     const NO_IMAGE = '/static/sprite.svg#noimage';
     
-    public static function find()
+    public static function find(): OfferQuery
     {
         return new OfferQuery(get_called_class());
     }

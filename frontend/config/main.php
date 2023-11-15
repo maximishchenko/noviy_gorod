@@ -87,6 +87,8 @@ return [
                 'storage' => 'content/storage/index',
                 'commercial' => 'content/commercial/index',
                 'documents' => 'content/document/index',
+                'payment' => 'content/payment/index',
+                'payment/mortgage' => 'content/payment/mortgage',
             ],
         ],
     ],

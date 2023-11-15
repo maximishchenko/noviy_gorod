@@ -26,7 +26,7 @@ class GalleryUpload extends \yii\db\ActiveRecord
 
     const UPLOAD_PATH = 'upload/gallery/';
 
-    public $file;
+    public string $file;
     
     public static function tableName(): string
     {

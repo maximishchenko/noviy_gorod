@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\controllers;
 
@@ -8,7 +9,10 @@ use Yii;
 
 class StorageController extends BaseController
 {
-    public function actionIndex()
+    /**
+     * @return string
+     */
+    public function actionIndex(): string
     {
         $activeItemId = Yii::$app->configManager->getItemValue('contentStorageStage');
         

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\models;
 
@@ -12,7 +13,7 @@ use yii\behaviors\TimestampBehavior;
 class Lead extends backendLead
 {
     
-    public function behaviors()
+    public function behaviors(): array
     {
         return[
             [
@@ -32,18 +33,21 @@ class Lead extends backendLead
     } 
 
 
-    public function afterSave($insert, $changedAttributes)
+    public function afterSave($insert, $changedAttributes): void
     {
         $this->callbackToEmail();
         $this->callbackToTelegram();
         parent::afterSave($insert, $changedAttributes);
     }
 
-    protected function callbackToTelegram()
+    /**
+     * @return bool
+     */
+    protected function callbackToTelegram(): bool
     {
         try {
             $chat_ids = explode(',', Yii::$app->configManager->getItemValue('reportTelegramChatID'));
-            if (isset($chat_ids) && !empty($chat_ids) && is_array($chat_ids)) {
+            if (!empty($chat_ids) && is_array($chat_ids)) {
                 $message = $this->generateMessageText();
                 
                 Yii::$app->queue->push(new SendToTelegramJob([
@@ -51,20 +55,24 @@ class Lead extends backendLead
                     'message' => $message
                 ]));
             } else {
-                return Yii::error(Yii::t('app', "Telegram Chat ID is not set"));
+                Yii::error(Yii::t('app', "Telegram Chat ID is not set"));
             }
             return true;
         } catch (\Exception $e) {
             Yii::debug($e->getMessage());
+            return false;
         }
     }
 
-    protected function callbackToEmail()
+    /**
+     * @return bool
+     */
+    protected function callbackToEmail(): bool
     {
         try {
             $emails = explode(',', Yii::$app->configManager->getItemValue('reportEmail'));
 
-            if (isset($emails) && !empty($emails) && is_array($emails)) {
+            if (!empty($emails) && is_array($emails)) {
                 $message = $this->generateMessageText();
                 
                 Yii::$app->queue->push(new SendToEmailJob([
@@ -73,15 +81,19 @@ class Lead extends backendLead
                     'subject' => $this->subject,
                 ]));
             } else {
-                return Yii::error(Yii::t('app', "Incorrect report Emails"));
+                Yii::error(Yii::t('app', "Incorrect report Emails"));
             }
             return true;
         } catch (\Exception $e) {
             Yii::debug($e->getMessage());
+            return false;
         }
     }
 
-    protected function generateMessageText()
+    /**
+     * @return string
+     */
+    protected function generateMessageText(): string
     {        
         $message = Yii::t('app', 'ContactName {name}', ['name' => $this->name]) . PHP_EOL;
         $message .= Yii::t('app', 'ContactPhone {phone}', ['phone' => $this->phone]) . PHP_EOL;

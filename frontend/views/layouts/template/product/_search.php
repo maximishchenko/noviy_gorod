@@ -1,10 +1,16 @@
 <?php
 
 use common\models\ApartmentSort;
+use frontend\modules\catalog\models\Apartment;
+use frontend\modules\catalog\models\search\ApartmentSearch;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $apartmentSort = new ApartmentSort();
+
+/**
+ * @var $searchModel ApartmentSearch
+ */
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -57,8 +63,8 @@ $apartmentSort = new ApartmentSort();
       <div class="room-search__range-wrap">
         <input class="js-range-slider" type="text" name="area" value="" tabindex="-1" readonly="" />
       </div>
-      <input id="minArea" name="minArea" class="hidden__input" readonly value="<?= Yii::$app->request->queryParams['minArea']; ?>">
-      <input id="maxArea" name="maxArea" class="hidden__input" readonly value="<?= Yii::$app->request->queryParams['maxArea']; ?>">
+      <input id="minArea" name="minArea" class="hidden__input" readonly value="<?= Apartment::getMinArea(); ?>">
+      <input id="maxArea" name="maxArea" class="hidden__input" readonly value="<?= Apartment::getMaxArea(); ?>">
     </div>
   </div>
   

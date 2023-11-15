@@ -21,7 +21,7 @@ class ApartmentSearch extends Apartment
 
     public $house;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'layout_id', 'sort', 'created_at', 'updated_at', 'apartment_floor', 'created_by', 'updated_by'], 'integer'],

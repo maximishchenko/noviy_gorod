@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\models\query;
 
@@ -12,27 +13,44 @@ class PremiseQuery extends backendPremiseQuery
 {
     use activeOfferedQueryTrait;
 
-    public function onlyCommercial()
+    /**
+     * @return PremiseQuery
+     */
+    public function onlyCommercial(): PremiseQuery
     {
         return $this->andWhere(['premise_type' => Commercial::TYPE]);
     }
 
-    public function onlyStorage()
+    /**
+     * @return PremiseQuery
+     */
+    public function onlyStorage(): PremiseQuery
     {
         return $this->andWhere(['premise_type' => Storage::TYPE]);
     }
 
-    public function onlyParking()
+    /**
+     * @return PremiseQuery
+     */
+    public function onlyParking(): PremiseQuery
     {
         return $this->andWhere(['premise_type' => Parking::TYPE]);
     }
 
-    public function activeItem($id)
+    /**
+     * @param $id
+     * @return PremiseQuery
+     */
+    public function activeItem($id): PremiseQuery
     {
         return $this->andWhere(['id' => $id]);
     }
 
-    public function stages($id)
+    /**
+     * @param $id
+     * @return PremiseQuery
+     */
+    public function stages($id): PremiseQuery
     {
         return $this->andWhere(['<>', 'id', $id]);
     }

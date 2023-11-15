@@ -28,6 +28,7 @@ use yii\db\ActiveQuery;
  * @property int|null $created_by
  * @property int|null $updated_by
  *
+ * @property-read \yii\db\ActiveQuery $category
  * @property DocumentCategory $documentCategory
  */
 class Document extends \yii\db\ActiveRecord

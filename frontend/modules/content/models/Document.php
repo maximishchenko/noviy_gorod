@@ -1,25 +1,39 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\models;
 
 use frontend\modules\content\models\query\DocumentQuery;
-use frontend\modules\content\models\DocumentCategory;
 use backend\modules\content\models\Document as backendDocument;
+use yii\db\ActiveQuery;
 
 
+/**
+ *
+ * @property-read string $filePath
+ */
 class Document extends backendDocument
 {
-    public function getCategory()
+    /**
+     * @return ActiveQuery
+     */
+    public function getCategory(): ActiveQuery
     {
         return $this->hasOne(DocumentCategory::class, ['id' => 'category_id']);
     }
 
-    public static function find()
+    /**
+     * @return DocumentQuery
+     */
+    public static function find(): DocumentQuery
     {
         return new DocumentQuery(get_called_class());
     }
 
-    public function getFilePath()
+    /**
+     * @return string
+     */
+    public function getFilePath(): string
     {
         return "/" . self::UPLOAD_PATH . $this->file_name;
     }

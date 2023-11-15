@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\controllers;
 
@@ -9,8 +10,11 @@ use yii\web\Controller;
 
 class LeadController extends Controller
 {
-    
-    public function behaviors()
+
+    /**
+     * @return array[]
+     */
+    public function behaviors(): array
     {
         return [
             'verbs' => [

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\controllers;
 
@@ -7,7 +8,11 @@ use frontend\modules\content\models\search\GallerySearch;
 
 class GalleryController extends BaseController
 {
-    public function actionIndex()
+    /**
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionIndex(): string
     {
         $searchModel = new GallerySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);

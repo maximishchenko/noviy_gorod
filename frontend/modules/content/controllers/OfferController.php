@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\controllers;
 
@@ -7,7 +8,11 @@ use frontend\modules\content\models\Offer;
 
 class OfferController extends BaseController
 {
-    public function actionIndex()
+    /**
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionIndex(): string
     {
         $offers = Offer::getDb()->cache(function() {
             return Offer::find()->active()->ordered()->all();

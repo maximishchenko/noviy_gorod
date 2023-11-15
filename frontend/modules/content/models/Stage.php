@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace frontend\modules\content\models;
 
 use backend\modules\content\models\Stage as backendStage;
-use frontend\modules\content\models\StageItem;
 use common\models\Status;
 use frontend\modules\content\models\query\StageQuery;
 use frontend\traits\cacheParamsTrait;
@@ -18,7 +18,10 @@ class Stage extends backendStage
         return new StageQuery(get_called_class());
     }
 
-    public function getBackground()
+    /**
+     * @return string
+     */
+    public function getBackground(): string
     {
         return '/' . static::UPLOAD_PATH . $this->image;
     }
@@ -26,14 +29,15 @@ class Stage extends backendStage
     public function getStage()
     {
         $stageId = Yii::$app->configManager->getItemValue('contentMainStage');
-        $stage = Stage::getDb()->cache(function() use ($stageId) {
+        return Stage::getDb()->cache(function () use ($stageId) {
             return Stage::find()
-                        ->with('stageItems')
-                        ->where(['id' => $stageId, 'status' => Status::STATUS_ACTIVE])
-                        ->orderBy(['sort' => SORT_ASC])
-                        ->one();
-        }, Stage::getCacheDuration(), Stage::getCacheDependency());
-        return $stage;
+                ->with('stageItems')
+                ->where(['id' => $stageId, 'status' => Status::STATUS_ACTIVE])
+                ->orderBy(['sort' => SORT_ASC])
+                ->one();
+        },
+            Stage::getCacheDuration(),
+            Stage::getCacheDependency());
     }
 
     public function getStageItems(): yii\db\ActiveQuery
