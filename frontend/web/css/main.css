@@ -6562,7 +6562,6 @@ article .room__btn {
 @media only screen and (min-width: 980px) {
   .mortgage__item {
     width: calc(50% - 24px);
-    max-height: 422px;
   }
 }
 
@@ -6603,7 +6602,6 @@ article .room__btn {
 
 .mortgage__item-text {
   margin-top: 24px;
-  max-height: 205px;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.01em;
@@ -6618,12 +6616,6 @@ article .room__btn {
   .mortgage__item-text {
     font-size: 18px;
     line-height: 25px;
-  }
-}
-
-@media only screen and (min-width: 980px) {
-  .mortgage__item-text {
-    max-height: 170px;
   }
 }
 
