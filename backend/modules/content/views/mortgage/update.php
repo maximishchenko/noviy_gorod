@@ -1,20 +1,13 @@
 <?php
 
-use yii\helpers\Html;
-
-/** @var yii\web\View $this */
-/** @var backend\modules\content\models\Mortgage $model */
-
 $this->title = Yii::t('app', 'Update Mortgage: {name}', [
     'name' => $model->name,
 ]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mortgages'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mortgage-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

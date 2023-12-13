@@ -280,4 +280,9 @@ return [
     'Bank imageFile Hint {extensions}' => 'Логотип банка',
     'Bank Name Hint' => 'Название банка, обязательное поле',
     'Bank Image' => 'Логотип банка',
+    'Mortgages' => 'Ипотека',
+    'Mortgage Name Hint' => 'Наименование ипотечной программы',
+    'Update Mortgage: {name}' => '{name}',
+    'Mortgage Text' => 'Описание программы',
+    'Mortgage Text Hint' => 'Описание программы',
 ];

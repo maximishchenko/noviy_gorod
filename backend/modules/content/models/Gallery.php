@@ -25,7 +25,6 @@ use yii\web\UploadedFile;
  * @property int|null $updated_at
  * @property int|null $created_by
  * @property int|null $updated_by
- * @property string $files
  *
  * @property-read \yii\db\ActiveQuery $uploads
  * @property GalleryUpload[] $galleryUploads

@@ -6,7 +6,6 @@ namespace frontend\modules\content\models;
 use backend\modules\content\models\Bank as backendBank;
 use frontend\modules\content\models\query\BankQuery;
 use frontend\traits\cacheParamsTrait;
-use yii\db\ActiveQuery;
 
 class Bank extends backendBank
 {

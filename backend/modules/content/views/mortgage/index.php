@@ -1,24 +1,21 @@
 <?php
 
-use backend\modules\content\models\Mortgage;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use backend\widgets\LinkColumn;
+use backend\widgets\ListButtonsWidget;
+use backend\widgets\SetColumn;
+use common\models\Status;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
-
-/** @var yii\web\View $this */
-/** @var backend\modules\content\models\search\MortgageSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('app', 'Mortgages');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mortgage-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Mortgage'), ['create'], ['class' => 'btn btn-success']) ?>
+    <p class="text-right">
+        <?= ListButtonsWidget::widget() ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,21 +29,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'text:ntext',
-            'comment:ntext',
+            [
+                'attribute' => 'id',
+                'contentOptions' => ['style' => 'width:100px;'],
+            ],
+            [
+                'class' => LinkColumn::className(),
+                'attribute' => 'name',
+                'contentOptions' => ['class' => 'text-wrap'],
+                'headerOptions' => array(
+                    'class' => 'sort-numerical',
+                ),
+            ],
             'sort',
-            //'status',
-            //'created_at',
-            //'updated_at',
-            //'created_by',
-            //'updated_by',
+            [
+                'class' => SetColumn::className(),
+                'filter' => Status::getStatusesArray(),
+                'attribute' => 'status',
+                'name' => function($data) {
+                    return ArrayHelper::getValue(Status::getStatusesArray(), $data->status);
+                },
+                'contentOptions' => ['style' => 'width:100px;'],
+                'cssCLasses' => [
+                    Status::STATUS_ACTIVE => 'success',
+                    Status::STATUS_BLOCKED => 'danger',
+                ],
+            ],
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Mortgage $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'contentOptions' => ['style' => 'width:80px;'],
+                'template' => '{delete}',
             ],
         ],
     ]); ?>

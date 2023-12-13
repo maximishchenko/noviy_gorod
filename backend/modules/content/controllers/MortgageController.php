@@ -4,13 +4,11 @@ namespace backend\modules\content\controllers;
 
 use backend\modules\content\models\Mortgage;
 use backend\modules\content\models\search\MortgageSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * MortgageController implements the CRUD actions for Mortgage model.
- */
 class MortgageController extends Controller
 {
     /**
@@ -31,11 +29,6 @@ class MortgageController extends Controller
         );
     }
 
-    /**
-     * Lists all Mortgage models.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
         $searchModel = new MortgageSearch();
@@ -46,32 +39,15 @@ class MortgageController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Mortgage model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Mortgage model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+    
     public function actionCreate()
     {
         $model = new Mortgage();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Record added'));
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -82,19 +58,13 @@ class MortgageController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Mortgage model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Record changed'));
+            return $this->refresh();
         }
 
         return $this->render('update', [
@@ -102,28 +72,15 @@ class MortgageController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Mortgage model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
+    public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
+        Yii::$app->session->setFlash('danger', Yii::t('app', 'Record deleted'));
 
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Mortgage model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return Mortgage the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
+    protected function findModel(int $id)
     {
         if (($model = Mortgage::findOne(['id' => $id])) !== null) {
             return $model;

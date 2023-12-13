@@ -6,7 +6,8 @@ use backend\traits\fileTrait;
 use common\models\Sort;
 use common\models\Status;
 use Yii;
-
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 class Bank extends \yii\db\ActiveRecord
 {
@@ -19,7 +20,26 @@ class Bank extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%bank}}';
-    }
+    }    
+    
+    public function behaviors(): array
+    {
+        return[
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => function () {
+                    return date('U');
+                },
+            ],
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+        ];
+    }  
 
     public function rules()
     {

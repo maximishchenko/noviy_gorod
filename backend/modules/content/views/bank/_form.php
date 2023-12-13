@@ -9,7 +9,8 @@ use yii\bootstrap5\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         'id' => 'bank-form'
-    ]); ?>    <?= $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
+    ]); ?>    
+    <?= $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
 
     <div class="accordion" id="backendAccordion">
         <div class="accordion-item">
