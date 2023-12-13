@@ -2,14 +2,14 @@
 
 namespace backend\modules\content\controllers;
 
-use backend\modules\content\models\Bank;
-use backend\modules\content\models\search\BankSearch;
+use backend\modules\content\models\Payment;
+use backend\modules\content\models\search\PaymentSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class BankController extends Controller
+class PaymentController extends Controller
 {
     public function behaviors()
     {
@@ -28,7 +28,7 @@ class BankController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new BankSearch();
+        $searchModel = new PaymentSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -36,10 +36,10 @@ class BankController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-
+    
     public function actionCreate()
     {
-        $model = new Bank();
+        $model = new Payment();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -80,7 +80,7 @@ class BankController extends Controller
     public function actionDeleteImage(int $id)
     {
         $model = $this->findModel($id);
-        $file = $model->getPath(Bank::UPLOAD_PATH, $model->image);
+        $file = $model->getPath(Payment::UPLOAD_PATH, $model->image);
         $model->removeSingleFileIfExist($file);
         $model->image = null;
         $model->save();
@@ -90,7 +90,7 @@ class BankController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Bank::findOne(['id' => $id])) !== null) {
+        if (($model = Payment::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

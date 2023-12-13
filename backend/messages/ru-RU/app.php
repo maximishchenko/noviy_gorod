@@ -285,4 +285,11 @@ return [
     'Update Mortgage: {name}' => '{name}',
     'Mortgage Text' => 'Описание программы',
     'Mortgage Text Hint' => 'Описание программы',
+    'Payments' => 'Способы оплаты',
+    'Payments Edit' => 'Управление разделом "Способы оплаты"',
+    'Payment Text Hint'=> 'Текст описания',
+    'Payment Name Hint' => 'Наименование способа оплаты',
+    "Payment imageFile Hint {extensions}" => 'Изображение материала. Допустимые расширения: {extensions}',
+    'Payment Text' => 'Описание способа оплаты',
+    'Payment Image' => 'Изображение',
 ];

@@ -1,31 +1,31 @@
 <?php
 
+use backend\modules\content\models\Payment;
 use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\Status;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 
-$this->title = Yii::t('app', 'Banks');
+$this->title = Yii::t('app', 'Payments');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="bank-index">
+<div class="payment-index">
 
-    <p class="text-right">
-        <?= ListButtonsWidget::widget() ?>
-    </p>
+<p class="text-right">
+    <?= ListButtonsWidget::widget() ?>
+</p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'pager' => [
-            'class' => 'yii\bootstrap4\LinkPager'
-        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

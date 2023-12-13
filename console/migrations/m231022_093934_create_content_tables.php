@@ -293,10 +293,35 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-bank-updated_at', '{{%bank}}', 'updated_at');
         $this->createIndex('idx-bank-created_by', '{{%bank}}', 'created_by');
         $this->createIndex('idx-bank-updated_by', '{{%bank}}', 'updated_by');
+        
+        $this->createTable('{{%payment}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'image' => $this->string(),
+            'text' => $this->text(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+        
+        $this->createIndex('idx-payment-id', '{{%payment}}', 'id');
+        $this->createIndex('idx-payment-name', '{{%payment}}', 'name');
+        $this->createIndex('idx-payment-image', '{{%payment}}', 'image');
+        $this->createIndex('idx-payment-sort', '{{%payment}}', 'sort');
+        $this->createIndex('idx-payment-status', '{{%payment}}', 'status');
+        $this->createIndex('idx-payment-created_at', '{{%payment}}', 'created_at');
+        $this->createIndex('idx-payment-updated_at', '{{%payment}}', 'updated_at');
+        $this->createIndex('idx-payment-created_by', '{{%payment}}', 'created_by');
+        $this->createIndex('idx-payment-updated_by', '{{%payment}}', 'updated_by');
     }
 
     public function safeDown()
     {
+        $this->dropTable('{{%payment}}');
         $this->dropTable('{{%bank}}');
         $this->dropTable('{{%mortgage}}');
         $this->dropTable('{{%document}}');

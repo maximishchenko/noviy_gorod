@@ -106,4 +106,14 @@ use yii\helpers\Url;
                 'linkUrl' => Url::to(['/content/mortgage'])
             ]) ?>
         </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= SmallBox::widget([
+                'title' => Yii::t('app', 'Payments'),
+                'text' => Yii::t('app', 'Payments Edit'),
+                'icon' => 'fa fa-file',
+                'theme' => 'warning',
+                'linkText' => Yii::t('app', 'GO_LINK'),
+                'linkUrl' => Url::to(['/content/payment'])
+            ]) ?>
+        </div>
 </div>
