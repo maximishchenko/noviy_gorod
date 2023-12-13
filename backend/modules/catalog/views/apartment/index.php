@@ -7,6 +7,7 @@ use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\ApartmentStatus;
+use common\models\Status;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
@@ -64,22 +65,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'apartment_floor',
-            [
-                'attribute' => 'sort',
-                'contentOptions' => ['style' => 'width:100px;'],
-            ],
+            // [
+            //     'attribute' => 'sort',
+            //     'contentOptions' => ['style' => 'width:100px;'],
+            // ],
             [
                 'class' => SetColumn::className(),
                 'filter' => ApartmentStatus::getStatusesArray(),
-                'attribute' => 'status',
+                'attribute' => 'sale_status',
                 'name' => function($data) {
-                    return ArrayHelper::getValue(ApartmentStatus::getStatusesArray(), $data->status);
+                    return ArrayHelper::getValue(ApartmentStatus::getStatusesArray(), $data->sale_status);
                 },
                 'contentOptions' => ['style' => 'width:100px;'],
                 'cssCLasses' => [
-                    ApartmentStatus::STATUS_ACTIVE => 'success',
+                    ApartmentStatus::STATUS_FREE => 'danger',
                     ApartmentStatus::STATUS_RESERVED => 'info',
-                    ApartmentStatus::STATUS_BLOCKED => 'danger',
+                    ApartmentStatus::STATUS_SOLD => 'success',
+                ],
+            ],
+            [
+                'class' => SetColumn::className(),
+                'filter' => Status::getStatusesArray(),
+                'attribute' => 'status',
+                'name' => function($data) {
+                    return ArrayHelper::getValue(Status::getStatusesArray(), $data->status);
+                },
+                'contentOptions' => ['style' => 'width:100px;'],
+                'cssCLasses' => [
+                    Status::STATUS_ACTIVE => 'success',
+                    Status::STATUS_BLOCKED => 'danger',
                 ],
             ],
             [

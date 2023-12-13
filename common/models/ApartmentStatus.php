@@ -1,24 +1,37 @@
 <?php
 
 namespace common\models;
-
-use common\models\Status;
 use Yii;
 
-class ApartmentStatus extends Status
+class ApartmentStatus
 {
-    const STATUS_ACTIVE = 'active';
+    const STATUS_FREE = 'free';
 
-    const STATUS_BLOCKED = 'blocked';
+    const STATUS_SOLD = 'sold';
 
     const STATUS_RESERVED = 'reserved';
+
+    const STATUS_FREE_CSS_CLASS = 'apartments-list__item--free';
+
+    const STATUS_SOLD_CSS_CLASS = 'apartments-list__item--sold';
+
+    const STATUS_RESERVED_CSS_CLASS = 'apartments-list__item--reserved';
 
     public static function getStatusesArray(): array
     {
         return [
-            self::STATUS_ACTIVE => Yii::t('app', 'Status Active for reserved'),
+            self::STATUS_FREE => Yii::t('app', 'Status Free'),
+            self::STATUS_SOLD => Yii::t('app', 'Status Sold'),
             self::STATUS_RESERVED => Yii::t('app', 'Status Reserved'),
-            self::STATUS_BLOCKED => Yii::t('app', 'Status Blocked for display'),
+        ];
+    }
+
+    public static function getStatusesCssClassNames(): array
+    {
+        return [
+            self::STATUS_FREE => self::STATUS_FREE_CSS_CLASS,
+            self::STATUS_RESERVED => self::STATUS_RESERVED_CSS_CLASS,
+            self::STATUS_SOLD => self::STATUS_SOLD_CSS_CLASS,
         ];
     }
 }

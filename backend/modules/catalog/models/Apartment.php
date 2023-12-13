@@ -8,6 +8,7 @@ use backend\modules\catalog\models\query\ApartmentQuery;
 use backend\traits\fileTrait;
 use common\models\ApartmentStatus;
 use common\models\Sort;
+use common\models\Status;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
@@ -81,7 +82,8 @@ class Apartment extends \yii\db\ActiveRecord
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],
             
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
-            ['status', 'in', 'range' => array_keys(ApartmentStatus::getStatusesArray())],
+            ['status', 'in', 'range' => array_keys(Status::getStatusesArray())],
+            ['sale_status', 'in', 'range' => array_keys(ApartmentStatus::getStatusesArray())],
             [['apartment_floor', 'layout_id', 'status'], 'required'],
         ];
     }
@@ -100,6 +102,7 @@ class Apartment extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Image'),
             'imageFile' => Yii::t('app', 'Apartment Image'),
             'status' => Yii::t('app', 'Status'),
+            'sale_status' => Yii::t('app', 'Sale Status'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'created_at' => Yii::t('app', 'Created At'),

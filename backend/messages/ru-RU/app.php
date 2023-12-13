@@ -166,8 +166,9 @@ return [
     'Entrance of Layout' => 'Подъезд',
     'Current Entrance Layouts' => 'Планировки в текущем подъезде',
     'Apartments' => 'Квартиры',
-    'Status Active for reserved' => 'Активна',
-    'Status Blocked for display' => 'Заблокирована',
+    'Status Free' => 'Свободна',
+    'Status Sold' => 'Продана',
+    'Status Reserved' => 'Забронирована',
     'Layout ID' => 'Планировка квартиры',
     'Name' => 'Название',
     'House {house_name}, entrance {entrance_number}, {count_rooms} - suffix {total_area}' => 'Литер {house_name}, подъезд {entrance_number}, {count_rooms}-комнатная, {total_area} м2',
@@ -269,4 +270,5 @@ return [
     'Premise Advantage Items: {name}' => 'Преимущества: {name}',
     'Record updated' => 'Запись изменена',
     'Record disabled' => 'Запись отключена',
+    'Sale Status' => 'Статус продажи',
 ];

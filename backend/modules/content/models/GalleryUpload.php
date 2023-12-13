@@ -17,6 +17,7 @@ use yii\db\ActiveQuery;
  * @property int $gallery_id
  * @property string|null $file_name
  * @property int|null $sort
+ * @property \yii\web\UploadedFile $sort
  *
  * @property Gallery $gallery
  */
@@ -26,7 +27,7 @@ class GalleryUpload extends \yii\db\ActiveRecord
 
     const UPLOAD_PATH = 'upload/gallery/';
 
-    public string $file;
+    public $file;
     
     public static function tableName(): string
     {

@@ -81,4 +81,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $model->entrance, 'apartmentModel' => new Apartment()]); ?>
+<?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $model->entrance, 'apartmentModel' => new Apartment(), 'current' => $model->id]); ?>

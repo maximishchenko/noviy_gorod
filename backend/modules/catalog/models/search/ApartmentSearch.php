@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Apartment;
 use backend\modules\catalog\models\Entrance;
 use backend\modules\catalog\models\House;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class ApartmentSearch extends Apartment
@@ -21,7 +22,7 @@ class ApartmentSearch extends Apartment
     {
         return [
             [['id', 'layout_id', 'sort', 'created_at', 'updated_at', 'apartment_floor', 'created_by', 'updated_by'], 'integer'],
-            [['image', 'status', 'comment', 'entrance', 'house'], 'safe'],
+            [['image', 'status', 'sale_status', 'comment', 'entrance', 'house'], 'safe'],
         ];
     }
 
@@ -47,6 +48,7 @@ class ApartmentSearch extends Apartment
                 'apartment_floor',
                 'sort',
                 'status',
+                'sale_status',
                 'entrance' => [
                     'asc' => [Entrance::tableName() . '.number' => SORT_ASC],
                     'desc' => [Entrance::tableName() . '.number' => SORT_DESC],
@@ -71,16 +73,14 @@ class ApartmentSearch extends Apartment
             'apartment_floor' => $this->apartment_floor,
             'layout_id' => $this->layout_id,
             'sort' => $this->sort,
+            'status' => $this->status,
+            'sale_status' => $this->sale_status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             Entrance::tableName() . '.id' => $this->entrance,
         ]);
-
-        $query->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

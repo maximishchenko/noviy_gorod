@@ -78,7 +78,7 @@ $this->title = 'Новострой';
 
 <?php if($apartmentModel->getActiveHouses()): ?>
 <?php foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
-<?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel]); ?>
+<?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel, 'current' => null]); ?>
 <?php endforeach; ?>
 <?php endif; ?>
       

@@ -147,7 +147,7 @@ class Apartment extends backendApartment
     public function getApartmentsByCountRooms(int $countRooms): array
     {
         return self::getDb()->cache(function() use ($countRooms) {
-            return self::find()->where([self::tableName() . '.status' => ApartmentStatus::STATUS_ACTIVE, Layout::tableName() . '.count_rooms' => $countRooms])->joinWith(['layout'])->all();
+            return self::find()->where([self::tableName() . '.status' => Status::STATUS_ACTIVE, Layout::tableName() . '.count_rooms' => $countRooms])->joinWith(['layout'])->all();
         }, self::getCacheDuration(), self::getCacheDependency());
     }
 

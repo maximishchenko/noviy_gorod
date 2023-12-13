@@ -6,6 +6,7 @@ namespace backend\modules\catalog\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Entrance;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class EntranceSearch extends Entrance

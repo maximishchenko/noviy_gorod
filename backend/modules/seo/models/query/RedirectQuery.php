@@ -6,7 +6,7 @@ namespace backend\modules\seo\models\query;
 
 class RedirectQuery extends \yii\db\ActiveQuery
 {
-    public function all($db = null): mixed
+    public function all($db = null)
     {
         return parent::all($db);
     }

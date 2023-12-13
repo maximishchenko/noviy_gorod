@@ -6,6 +6,7 @@ namespace backend\modules\catalog\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\House;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class HouseSearch extends House

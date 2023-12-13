@@ -8,6 +8,7 @@ use backend\modules\catalog\models\House;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\catalog\models\Layout;
+use common\models\Sort;
 use yii\data\DataProviderInterface;
 
 class LayoutSearch extends Layout
