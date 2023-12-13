@@ -8,12 +8,19 @@ namespace frontend\modules\content\controllers;
 use frontend\controllers\BaseController;
 use frontend\modules\content\models\Bank;
 use frontend\modules\content\models\Mortgage;
+use frontend\modules\content\models\Payment;
 
 class PaymentController extends BaseController
 {
     public function actionIndex(): string
     {
-        return $this->render('index', ['banks' => $this->getBanks()]);
+        $payments = Payment::getDb()->cache(function() {
+            return Payment::find()->active()->all();
+        }, Payment::getCacheDuration(), Payment::getCacheDependency());
+        return $this->render('index', [
+            'banks' => $this->getBanks(),
+            'payments' => $payments,
+        ]);
     }
 
     public function actionMortgage(): string

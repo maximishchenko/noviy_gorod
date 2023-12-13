@@ -292,4 +292,5 @@ return [
     "Payment imageFile Hint {extensions}" => 'Изображение материала. Допустимые расширения: {extensions}',
     'Payment Text' => 'Описание способа оплаты',
     'Payment Image' => 'Изображение',
+    'Update Payment: {name}' => '{name}',
 ];
