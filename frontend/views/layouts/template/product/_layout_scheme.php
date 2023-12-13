@@ -25,7 +25,7 @@ use common\models\ApartmentStatus;
         <?php  $apartment = $apartmentModel->getApartmentsByFloorAndLayout($floor, $layout->id); ?>
 
         <?php if ($apartment->number): ?>
-        <div class="apartments-list__item <?= ($apartment->id == $current) ? 'apartments-list__item--selected' : ApartmentStatus::getStatusesCssClassNames()[$apartment->sale_status]; ?>">
+        <div class="apartments-list__item <?= ($apartment->id == $current) ? ApartmentStatus::SELECTED_ITEM_CSS_CLASS : ApartmentStatus::getStatusesCssClassNames()[$apartment->sale_status]; ?>">
           <div class="apartments-list__item__title">
             <span class="apartment-name">Квартира </span><?= $apartment->number; ?>
           </div>

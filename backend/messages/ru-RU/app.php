@@ -271,4 +271,13 @@ return [
     'Record updated' => 'Запись изменена',
     'Record disabled' => 'Запись отключена',
     'Sale Status' => 'Статус продажи',
+    'Bank' => 'Банки',
+    'Bank Edit' => 'Управление списком банков',
+    'Mortgage' => 'Ипотека',
+    'Mortgage Edit' => 'Управление разделом "Ипотека"',
+    'Banks' => 'Банки',
+    'Update Bank: {name}' => 'Банк: {name}',
+    'Bank imageFile Hint {extensions}' => 'Логотип банка',
+    'Bank Name Hint' => 'Название банка, обязательное поле',
+    'Bank Image' => 'Логотип банка',
 ];

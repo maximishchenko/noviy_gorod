@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\StageQuery;
-use backend\modules\conent\models\StageItem;
+use backend\modules\content\models\StageItem;
 use backend\traits\fileTrait;
 use common\models\Sort;
 use common\models\Status;

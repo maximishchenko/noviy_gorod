@@ -86,4 +86,24 @@ use yii\helpers\Url;
                 'linkUrl' => Url::to(['/content/document'])
             ]) ?>
         </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= SmallBox::widget([
+                'title' => Yii::t('app', 'Bank'),
+                'text' => Yii::t('app', 'Bank Edit'),
+                'icon' => 'fa fa-file',
+                'theme' => 'warning',
+                'linkText' => Yii::t('app', 'GO_LINK'),
+                'linkUrl' => Url::to(['/content/bank'])
+            ]) ?>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= SmallBox::widget([
+                'title' => Yii::t('app', 'Mortgage'),
+                'text' => Yii::t('app', 'Mortgage Edit'),
+                'icon' => 'fa fa-file',
+                'theme' => 'warning',
+                'linkText' => Yii::t('app', 'GO_LINK'),
+                'linkUrl' => Url::to(['/content/mortgage'])
+            ]) ?>
+        </div>
 </div>

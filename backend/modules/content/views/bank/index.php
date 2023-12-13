@@ -1,22 +1,27 @@
 <?php
 
+use backend\modules\content\models\Bank;
 use backend\widgets\LinkColumn;
 use backend\widgets\ListButtonsWidget;
 use backend\widgets\SetColumn;
 use common\models\Status;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 
-$this->title = Yii::t('app', 'Document');
+$this->title = Yii::t('app', 'Banks');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CONTENT_MODULE'), 'url' => ['/content']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="document-category-index">
-    
+<div class="bank-index">
+
     <p class="text-right">
         <?= ListButtonsWidget::widget() ?>
     </p>
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
 
             [
                 'attribute' => 'id',
@@ -39,10 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'sort-numerical',
                 ),
             ],
-            [
-                'attribute' => 'sort',
-                'contentOptions' => ['style' => 'width:100px;'],
-            ],
+            'sort',
             [
                 'class' => SetColumn::className(),
                 'filter' => Status::getStatusesArray(),

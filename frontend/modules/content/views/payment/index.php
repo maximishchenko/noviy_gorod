@@ -41,30 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </section>
   <section class="mortgage">
-    <div class="banks">
-      <div class="page-title">Аккредитованные банки</div>
-      <div class="bank-list">
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-1_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-2_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-3_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-4_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-5_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-6_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-7_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-8_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-9_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-10_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-11_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-12_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-13_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-14_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-15_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-16_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-17_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-18_0x0_cd6.webp" alt="" /></div>
-        <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-19_0x0_cd6.webp" alt="" /></div>
-      </div>
-    </div>
+
+    <?php if($banks): ?>
+      <?= $this->render('_banks', ['banks' => $banks]); ?>
+    <?php endif; ?>
+    
   </section>
   <section class="payment-info payment-info--reverse">  
     <div class="payment-info__wrap"> 

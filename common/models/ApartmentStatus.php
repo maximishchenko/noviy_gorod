@@ -17,6 +17,8 @@ class ApartmentStatus
 
     const STATUS_RESERVED_CSS_CLASS = 'apartments-list__item--reserved';
 
+    const SELECTED_ITEM_CSS_CLASS = 'apartments-list__item--selected';
+
     public static function getStatusesArray(): array
     {
         return [

@@ -248,10 +248,57 @@ class m231022_093934_create_content_tables extends Migration
         $this->createIndex('idx-document-updated_by', '{{%document}}', 'updated_by');
 
         $this->addForeignKey('fk-document-document_category', '{{%document}}', 'category_id', '{{%document_category}}', 'id', 'CASCADE', 'RESTRICT');
+
+        $this->createTable('{{%mortgage}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'text' => $this->text()->notNull(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+
+        $this->createIndex('idx-mortgage-id', '{{%mortgage}}', 'id');
+        $this->createIndex('idx-mortgage-name', '{{%mortgage}}', 'name');
+        $this->createIndex('idx-mortgage-sort', '{{%mortgage}}', 'sort');
+        $this->createIndex('idx-mortgage-status', '{{%mortgage}}', 'status');
+        $this->createIndex('idx-mortgage-created_at', '{{%mortgage}}', 'created_at');
+        $this->createIndex('idx-mortgage-updated_at', '{{%mortgage}}', 'updated_at');
+        $this->createIndex('idx-mortgage-created_by', '{{%mortgage}}', 'created_by');
+        $this->createIndex('idx-mortgage-updated_by', '{{%mortgage}}', 'updated_by');
+
+        $this->createTable('{{%bank}}', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'image' => $this->string(),
+            'comment' => $this->text(),
+            'sort' => $this->integer(),
+            'status' => $this->smallInteger(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'created_by' => $this->integer(),
+            'updated_by' => $this->integer(),
+        ], $tableOptions);
+        
+        $this->createIndex('idx-bank-id', '{{%bank}}', 'id');
+        $this->createIndex('idx-bank-name', '{{%bank}}', 'name');
+        $this->createIndex('idx-bank-image', '{{%bank}}', 'image');
+        $this->createIndex('idx-bank-sort', '{{%bank}}', 'sort');
+        $this->createIndex('idx-bank-status', '{{%bank}}', 'status');
+        $this->createIndex('idx-bank-created_at', '{{%bank}}', 'created_at');
+        $this->createIndex('idx-bank-updated_at', '{{%bank}}', 'updated_at');
+        $this->createIndex('idx-bank-created_by', '{{%bank}}', 'created_by');
+        $this->createIndex('idx-bank-updated_by', '{{%bank}}', 'updated_by');
     }
 
     public function safeDown()
     {
+        $this->dropTable('{{%bank}}');
+        $this->dropTable('{{%mortgage}}');
         $this->dropTable('{{%document}}');
         $this->dropTable('{{%document_category}}');
         $this->dropTable('{{%premise_advantage}}');

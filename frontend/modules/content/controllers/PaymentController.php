@@ -6,16 +6,19 @@ namespace frontend\modules\content\controllers;
 
 
 use frontend\controllers\BaseController;
+use frontend\modules\content\models\Bank;
 
 class PaymentController extends BaseController
 {
     public function actionIndex(): string
     {
-        return $this->render('index');
+        $banks = Bank::find()->active()->all();
+        return $this->render('index', ['banks' => $banks]);
     }
 
     public function actionMortgage(): string
     {
-        return $this->render('mortgage');
+        $banks = Bank::find()->active()->all();
+        return $this->render('mortgage', ['banks' => $banks]);
     }
 }
