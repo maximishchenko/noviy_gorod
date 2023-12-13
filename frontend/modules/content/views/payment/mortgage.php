@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
 
-    <div class="banks__wraper">
+    <div class="banks">
       <div class="page-title">Аккредитованные банки</div>
       <div class="bank-list">
         <div class="bank-list__item"><img src="../frontend/web/images/banks/logo-1_0x0_cd6.webp" alt="" /></div>

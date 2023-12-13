@@ -3988,6 +3988,9 @@ article .room__btn {
   position: relative;
   cursor: pointer;
   display: block;
+  height: auto;
+  max-height: 350px;
+  min-height: 140px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -8036,12 +8039,12 @@ article .room__btn {
   }
 }
 
-.banks__wraper {
+.banks {
   margin: 50px 0 0;
 }
 
-.banks__wraper .bank-list {
-  margin: 25px -15px 0;
+.banks .bank-list {
+  margin-top: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8050,12 +8053,12 @@ article .room__btn {
 }
 
 @media only screen and (min-width: 768px) {
-  .banks__wraper .bank-list {
-    margin: 50px -15px 0;
+  .banks .bank-list {
+    margin-top: 50px;
   }
 }
 
-.banks__wraper .bank-list__item {
+.banks .bank-list__item {
   padding: 0 15px;
   margin: 15px 0;
   width: 50%;
@@ -8071,18 +8074,18 @@ article .room__btn {
 }
 
 @media only screen and (min-width: 700px) {
-  .banks__wraper .bank-list__item {
+  .banks .bank-list__item {
     width: 25%;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .banks__wraper .bank-list__item {
+  .banks .bank-list__item {
     width: 20%;
   }
 }
 
-.banks__wraper .bank-list__item img {
+.banks .bank-list__item img {
   width: auto;
   max-height: 40px;
   max-width: 100%;
