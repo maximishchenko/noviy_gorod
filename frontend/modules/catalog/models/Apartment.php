@@ -137,7 +137,7 @@ class Apartment extends backendApartment
         return $this->hasOne(House::class, ['id' => 'house_id'])->via('entrance');
     }
 
-    public function getApartmentsByFloorAndLayout(int $floor, int $layout_id): Apartment
+    public function getApartmentsByFloorAndLayout(int $floor, int $layout_id): Apartment | null
     {
         return self::getDb()->cache(function() use ($floor, $layout_id) {
             return self::find()->active()->where(['apartment_floor' => $floor, 'layout_id' => $layout_id])->one();
