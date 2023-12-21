@@ -3,7 +3,7 @@
 use frontend\modules\catalog\models\Apartment;
 use yii\helpers\Html;
 
-$this->title = $model->layout->count_rooms . '-комнатная квартира ' . $model->layout->total_area . ' м<sup>2</sup>';
+$this->title = $model->layout->count_rooms . '-комнатная квартира ' . $model->layout->total_area . '&nbsp;м<sup>2</sup>';
 $this->params['breadcrumbs'][] = ['label' => 'Выбрать квартиру', 'url' => ['/filter']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
