@@ -9,6 +9,22 @@ use common\models\ApartmentStatus;
     <?= $entrance->numberWithPrefix; ?>
   </h2>
 
+    <div class="apartments-list-legend">
+        <div class="apartments-list-legend__item">
+            <span class="apartments-list-legend__item__color apartments-list-legend__item__color--free"></span> - свободна
+        </div>
+        <div class="apartments-list-legend__item">
+            <span class="apartments-list-legend__item__color apartments-list-legend__item__color--sold"></span> - продана
+        </div>
+        <div class="apartments-list-legend__item">
+            <span class="apartments-list-legend__item__color apartments-list-legend__item__color--reserved"></span> - бронь
+        </div>
+        <?php if($current != null): ?>
+            <div class="apartments-list-legend__item">
+                <span class="apartments-list-legend__item__color apartments-list-legend__item__color--selected"></span> - выбрано вами
+            </div>
+        <?php endif; ?>
+    </div>
   <section class="apartments-list" style="grid-template-columns: 60px repeat(<?= count($entrance->layouts) ; ?>, 1fr); ">
       <?php if($entrance->has_commercial_floor): ?>
 
@@ -40,19 +56,22 @@ use common\models\ApartmentStatus;
         <?php  $apartment = $apartmentModel->getApartmentsByFloorAndLayout($floor, $layout->id); ?>
 
         <?php if ($apartment->number): ?>
-        <div class="apartments-list__item <?= ($apartment->id == $current) ? ApartmentStatus::SELECTED_ITEM_CSS_CLASS : ApartmentStatus::getStatusesCssClassNames()[$apartment->sale_status]; ?>">
-          <div class="apartments-list__item__title">
-            <span class="apartment-name">Квартира </span><?= $apartment->number; ?>
-          </div>
-          <div class="apartments-list__item__content">
-            <div class="apartment-rooms">
-              <?= $layout->count_rooms; ?>-комнатная
-            </div>
-            <div class="apartment-area">
-              <?= $layout->total_area; ?>
-            </div>
-          </div>
-        </div>
+                <div class="apartments-list__item <?= ($apartment->id == $current) ? ApartmentStatus::SELECTED_ITEM_CSS_CLASS : ApartmentStatus::getStatusesCssClassNames()[$apartment->sale_status]; ?>">
+
+                    <a href="/filter/<?= $apartment->slug; ?>">
+                      <div class="apartments-list__item__title">
+                        <span class="apartment-name">Квартира </span><?= $apartment->number; ?>
+                      </div>
+                      <div class="apartments-list__item__content">
+                        <div class="apartment-rooms">
+                          <?= $layout->count_rooms; ?>-комнатная
+                        </div>
+                        <div class="apartment-area">
+                          <?= $layout->total_area; ?>
+                        </div>
+                      </div>
+                    </a>
+                </div>
         <?php else: ?>
 
         <div class="apartments-list__item">
@@ -66,20 +85,4 @@ use common\models\ApartmentStatus;
 
   </section>
 
-  <div class="apartments-list-legend">
-    <div class="apartments-list-legend__item">
-      <span class="apartments-list-legend__item__color apartments-list-legend__item__color--free"></span> - свободна
-    </div>
-    <div class="apartments-list-legend__item">
-      <span class="apartments-list-legend__item__color apartments-list-legend__item__color--sold"></span> - продана
-    </div>
-    <div class="apartments-list-legend__item">
-      <span class="apartments-list-legend__item__color apartments-list-legend__item__color--reserved"></span> - бронь
-    </div>
-    <?php if($current != null): ?>
-    <div class="apartments-list-legend__item">
-      <span class="apartments-list-legend__item__color apartments-list-legend__item__color--selected"></span> - выбрано вами
-    </div>
-    <?php endif; ?>
-  </div>
 </div>
