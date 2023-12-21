@@ -29,15 +29,16 @@ class Stage extends backendStage
     public function getStage()
     {
         $stageId = Yii::$app->configManager->getItemValue('contentMainStage');
-        return Stage::getDb()->cache(function () use ($stageId) {
+//        return Stage::getDb()->cache(function () use ($stageId) {
             return Stage::find()
                 ->with('stageItems')
                 ->where(['id' => $stageId, 'status' => Status::STATUS_ACTIVE])
                 ->orderBy(['sort' => SORT_ASC])
                 ->one();
-        },
-            Stage::getCacheDuration(),
-            Stage::getCacheDependency());
+//        },
+//            Stage::getCacheDuration(),
+//            Stage::getCacheDependency()
+//        );
     }
 
     public function getStageItems(): yii\db\ActiveQuery

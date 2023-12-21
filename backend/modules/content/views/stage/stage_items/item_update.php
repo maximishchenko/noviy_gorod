@@ -10,7 +10,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="product-elements-update">
 
     <?= $this->render('_item_form', [
-        'model' => $model,
+//        'model' => $model,
+        'model' => $itemModel->stage,
         'itemModel' => $itemModel,
     ]) ?>
 
