@@ -35,6 +35,7 @@ class LeadController extends Controller
             } else {
                 foreach ($lead->getErrors() as $key => $value) {
                   echo $key.': '.$value[0];
+                    Yii::debug($key.': '.$value[0]);
                 }
                 echo "error";
             }

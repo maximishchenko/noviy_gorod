@@ -36,7 +36,7 @@ class Lead extends backendLead
     public function afterSave($insert, $changedAttributes): void
     {
         $this->callbackToEmail();
-        $this->callbackToTelegram();
+//        $this->callbackToTelegram();
         parent::afterSave($insert, $changedAttributes);
     }
 
