@@ -134,8 +134,9 @@ class Apartment extends \yii\db\ActiveRecord
     {
         $floors = [];
         $entrance = Entrance::find()->where(['id' => $this->layout->entrance_id])->one();
+        $firstFloor = $entrance->getFirstFloorNumber();
         if ($entrance) {
-            for ($floor = 1; $floor <= $entrance->count_floors; $floor++) {
+            for ($floor = $firstFloor; $floor <= $entrance->count_floors; $floor++) {
                 $floors[$floor] = $floor;
             }
         }

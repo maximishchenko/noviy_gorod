@@ -13,7 +13,7 @@ use common\models\ApartmentStatus;
 
 <?php
 
- for($floor = 1; $floor <= $entrance->count_floors; $floor++): ?>
+ for($floor = $entrance->getFirstFloorNumber(); $floor <= $entrance->count_floors; $floor++): ?>
       <div class="apartments-list__label">
         <div class="apartments-list__label__text">
           <?= $floor; ?> этаж

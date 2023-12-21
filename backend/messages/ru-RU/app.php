@@ -293,4 +293,6 @@ return [
     'Payment Text' => 'Описание способа оплаты',
     'Payment Image' => 'Изображение',
     'Update Payment: {name}' => '{name}',
+    'Entrance has commercial floor' => 'Наличие коммерческого этажа',
+    'Has Entrance Commercial Floor' => 'Имеется ли коммерческий этаж',
 ];

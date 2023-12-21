@@ -31,6 +31,7 @@ use yii\bootstrap5\ActiveForm;
                             <div class="col-md-6">
                                 <?= $form->field($model, 'house_id')->dropDownList($model->getHousesItems(), ['prompt' => ""]) ?>
                                 <?= $form->field($model, 'sort')->textInput() ?>
+                                <?= $form->field($model, 'has_commercial_floor')->checkbox() ?>
                                 <?= $form->field($model, 'status')->checkbox() ?>
                             </div>
                             <div class="col-md-6">

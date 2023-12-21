@@ -63,7 +63,7 @@ class Entrance extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['house_id', 'count_floors', 'number', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['house_id', 'count_floors', 'number', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by', 'has_commercial_floor'], 'integer'],
             [['comment'], 'string'],
             [['house_id'], 'exist', 'skipOnError' => true, 'targetClass' => House::class, 'targetAttribute' => ['house_id' => 'id']],
             
@@ -81,6 +81,7 @@ class Entrance extends \yii\db\ActiveRecord
             'house_id' => Yii::t('app', 'Entrance House ID'),
             'number' => Yii::t('app', 'Entrance Number'),
             'count_floors' => Yii::t('app', 'Count Foors'),
+            'has_commercial_floor' => Yii::t('app', 'Entrance has commercial floor'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
@@ -96,6 +97,7 @@ class Entrance extends \yii\db\ActiveRecord
         return [
             'number' => Yii::t('app', 'Entrance Number Hint'),
             'house_id' => Yii::t('app', 'Entrance House ID Hint'),
+            'has_commercial_floor' => Yii::t('app', 'Has Entrance Commercial Floor'),
             'count_floors' => Yii::t('app', 'Entrance Count Floors Hint'),
             'comment' => Yii::t('app', 'Comment Hint'),
             'sort' => Yii::t('app', 'Sort Hint. Default value is {sortDefault}', ['sortDefault' => Sort::DEFAULT_SORT_VALUE]),
@@ -132,5 +134,10 @@ class Entrance extends \yii\db\ActiveRecord
     public function getNumberWithHouseAndPrefix(): string
     {
         return $this->house->nameWithPrefix . ', ' . self::NAME_PREFIX . ' ' . $this->number;
+    }
+
+    public function getFirstFloorNumber(): int
+    {
+        return ($this->has_commercial_floor) ? 2 : 1;
     }
 }
