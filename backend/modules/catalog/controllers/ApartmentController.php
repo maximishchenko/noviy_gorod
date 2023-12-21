@@ -99,7 +99,7 @@ class ApartmentController extends Controller
 
         echo "<option value=''>-</option>";
         if($layout){
-            for ($i = 1; $i <= $layout->entrance->count_floors; $i++) {
+            for ($i = $layout->entrance->getFirstFloorNumber(); $i <= $layout->entrance->count_floors; $i++) {
                 echo "<option value='". $i ."'>" . $i . "</option>";
             }
         }

@@ -9,29 +9,6 @@ use common\models\ApartmentStatus;
     <?= $entrance->numberWithPrefix; ?>
   </h2>
 
-
-<!--    --><?php //if($entrance->has_commercial_floor): ?>
-
-<!--    <section class="apartments-list" style="grid-template-columns: 60px 1fr; ">-->
-<!--        <div class="apartments-list__label">-->
-<!--            <div class="apartments-list__label__text">-->
-<!--                1 этаж-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="apartments-list__item ">-->
-<!--            <div class="apartments-list__item__title">-->
-<!--            </div>-->
-<!--            <div class="apartments-list__item__content">-->
-<!--                <div class="apartment-rooms">-->
-<!--                </div>-->
-<!--                <div class="apartment-area">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--    --><?php //endif; ?>
-
   <section class="apartments-list" style="grid-template-columns: 60px repeat(<?= count($entrance->layouts) ; ?>, 1fr); ">
       <?php if($entrance->has_commercial_floor): ?>
 

@@ -133,13 +133,15 @@ class Apartment extends \yii\db\ActiveRecord
     public function getFloors(): array
     {
         $floors = [];
-        $entrance = Entrance::find()->where(['id' => $this->layout->entrance_id])->one();
-        $firstFloor = $entrance->getFirstFloorNumber();
-        if ($entrance) {
-            for ($floor = $firstFloor; $floor <= $entrance->count_floors; $floor++) {
-                $floors[$floor] = $floor;
+        if (!$this->isNewRecord):
+            $entrance = Entrance::find()->where(['id' => $this->layout->entrance_id])->one();
+            if ($entrance) {
+                $firstFloor = $entrance->getFirstFloorNumber();
+                for ($floor = $firstFloor; $floor <= $entrance->count_floors; $floor++) {
+                    $floors[$floor] = $floor;
+                }
             }
-        }
+        endif;
 
         return $floors;
     }
