@@ -4810,6 +4810,11 @@ article .room__btn {
   }
 }
 
+
+.room__header {
+  font-size: 50px;
+}
+
 .room__top-item {
   display: none;
   -webkit-box-pack: center;

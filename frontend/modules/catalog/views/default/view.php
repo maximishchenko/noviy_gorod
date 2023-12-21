@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section class="room">
   <div class="container">
-    <h1><?= $this->title; ?> </h1>
+    <h1 class="room__header"><?= $this->title; ?> </h1>
     <div class="room__wrap">
       <div class="room__left">
         <div class="room__top">
