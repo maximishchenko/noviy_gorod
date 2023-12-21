@@ -57,20 +57,23 @@ use common\models\ApartmentStatus;
 
         <?php if ($apartment->number): ?>
                 <div class="apartments-list__item <?= ($apartment->id == $current) ? ApartmentStatus::SELECTED_ITEM_CSS_CLASS : ApartmentStatus::getStatusesCssClassNames()[$apartment->sale_status]; ?>">
-
-                    <a href="/filter/<?= $apartment->slug; ?>">
-                      <div class="apartments-list__item__title">
-                        <span class="apartment-name">Квартира </span><?= $apartment->number; ?>
-                      </div>
-                      <div class="apartments-list__item__content">
-                        <div class="apartment-rooms">
-                          <?= $layout->count_rooms; ?>-комнатная
-                        </div>
-                        <div class="apartment-area">
-                          <?= $layout->total_area; ?>
-                        </div>
-                      </div>
-                    </a>
+                    <?php if($apartment->id != $current): ?>
+                        <a href="/filter/<?= $apartment->slug; ?>">
+                    <?php endif; ?>
+                          <div class="apartments-list__item__title">
+                            <span class="apartment-name">Квартира </span><?= $apartment->number; ?>
+                          </div>
+                          <div class="apartments-list__item__content">
+                            <div class="apartment-rooms">
+                              <?= $layout->count_rooms; ?>-комнатная
+                            </div>
+                            <div class="apartment-area">
+                              <?= $layout->total_area; ?>
+                            </div>
+                          </div>
+                    <?php if($apartment->id != $current): ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
         <?php else: ?>
 
