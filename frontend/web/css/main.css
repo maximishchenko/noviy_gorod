@@ -4814,6 +4814,7 @@ article .room__btn {
 .room__header {
   font-size: 50px;
   text-align: center;
+  line-height: 55px;
 }
 
 .room__top-item {
