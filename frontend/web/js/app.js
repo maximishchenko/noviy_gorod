@@ -32,5 +32,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         });
     });
-    
+    //
+    // let feedbackModal = document.querySelectorAll(".js-open-feedback");
+    // feedbackModal.forEach((form) => {
+    //     form.addEventListener('click', function(event) {
+    //         event.stopPropagation();
+    //     });
+    // });
+    //
 });

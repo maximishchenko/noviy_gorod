@@ -303,6 +303,11 @@
   background-color: #122248;
   color: white;
 }
+.apartments-list__item--commercial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .apartments-list__item__title {
   font-weight: 600;
   text-align: center;

@@ -49,7 +49,8 @@ $(function () {
         });
     }),
     $(function () {
-      $(".js-open-feedback, .free").on("click", function () {
+      $(".js-open-feedback, .free").on("click", function (e) {
+          e.preventDefault();
         $(".modal--feedback").addClass("modal--active"), $("body").addClass("overflow");
       }),
         $(".js-open-feedback2, .free").on("click", function () {
