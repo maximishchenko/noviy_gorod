@@ -78,7 +78,7 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'number', 'apartment_floor'], 'integer'],
             [['comment'], 'string'],
-            [['image', 'status'], 'string', 'max' => 255],
+            [['image'], 'string', 'max' => 255],
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],
             
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],

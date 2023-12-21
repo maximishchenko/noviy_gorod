@@ -62,7 +62,7 @@ use yii\bootstrap5\ActiveForm;
                     <div class="row">
                         <div class="col-md-12">
                             <?= $form->field($model, 'imageFile')->fileInput() ?>
-                            <?php if(isset($model->image) && !empty($model->image)): ?>
+                            <?php if(isset($model->image) && !empty($model->image) && $model->image !== null): ?>
                                 <div class="row">
                                     <?= SingleImagePreviewWidget::widget([
                                         'id' => $model->id,

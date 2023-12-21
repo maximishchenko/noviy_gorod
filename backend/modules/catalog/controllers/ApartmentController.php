@@ -10,6 +10,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 class ApartmentController extends Controller
 {
@@ -80,10 +81,11 @@ class ApartmentController extends Controller
     }
     
 
-    public function actionDeleteImage(int $id)
+    public function actionDeleteImage(int $id): Response
     {
         $model = $this->findModel($id);
         $file = $model->getPath(Apartment::UPLOAD_PATH, $model->image);
+        echo $file;
         $model->removeSingleFileIfExist($file);
         $model->image = null;
         $model->save();

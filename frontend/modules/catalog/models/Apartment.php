@@ -44,6 +44,7 @@ use yii\helpers\ArrayHelper;
  * @property-read \frontend\modules\catalog\models\query\LayoutQuery $rooms
  * @property-read null|string $minRoomsCount
  * @property Layout $layout
+ * @property string $slug [varchar(255)]
  */
 class Apartment extends backendApartment
 {
@@ -124,7 +125,14 @@ class Apartment extends backendApartment
 
     public function getThumb(): string
     {
-        return (isset($this->image) && !empty($this->image)) ? '/' . static::UPLOAD_PATH . $this->image : static::NO_IMAGE;
+        if (isset($this->image) && !empty($this->image)) {
+            return '/' . static::UPLOAD_PATH . $this->image;
+        } elseif (isset($this->layout->image) && !empty($this->layout->image)) {
+            return '/' . Layout::UPLOAD_PATH . $this->layout->image;
+        } else {
+            return static::NO_IMAGE;
+        }
+//        return (isset($this->image) && !empty($this->image)) ? '/' . static::UPLOAD_PATH . $this->image : static::NO_IMAGE;
     }
 
     public function getEntrance(): ActiveQuery

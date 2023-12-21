@@ -114,7 +114,7 @@ trait fileTrait
      */
     public function removeSingleFileIfExist(string $file)
     {
-        file_exists($file) ? unlink($file) : false;
+        file_exists($file) && is_file($file) && unlink($file);
     }
 
     /**
