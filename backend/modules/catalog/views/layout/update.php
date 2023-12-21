@@ -50,15 +50,15 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => SetColumn::className(),
                 'filter' => ApartmentStatus::getStatusesArray(),
-                'attribute' => 'status',
+                'attribute' => 'sale_status',
                 'name' => function($data) {
-                    return ArrayHelper::getValue(ApartmentStatus::getStatusesArray(), $data->status);
+                    return ArrayHelper::getValue(ApartmentStatus::getStatusesArray(), $data->sale_status);
                 },
                 'contentOptions' => ['style' => 'width:100px;'],
                 'cssCLasses' => [
+                    ApartmentStatus::STATUS_FREE => 'danger',
                     ApartmentStatus::STATUS_RESERVED => 'info',
-                    ApartmentStatus::STATUS_ACTIVE => 'success',
-                    ApartmentStatus::STATUS_BLOCKED => 'danger',
+                    ApartmentStatus::STATUS_SOLD => 'success',
                 ],
             ],
         ],

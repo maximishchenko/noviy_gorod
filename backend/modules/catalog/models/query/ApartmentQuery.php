@@ -12,7 +12,7 @@ class ApartmentQuery extends \yii\db\ActiveQuery
         return parent::all($db);
     }
 
-    public function one($db = null): array | Apartment
+    public function one($db = null): array | Apartment | null
     {
         return parent::one($db);
     }
