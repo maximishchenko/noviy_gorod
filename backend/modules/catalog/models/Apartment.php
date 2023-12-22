@@ -32,7 +32,13 @@ use yii\helpers\ArrayHelper;
  * @property int|null $created_by
  * @property int|null $updated_by
  *
+ * @property-read \yii\db\ActiveQuery $house
+ * @property-read \yii\db\ActiveQuery $entrance
+ * @property-read array $layoutItems
+ * @property-read array $floors
+ * @property-read string $apartmentName
  * @property Layout $layout
+ * @property string $slug [varchar(255)]
  */
 class Apartment extends \yii\db\ActiveRecord
 {

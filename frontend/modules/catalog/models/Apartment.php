@@ -132,7 +132,6 @@ class Apartment extends backendApartment
         } else {
             return static::NO_IMAGE;
         }
-//        return (isset($this->image) && !empty($this->image)) ? '/' . static::UPLOAD_PATH . $this->image : static::NO_IMAGE;
     }
 
     public function getEntrance(): ActiveQuery
@@ -152,14 +151,19 @@ class Apartment extends backendApartment
         }, self::getCacheDuration(), self::getCacheDependency());
     }
 
-    public function getApartmentsByCountRooms(int $countRooms): array
+    public function getFirstApartmentInLayout(int $layout_id): Apartment | null
     {
-        return self::getDb()->cache(function() use ($countRooms) {
-            return self::find()->where([
-                    self::tableName() . '.status' => Status::STATUS_ACTIVE, 
-                    self::tableName() . '.sale_status' => [ApartmentStatus::STATUS_FREE, ApartmentStatus::STATUS_RESERVED], 
-                    Layout::tableName() . '.count_rooms' => $countRooms
-                ])->joinWith(['layout'])->all();
+        return self::getDb()->cache(function() use ($layout_id) {
+            return self::find()
+                ->where([
+                    'status' => Status::STATUS_ACTIVE,
+                    'sale_status' => [ApartmentStatus::STATUS_FREE, ApartmentStatus::STATUS_RESERVED],
+                    'layout_id' => $layout_id
+                ])
+                ->orderBy([
+                    'apartment_floor' => SORT_ASC
+                ])
+                ->one();
         }, self::getCacheDuration(), self::getCacheDependency());
     }
 
@@ -168,15 +172,6 @@ class Apartment extends backendApartment
         return House::getDb()->cache(function () {
             return House::find()->active()->orderBy(['id' => SORT_ASC])->one();
         }, House::getCacheDuration(), House::getCacheDependency());
-    }
-
-    public function getApartmentroomsCount(): array
-    {
-        $rooms = Layout::getDb()->cache(function() {
-            return Layout::find()->select(['count_rooms'])->distinct()->asArray()->all();
-        }, Layout::getCacheDuration(), Layout::getCacheDependency());
-        $rooms = ArrayHelper::getColumn($rooms, 'count_rooms');
-        return $rooms;
     }
 
     protected function getRooms(): LayoutQuery

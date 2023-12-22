@@ -3,9 +3,12 @@
 use yii\helpers\Html;
 
 $this->title = 'Новострой';
+
+/** @var $apartmentModel **/
+/** @var $layoutModel **/
 ?>
 
-<?php if(isset($stage) && !empty($stage)): ?>
+<?php if(!empty($stage)): ?>
 <section class="banner banner-new">
   <div class="banner__slider">
     <div class="banner-new__wrapper" style="background-image: url(<?= $stage->background; ?>);">
@@ -19,7 +22,7 @@ $this->title = 'Новострой';
           </div>
 
           <div class="banner-new__advantages">
-            <?php if(isset($stage->stageItems) && !empty($stage->stageItems)): ?>
+            <?php if(!empty($stage->stageItems)): ?>
               <?php foreach($stage->stageItems as $stageItem): ?>
                 <div class="circle-btn circle-btn--active">
                   <?= $stageItem->name; ?>
@@ -43,22 +46,30 @@ $this->title = 'Новострой';
     <div class="page__subtitle"></div>
     <div class="main-rooms__content">
       <div class="information__tabs">
-        <?php foreach($apartmentModel->getApartmentroomsCount() as $k => $room): ?>
+        <?php // foreach($apartmentModel->getApartmentroomsCount() as $k => $room): ?>
+        <?php foreach($layoutModel->getApartmentRoomsCount() as $k => $room): ?>
           <div class="information__tab <?= ($k == 0) ? 'information__tab--active' : ''; ?>" data-id="<?= $k; ?>">
             <?= $room; ?>-комнатные
           </div>
         <?php endforeach; ?>
       </div>
       <div class="main-rooms__wrap">
-        <?php foreach($apartmentModel->getApartmentroomsCount() as $k => $room): ?>
+
+        <?php foreach($layoutModel->getApartmentRoomsCount() as $k => $room): ?>
         <div class="main-rooms__slider <?= ($k == 0) ? 'main-rooms__slider--active' : ''; ?>" data-id="<?= $k; ?>">
           <div class="swiper-container main-rooms-slider">
             <div class="swiper-wrapper">
-              <?php foreach ($apartmentModel->getApartmentsByCountRooms($room) as $apartment): ?>
-              <div class="swiper-slide">
-                <?= $this->render('//layouts/template/product/_item', ['model' => $apartment, 'showCallbackButton' => true]); ?>
-              </div>
+
+              <?php // foreach ($apartmentModel->getApartmentsByCountRooms($room) as $apartment): ?>
+              <?php foreach ($layoutModel->getLayoutsByRoomsCount($room) as $layout): ?>
+                <?php $apartment = $apartmentModel->getFirstApartmentInLayout($layout->id); ?>
+                <?php if(!empty($apartment)): ?>
+                  <div class="swiper-slide">
+                    <?= $this->render('//layouts/template/product/_item', ['model' => $apartment, 'showCallbackButton' => true]); ?>
+                  </div>
+                <?php endif; ?>
               <?php endforeach; ?>
+
             </div>
           </div>
           <div class="information__navigation">
@@ -71,6 +82,7 @@ $this->title = 'Новострой';
           </div>
         </div>
         <?php endforeach; ?>
+
       </div>
     </div>
   </div>

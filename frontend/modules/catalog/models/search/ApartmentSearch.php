@@ -21,6 +21,7 @@ class ApartmentSearch extends Apartment
 
     public $house;
 
+
     public function rules(): array
     {
         return [

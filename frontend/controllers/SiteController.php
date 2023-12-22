@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\modules\catalog\models\Apartment;
+use frontend\modules\catalog\models\Layout;
 use frontend\modules\content\models\Stage;
 
 class SiteController extends BaseController
@@ -16,9 +17,11 @@ class SiteController extends BaseController
     {
         $stageModel = new Stage();
         $apartmentModel = new Apartment();
+        $layoutModel = new Layout();
         return $this->render('index', [
             'stage' => $stageModel->getStage(), 
             'apartmentModel' => $apartmentModel,
+            'layoutModel' => $layoutModel,
         ]);
     }
 
