@@ -1,6 +1,13 @@
 <?php
+
+use frontend\modules\catalog\models\Apartment;
+
 $this->title = 'Выбрать квартиру';
 $this->params['breadcrumbs'][] = $this->title;
+
+//$query = Apartment::find()->joinWith(['house'])->distinct('layout_id')->forSale()->active();
+//var_dump($query->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);
+
 ?>
 
 <section class="room-search">

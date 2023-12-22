@@ -74,6 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
           </div>
         </div>
         <div class="room__btn js-open-feedback">Оставить заявку</div>
+          <section>
+
+          </section>
       </div>
     </div>
   </div>

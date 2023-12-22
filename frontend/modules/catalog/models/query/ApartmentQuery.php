@@ -21,7 +21,7 @@ class ApartmentQuery extends backendApartment
 
     public function byLayout()
     {
-        return $this->distinct('layout_id');
+        return $this->groupBy('layout_id');
     }
 
     public function forSale()
