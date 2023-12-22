@@ -73,10 +73,14 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           </div>
         </div>
-        <div class="room__btn js-open-feedback">Оставить заявку</div>
-          <section>
-
-          </section>
+<!--        <div class="room__btn js-open-feedback">Оставить заявку</div>-->
+          <?php if(Yii::$app->configManager->getItemValue('contactPhone')): ?>
+              <a class="header__phone" href="tel:<?= Yii::$app->configManager->getItemValue('contactPhone'); ?>">
+                  <section class="contacts__info-text">
+                          Отдел продаж: <?= Yii::$app->configManager->getItemValue('contactPhone'); ?>
+                  </section>
+              </a>
+            <?php endif; ?>
       </div>
     </div>
   </div>

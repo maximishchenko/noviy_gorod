@@ -6350,6 +6350,19 @@ article .room__btn {
   }
 }
 
+.contacts__info-text {
+  border: 1px solid #1e293c;
+  border-radius: 104px;
+  padding: 1rem;
+  width: fit-content;
+  margin: 3rem auto 0;
+  font-size: 20px;
+}
+
+.contacts__info-text a.header__phone {
+  display: inline-block;
+}
+
 .construction {
   margin-bottom: 56px;
 }
