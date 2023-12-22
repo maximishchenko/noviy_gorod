@@ -6,6 +6,7 @@ $this->title = 'Новострой';
 
 /** @var $apartmentModel **/
 /** @var $layoutModel **/
+/** @var $stage **/
 ?>
 
 <?php if(!empty($stage)): ?>
@@ -46,7 +47,6 @@ $this->title = 'Новострой';
     <div class="page__subtitle"></div>
     <div class="main-rooms__content">
       <div class="information__tabs">
-        <?php // foreach($apartmentModel->getApartmentroomsCount() as $k => $room): ?>
         <?php foreach($layoutModel->getApartmentRoomsCount() as $k => $room): ?>
           <div class="information__tab <?= ($k == 0) ? 'information__tab--active' : ''; ?>" data-id="<?= $k; ?>">
             <?= $room; ?>-комнатные
@@ -60,7 +60,6 @@ $this->title = 'Новострой';
           <div class="swiper-container main-rooms-slider">
             <div class="swiper-wrapper">
 
-              <?php // foreach ($apartmentModel->getApartmentsByCountRooms($room) as $apartment): ?>
               <?php foreach ($layoutModel->getLayoutsByRoomsCount($room) as $layout): ?>
                 <?php $apartment = $apartmentModel->getFirstApartmentInLayout($layout->id); ?>
                 <?php if(!empty($apartment)): ?>
@@ -89,9 +88,9 @@ $this->title = 'Новострой';
 </section>
 
 <?php if($apartmentModel->getActiveHouses()): ?>
-<?php foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
-<?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel, 'current' => null]); ?>
-<?php endforeach; ?>
+    <?php foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
+        <?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel, 'current' => null]); ?>
+    <?php endforeach; ?>
 <?php endif; ?>
       
 <?= $this->render('//layouts/template/form/_inline', ['title' => 'Поможем в выборе']); ?>

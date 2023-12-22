@@ -125,7 +125,7 @@ class Apartment extends backendApartment
 
     public function getThumb(): string
     {
-        if (isset($this->image) && !empty($this->image)) {
+        if (!empty($this->image)) {
             return '/' . static::UPLOAD_PATH . $this->image;
         } elseif (isset($this->layout->image) && !empty($this->layout->image)) {
             return '/' . Layout::UPLOAD_PATH . $this->layout->image;

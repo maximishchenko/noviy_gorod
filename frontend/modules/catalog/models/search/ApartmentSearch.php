@@ -8,6 +8,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\modules\catalog\models\Apartment;
 use Yii;
+use yii\data\DataProviderInterface;
 
 class ApartmentSearch extends Apartment
 {
@@ -35,10 +36,10 @@ class ApartmentSearch extends Apartment
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search(array $params): DataProviderInterface
     {
         $query = Apartment::getDb()->cache(function() {
-            return Apartment::find()->joinWith(['house'])->active();
+            return Apartment::find()->joinWith(['house'])->byLayout()->minFloor()->forSale()->active();
         }, Apartment::getCacheDuration(), Apartment::getCacheDependency());
 
         $dataProvider = new ActiveDataProvider([

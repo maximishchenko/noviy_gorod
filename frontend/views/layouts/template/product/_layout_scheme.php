@@ -2,6 +2,9 @@
 
 use common\models\ApartmentStatus;
 
+/** @var \frontend\modules\catalog\models\Apartment $apartmentModel **/
+/** @var \frontend\modules\catalog\models\Entrance $entrance **/
+/** @var $current **/
 ?>
 
 <div class="apartments-list-wraper">
@@ -25,6 +28,7 @@ use common\models\ApartmentStatus;
             </div>
         <?php endif; ?>
     </div>
+
   <section class="apartments-list" style="grid-template-columns: 60px repeat(<?= count($entrance->layouts) ; ?>, 1fr); ">
       <?php if($entrance->has_commercial_floor): ?>
 
@@ -42,9 +46,7 @@ use common\models\ApartmentStatus;
 
       <?php endif; ?>
 
-<?php
-
- for($floor = $entrance->getFirstFloorNumber(); $floor <= $entrance->count_floors; $floor++): ?>
+<?php for($floor = $entrance->getFirstFloorNumber(); $floor <= $entrance->count_floors; $floor++): ?>
       <div class="apartments-list__label">
         <div class="apartments-list__label__text">
           <?= $floor; ?> этаж
