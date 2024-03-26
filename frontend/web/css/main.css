@@ -3038,8 +3038,8 @@ article .room__btn {
 }
 
 .banner.banner-new .circle-btn {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -3086,9 +3086,9 @@ article .room__btn {
   }
 
   .banner.banner-new .circle-btn {
-    width: 150px;
-    height: 150px;
-    font-size: 24px;
+    width: 200px;
+    height: 200px;
+    font-size: 20px;
     line-height: 1.2;
   }
 }
