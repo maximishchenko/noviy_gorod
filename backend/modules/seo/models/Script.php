@@ -5,7 +5,7 @@ namespace backend\modules\seo\models;
 
 use backend\modules\seo\models\query\ScriptQuery;
 use common\models\Sort;
-use common\models\status;
+use common\models\Status;
 use Yii;
 
 /**
