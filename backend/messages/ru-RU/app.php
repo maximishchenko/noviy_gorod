@@ -295,4 +295,7 @@ return [
     'Update Payment: {name}' => '{name}',
     'Entrance has commercial floor' => 'Наличие коммерческого этажа',
     'Has Entrance Commercial Floor' => 'Имеется ли коммерческий этаж',
+    'Stage Item Position' => 'Положение',
+    'Stage Positino Round' => 'Преимущества',
+    'Stage Positino List' => 'Список (подзаголовок)'
 ];

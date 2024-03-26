@@ -1,6 +1,7 @@
 <?php
 
 use backend\widgets\SetColumn;
+use common\components\StagePosition;
 use common\models\Status;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
@@ -50,6 +51,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'cssCLasses' => [
                 Status::STATUS_ACTIVE => 'success',
                 Status::STATUS_BLOCKED => 'danger',
+            ],
+        ],
+        [
+            'class' => SetColumn::className(),
+            'filter' => StagePosition::getStagePositionsArray(),
+            'attribute' => 'position',
+            'name' => function($data) {
+                return ArrayHelper::getValue(StagePosition::getStagePositionsArray(), $data->position);
+            },
+            'contentOptions' => ['style' => 'width:100px;'],
+            'cssCLasses' => [
+                StagePosition::POSITION_ROUND => 'info',
+                StagePosition::POSITION_LIST => 'warning',
             ],
         ],
         [

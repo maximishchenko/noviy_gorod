@@ -1,5 +1,6 @@
 <?php
 
+use common\components\StagePosition;
 use yii\bootstrap5\ActiveForm;
 ?>
 <div class="product-form">
@@ -12,6 +13,7 @@ use yii\bootstrap5\ActiveForm;
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($itemModel, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($itemModel, 'position')->dropDownList(StagePosition::getStagePositionsArray(), []) ?>
             <?= $form->field($itemModel, 'sort')->textInput(['type' => 'number']) ?>
             <?= $form->field($itemModel, 'status')->checkbox() ?>
         </div>

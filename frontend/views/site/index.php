@@ -20,6 +20,15 @@ $this->title = 'Новострой';
             <div class="banner-new__title">
               <?= $stage->text; ?>
             </div>
+            <?php if(!empty($stage->stageItemsList)): ?>
+            <ul class="banner-new__list">
+              <?php foreach($stage->stageItemsList as $stageListItem): ?>
+              <li>
+                <?= $stageListItem->name; ?>
+              </li>
+              <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
           </div>
 
           <div class="banner-new__advantages">

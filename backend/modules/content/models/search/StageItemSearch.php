@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace backend\modules\content\models\search;
 
+use common\components\StagePosition;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\modules\content\models\StageItem;
@@ -16,7 +17,7 @@ class StageItemSearch extends StageItem
     {
         return [
             [['id', 'stage_id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'comment'], 'safe'],
+            [['name', 'comment', 'position'], 'safe'],
         ];
     }
 
@@ -51,6 +52,7 @@ class StageItemSearch extends StageItem
             'stage_id' => $this->stage_id,
             'sort' => $this->sort,
             'status' => $this->status,
+            'position' => $this->position,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'created_by' => $this->created_by,

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace frontend\modules\content\models;
 
 use backend\modules\content\models\Stage as backendStage;
+use common\components\StagePosition;
 use common\models\Status;
 use frontend\modules\content\models\query\StageQuery;
 use frontend\traits\cacheParamsTrait;
@@ -29,16 +30,16 @@ class Stage extends backendStage
     public function getStage()
     {
         $stageId = Yii::$app->configManager->getItemValue('contentMainStage');
-//        return Stage::getDb()->cache(function () use ($stageId) {
+       return Stage::getDb()->cache(function () use ($stageId) {
             return Stage::find()
                 ->with('stageItems')
                 ->where(['id' => $stageId, 'status' => Status::STATUS_ACTIVE])
                 ->orderBy(['sort' => SORT_ASC])
                 ->one();
-//        },
-//            Stage::getCacheDuration(),
-//            Stage::getCacheDependency()
-//        );
+       },
+           Stage::getCacheDuration(),
+           Stage::getCacheDependency()
+       );
     }
 
     public function getStageItems(): yii\db\ActiveQuery
@@ -47,8 +48,19 @@ class Stage extends backendStage
         return StageItem::getDb()->cache(function() use ($stageItemsLimit) {
                 return $this->hasMany(StageItem::class, ['stage_id' => 'id'])
                     ->orderBy([StageItem::tableName() . '.sort' => SORT_ASC])
-                    ->onCondition([StageItem::tableName() . '.status' => Status::STATUS_ACTIVE])
+                    ->onCondition([StageItem::tableName() . '.status' => Status::STATUS_ACTIVE, StageItem::tableName() . '.position' => StagePosition::POSITION_ROUND])
                     ->limit($stageItemsLimit);
-        });
+        }, StageItem::getCacheDuration(), StageItem::getCacheDependency());
+    }
+
+    public function getStageItemsList(): yii\db\ActiveQuery
+    {
+        $stageItemsLimit = Yii::$app->configManager->getItemValue('contentMainStageMaxItemsCount');
+        return StageItem::getDb()->cache(function() use ($stageItemsLimit) {
+                return $this->hasMany(StageItem::class, ['stage_id' => 'id'])
+                    ->orderBy([StageItem::tableName() . '.sort' => SORT_ASC])
+                    ->onCondition([StageItem::tableName() . '.status' => Status::STATUS_ACTIVE, StageItem::tableName() . '.position' => StagePosition::POSITION_LIST])
+                    ->limit($stageItemsLimit);
+        }, StageItem::getCacheDuration(), StageItem::getCacheDependency());
     }
 }

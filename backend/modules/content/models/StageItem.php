@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace backend\modules\content\models;
 
 use backend\modules\content\models\query\StageItemQuery;
+use common\components\StagePosition;
 use common\models\Sort;
 use Yii;
 use yii\db\ActiveQuery;
@@ -18,6 +19,7 @@ use yii\db\ActiveQuery;
  * @property string|null $comment
  * @property int|null $sort
  * @property int|null $status
+ * @property string|null $position
  * @property int|null $created_at
  * @property int|null $updated_at
  * @property int|null $created_by
@@ -37,8 +39,10 @@ class StageItem extends \yii\db\ActiveRecord
         return [
             [['stage_id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['comment'], 'string'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'position'], 'string', 'max' => 255],
             [['stage_id'], 'exist', 'skipOnError' => true, 'targetClass' => Stage::class, 'targetAttribute' => ['stage_id' => 'id']],
+            ['position', 'default', 'value' => StagePosition::POSITION_ROUND],
+            ['position', 'in', 'range' => array_keys(StagePosition::getStagePositionsArray())],
         ];
     }
 
@@ -48,6 +52,7 @@ class StageItem extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'stage_id' => Yii::t('app', 'Stage ID'),
             'name' => Yii::t('app', 'Stage Item Name'),
+            'position' => Yii::t('app', 'Stage Item Position'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
