@@ -7,6 +7,7 @@ use backend\modules\catalog\models\CoatingColor;
 use common\models\Core;
 use common\models\Status;
 use frontend\controllers\BaseController;
+use frontend\modules\catalog\models\Apartment;
 use frontend\modules\catalog\models\Coating;
 use frontend\modules\catalog\models\Milling;
 use frontend\modules\catalog\models\ProductType;
@@ -48,12 +49,12 @@ class SitemapController extends BaseController
             // foreach filter
             // foreach gallery
 
-            // $offers = Offer::find()->where([
-            //     'status' => Status::STATUS_ACTIVE
-            // ])->all();
-            // foreach ($offers as $offer) {
-            //     $sitemap->writeUrl(['special-offers/' . $offer->slug], ['priority' => '0.9']);
-            // }
+            $apartments = Apartment::find()->where([
+                'status' => Status::STATUS_ACTIVE
+            ])->all();
+            foreach ($apartments as $apartment) {
+                $sitemap->writeUrl(['filter/' . $apartment->slug], ['priority' => '0.9']);
+            }
             
             // get generated content:
             $content = $sitemap->getContent();
