@@ -45,22 +45,20 @@ class Stage extends backendStage
     public function getStageItems(): yii\db\ActiveQuery
     {
         $stageItemsLimit = Yii::$app->configManager->getItemValue('contentMainStageMaxItemsCount');
-        return StageItem::getDb()->cache(function() use ($stageItemsLimit) {
+        // return StageItem::getDb()->cache(function() use ($stageItemsLimit) {
                 return $this->hasMany(StageItem::class, ['stage_id' => 'id'])
                     ->orderBy([StageItem::tableName() . '.sort' => SORT_ASC])
                     ->onCondition([StageItem::tableName() . '.status' => Status::STATUS_ACTIVE, StageItem::tableName() . '.position' => StagePosition::POSITION_ROUND])
                     ->limit($stageItemsLimit);
-        }, StageItem::getCacheDuration(), StageItem::getCacheDependency());
+        // }, StageItem::getCacheDuration(), StageItem::getCacheDependency());
     }
 
     public function getStageItemsList(): yii\db\ActiveQuery
     {
-        $stageItemsLimit = Yii::$app->configManager->getItemValue('contentMainStageMaxItemsCount');
-        return StageItem::getDb()->cache(function() use ($stageItemsLimit) {
+        // return StageItem::getDb()->cache(function() {
                 return $this->hasMany(StageItem::class, ['stage_id' => 'id'])
                     ->orderBy([StageItem::tableName() . '.sort' => SORT_ASC])
-                    ->onCondition([StageItem::tableName() . '.status' => Status::STATUS_ACTIVE, StageItem::tableName() . '.position' => StagePosition::POSITION_LIST])
-                    ->limit($stageItemsLimit);
-        }, StageItem::getCacheDuration(), StageItem::getCacheDependency());
+                    ->onCondition([StageItem::tableName() . '.status' => Status::STATUS_ACTIVE, StageItem::tableName() . '.position' => StagePosition::POSITION_LIST]);
+        // }, StageItem::getCacheDuration(), StageItem::getCacheDependency());
     }
 }
