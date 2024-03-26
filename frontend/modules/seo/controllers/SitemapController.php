@@ -2,17 +2,9 @@
 
 namespace frontend\modules\seo\controllers;
 
-use backend\modules\catalog\models\abs\Product;
-use backend\modules\catalog\models\CoatingColor;
-use common\models\Core;
 use common\models\Status;
 use frontend\controllers\BaseController;
 use frontend\modules\catalog\models\Apartment;
-use frontend\modules\catalog\models\Coating;
-use frontend\modules\catalog\models\Milling;
-use frontend\modules\catalog\models\ProductType;
-use frontend\modules\catalog\models\Solution;
-use frontend\modules\content\models\Offer;
 use Yii;
 use yii\web\Response;
 use yii2tech\sitemap\File;
