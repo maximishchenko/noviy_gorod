@@ -73,4 +73,20 @@ class Premise extends backendPremise
         }, self::getCacheDuration(), self::getCacheDependency());
         return $stages;
     }
+
+    public static function getStorageActiveItem($id)
+    {
+        $activeItem = self::getDb()->cache(function() use ($id) {
+            return self::find()->onlyStorage()->active()->activeItem($id)->one();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $activeItem;
+    }
+
+    public static function getStorageStages($id)
+    {
+        $stages = self::getDb()->cache(function() use ($id) {
+            return self::find()->active()->onlyStorage()->stages($id)->all();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $stages;
+    }
 }

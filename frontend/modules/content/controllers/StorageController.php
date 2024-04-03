@@ -6,6 +6,7 @@ namespace frontend\modules\content\controllers;
 use frontend\controllers\BaseController;
 use frontend\modules\content\models\Premise;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 class StorageController extends BaseController
 {
@@ -16,9 +17,11 @@ class StorageController extends BaseController
     {
         $activeItemId = Yii::$app->configManager->getItemValue('contentStorageStage');
         
-        $activeItem = Premise::find()->active()->activeItem($activeItemId)->one();
-        $stages = Premise::find()->active()->onlyStorage()->stages($activeItemId)->all();
-
-        return $this->render('index', ['activeItem' => $activeItem, 'stages' => $stages]);
+        $activeItem = Premise::getStorageActiveItem($activeItemId);
+        $stages = Premise::getStorageStages($activeItemId);
+        if ($activeItem || $stages) {
+            return $this->render('index', ['activeItem' => $activeItem, 'stages' => $stages]);
+        }
+        throw new NotFoundHttpException("Запрошенная страница не найдена");
     }
 }

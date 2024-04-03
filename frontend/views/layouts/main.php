@@ -48,7 +48,7 @@ $storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
 <?php Script::getScripts(Script::AFTER_BEGIN_BODY); ?>
 
 <header class="header">
-    <?= $this->render('//layouts/template/_header', ['commercialId' => $commercialId]); ?>
+    <?= $this->render('//layouts/template/_header', ['commercialId' => $commercialId, 'storageId' => $storageId]); ?>
 </header>
 
 <main class="main">
@@ -67,7 +67,7 @@ $storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
-    <?= $this->render('//layouts/template/_footer', ['commercialId' => $commercialId]); ?>
+    <?= $this->render('//layouts/template/_footer', ['commercialId' => $commercialId, 'storageId' => $storageId]); ?>
 </footer>
 <?= $this->render('//layouts/template/form/_modal'); ?>
 

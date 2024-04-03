@@ -3,7 +3,7 @@
 use frontend\modules\content\models\Storage;
 use yii\helpers\Html;
 
-$this->title = 'Кладовие помещения';
+$this->title = 'Кладовые помещения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="parking-banner">

@@ -22,6 +22,7 @@ class SitemapController extends BaseController
         $content = Yii::$app->cache->get('sitemap.xml');
         if ($content === false) {
             $commercialId = Yii::$app->configManager->getItemValue('contentCommercialStage');
+            $storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
             // if no cached value exists - create an new one
             // create sitemap file in memory:
             $sitemap = new File();
@@ -41,7 +42,9 @@ class SitemapController extends BaseController
             $sitemap->writeUrl(['filter'], ['priority' => '0.9']);
             $sitemap->writeUrl(['gallery'], ['priority' => '0.9']);
             $sitemap->writeUrl(['parking'], ['priority' => '0.9']);
-            $sitemap->writeUrl(['storage'], ['priority' => '0.9']);
+            if (Premise::getStorageActiveItem($storageId) || Premise::getStorageStages($storageId)) {
+                $sitemap->writeUrl(['storage'], ['priority' => '0.9']);
+            }
             if (Premise::getCommercialActiveItem($commercialId) || Premise::getCommercialStages($commercialId)) {
                 $sitemap->writeUrl(['commercial'], ['priority' => '0.9']);
             }

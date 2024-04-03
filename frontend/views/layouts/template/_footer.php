@@ -33,8 +33,9 @@ use yii\helpers\Html;
               <div class="footer__links-title">ЖК Новый Город</div>
               <div class="footer__links-items">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'footer__links-item']); ?>
-                
+                <?php if(Premise::getStorageActiveItem($storageId) || Premise::getStorageStages($storageId)): ?>
+                  <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'footer__links-item']); ?>
+                <?php endif; ?>
                 <?php if (Premise::getCommercialActiveItem($commercialId) || Premise::getCommercialStages($commercialId)): ?>
                   <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'footer__links-item']); ?>
                 <?php endif; ?>
