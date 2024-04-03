@@ -5,6 +5,7 @@ namespace frontend\modules\seo\controllers;
 use common\models\Status;
 use frontend\controllers\BaseController;
 use frontend\modules\catalog\models\Apartment;
+use frontend\modules\content\models\DocumentCategory;
 use Yii;
 use yii\web\Response;
 use yii2tech\sitemap\File;
@@ -34,7 +35,9 @@ class SitemapController extends BaseController
             $sitemap->writeUrl(['parking'], ['priority' => '0.9']);
             $sitemap->writeUrl(['storage'], ['priority' => '0.9']);
             $sitemap->writeUrl(['commercial'], ['priority' => '0.9']);
-            $sitemap->writeUrl(['documents'], ['priority' => '0.9']);
+            if(DocumentCategory::getActiveCategories()){
+                $sitemap->writeUrl(['documents'], ['priority' => '0.9']);
+            }
             $sitemap->writeUrl(['payment'], ['priority' => '0.9']);
             
 

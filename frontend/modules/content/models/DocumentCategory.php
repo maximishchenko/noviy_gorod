@@ -24,4 +24,10 @@ class DocumentCategory extends backendDocumentCategory
     {
         return $this->hasMany(Document::class, ['category_id' => 'id'])->onCondition([Document::tableName() . '.status' => Status::STATUS_ACTIVE]);
     }
+
+    public static function getActiveCategories(): array
+    {
+        $categories = new self();
+        return $categories->find()->where(['status' => Status::STATUS_ACTIVE])->orderBy(['sort' => SORT_ASC])->all();
+    }
 }

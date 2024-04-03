@@ -1,4 +1,5 @@
 <?php
+use frontend\modules\content\models\DocumentCategory;
 use yii\helpers\Html;
 ?>
 <!-- TODO заполнить актуальные ссылки, уточнить состав пунктов меню -->
@@ -31,7 +32,9 @@ use yii\helpers\Html;
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Документы', ['/documents'], ['class' => 'header__menu-link']); ?>
+            <?php if(DocumentCategory::getActiveCategories()): ?>
+                <?= Html::a('Документы', ['/documents'], ['class' => 'header__menu-link']); ?>
+            <?php endif; ?>
             <?= Html::a('Способы оплаты', ['/payment'], ['class' => 'header__menu-link']); ?>
         </div>
         <div class="mobile-menu">
