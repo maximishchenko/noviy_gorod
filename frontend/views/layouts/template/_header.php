@@ -1,5 +1,6 @@
 <?php
 use frontend\modules\content\models\DocumentCategory;
+use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Offer;
 use yii\helpers\Html;
 ?>
@@ -10,7 +11,9 @@ use yii\helpers\Html;
             <div class="header__burger"></div>
             <nav class="header__nav">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'header__nav-link']); ?>
-                <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'header__nav-link']); ?>
+                <?php if(Mortgage::getActiveMortgages()): ?>
+                    <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'header__nav-link']); ?>
+                <?php endif; ?>
                 <?php if(Offer::getActiveOffer()): ?>
                     <?= Html::a('Акции', ['/offer'], ['class' => 'header__nav-link']); ?>
                 <?php endif; ?>
@@ -42,7 +45,9 @@ use yii\helpers\Html;
         </div>
         <div class="mobile-menu">
             <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'mobile-menu__link']); ?>
+            <?php if(Mortgage::getActiveMortgages()): ?>
+                <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'mobile-menu__link']); ?>
+            <?php endif; ?>
             <?php if(Offer::getActiveOffer()): ?>
                 <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
             <?php endif; ?>

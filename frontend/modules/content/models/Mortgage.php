@@ -15,4 +15,12 @@ class Mortgage extends backendMortgage
     {
         return new MortgageQuery(get_called_class());
     }
+
+    public static function getActiveMortgages()
+    {
+        $mortgages = self::getDb()->cache(function() {
+            return self::find()->active()->all();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $mortgages;
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 use frontend\modules\content\models\DocumentCategory;
+use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Offer;
 use yii\helpers\Html;
 ?>
@@ -45,12 +46,12 @@ use yii\helpers\Html;
               </div>
             </div>
             <div class="footer__links-col">
+              <?php if(Mortgage::getActiveMortgages()): ?>
               <div class="footer__links-title">Способы оплаты</div>
               <div class="footer__links-items">
                 <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'footer__links-item']); ?>
-                <?php // echo Html::a('Рассрочка', ['#'], ['class' => 'footer__links-item']); ?>
-                <?php // echo Html::a('Материнский капитал', ['#'], ['class' => 'footer__links-item']); ?>
               </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>

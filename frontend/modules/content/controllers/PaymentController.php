@@ -9,6 +9,7 @@ use frontend\controllers\BaseController;
 use frontend\modules\content\models\Bank;
 use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Payment;
+use yii\web\NotFoundHttpException;
 
 class PaymentController extends BaseController
 {
@@ -25,10 +26,11 @@ class PaymentController extends BaseController
 
     public function actionMortgage(): string
     {
-        $mortgages = Mortgage::getDb()->cache(function() {
-            return Mortgage::find()->active()->all();
-        }, Mortgage::getCacheDuration(), Mortgage::getCacheDependency());
-        return $this->render('mortgage', ['banks' => $this->getBanks(), 'mortgages' => $mortgages]);
+        $mortgages = Mortgage::getActiveMortgages();
+        if ($mortgages) {
+            return $this->render('mortgage', ['banks' => $this->getBanks(), 'mortgages' => $mortgages]);
+        }
+        throw new NotFoundHttpException("Запрошенная страница не найдена");
     }
 
     protected function getBanks()

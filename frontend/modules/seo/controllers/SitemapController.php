@@ -6,6 +6,7 @@ use common\models\Status;
 use frontend\controllers\BaseController;
 use frontend\modules\catalog\models\Apartment;
 use frontend\modules\content\models\DocumentCategory;
+use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Offer;
 use Yii;
 use yii\web\Response;
@@ -32,7 +33,9 @@ class SitemapController extends BaseController
             if (Offer::getActiveOffer()) {
                 $sitemap->writeUrl(['offer'], ['priority' => '0.9']);
             }
-            $sitemap->writeUrl(['/payment/mortgage'], ['priority' => '0.9']);
+            if (Mortgage::getActiveMortgages()) {
+                $sitemap->writeUrl(['/payment/mortgage'], ['priority' => '0.9']);
+            }
             $sitemap->writeUrl(['filter'], ['priority' => '0.9']);
             $sitemap->writeUrl(['gallery'], ['priority' => '0.9']);
             $sitemap->writeUrl(['parking'], ['priority' => '0.9']);
