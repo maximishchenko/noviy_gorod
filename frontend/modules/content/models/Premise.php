@@ -89,4 +89,20 @@ class Premise extends backendPremise
         }, self::getCacheDuration(), self::getCacheDependency());
         return $stages;
     }
+
+    public static function getParkingActiveItem($id)
+    {
+        $activeItem = self::getDb()->cache(function() use ($id) {
+            return self::find()->onlyParking()->active()->activeItem($id)->one();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $activeItem;
+    }
+
+    public static function getParkingStages($id)
+    {
+        $stages = self::getDb()->cache(function() use ($id) {
+            return self::find()->active()->onlyParking()->stages($id)->all();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $stages;
+    }
 }

@@ -10,6 +10,7 @@ AppAsset::register($this);
 
 $commercialId = Yii::$app->configManager->getItemValue('contentCommercialStage');
 $storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
+$parkingId = Yii::$app->configManager->getItemValue('contentParkingStage');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -48,7 +49,7 @@ $storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
 <?php Script::getScripts(Script::AFTER_BEGIN_BODY); ?>
 
 <header class="header">
-    <?= $this->render('//layouts/template/_header', ['commercialId' => $commercialId, 'storageId' => $storageId]); ?>
+    <?= $this->render('//layouts/template/_header', ['commercialId' => $commercialId, 'storageId' => $storageId, 'parkingId' => $parkingId]); ?>
 </header>
 
 <main class="main">
@@ -67,7 +68,7 @@ $storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
-    <?= $this->render('//layouts/template/_footer', ['commercialId' => $commercialId, 'storageId' => $storageId]); ?>
+    <?= $this->render('//layouts/template/_footer', ['commercialId' => $commercialId, 'storageId' => $storageId, 'parkingId' => $parkingId]); ?>
 </footer>
 <?= $this->render('//layouts/template/form/_modal'); ?>
 

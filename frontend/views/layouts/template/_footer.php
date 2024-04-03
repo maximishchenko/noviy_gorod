@@ -43,7 +43,9 @@ use yii\helpers\Html;
                 <?php if(Offer::getActiveOffer()): ?>
                   <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>
                 <?php endif; ?>
-                <?= Html::a('Паркинг', ['/parking'], ['class' => 'footer__links-item']); ?>
+                <?php if(Premise::getParkingActiveItem($parkingId) || Premise::getParkingStages($parkingId)): ?>
+                  <?= Html::a('Паркинг', ['/parking'], ['class' => 'footer__links-item']); ?>
+                <?php endif; ?>
                 <?php if(DocumentCategory::getActiveCategories()): ?>
                   <?= Html::a('Документы', ['/documents'], ['class' => 'footer__links-item']); ?>
                 <?php endif; ?>

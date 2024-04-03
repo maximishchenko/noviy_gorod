@@ -40,7 +40,9 @@ use yii\helpers\Html;
         </div>
         <div class="header__menu">
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
+            <?php if(Premise::getParkingActiveItem($parkingId) || Premise::getParkingStages($parkingId)): ?>
+                <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
+            <?php endif; ?>
             <?php if(Premise::getStorageActiveItem($storageId) || Premise::getStorageStages($storageId)): ?>
                 <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'header__menu-link']); ?>
             <?php endif; ?>
@@ -61,7 +63,9 @@ use yii\helpers\Html;
                 <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
             <?php endif; ?>
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
+            <?php if(Premise::getParkingActiveItem($parkingId) || Premise::getParkingStages($parkingId)): ?>
+                <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
+            <?php endif; ?>
             <?php if(Premise::getStorageActiveItem($storageId) || Premise::getStorageStages($storageId)): ?>
                 <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'mobile-menu__link']); ?>
             <?php endif; ?>
