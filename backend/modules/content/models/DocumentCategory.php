@@ -61,7 +61,6 @@ class DocumentCategory extends \yii\db\ActiveRecord
             [['comment'], 'string'],
             [['sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 255],
-            // [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Document::class, 'targetAttribute' => ['id' => 'category_id']],
 
             
             [['name'], 'required'],

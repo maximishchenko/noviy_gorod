@@ -1,5 +1,6 @@
 <?php
 use frontend\modules\content\models\DocumentCategory;
+use frontend\modules\content\models\Offer;
 use yii\helpers\Html;
 ?>
 <!-- TODO заполнить актуальные ссылки, уточнить состав пунктов меню -->
@@ -10,7 +11,9 @@ use yii\helpers\Html;
             <nav class="header__nav">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'header__nav-link']); ?>
                 <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'header__nav-link']); ?>
-                <?= Html::a('Акции', ['/offer'], ['class' => 'header__nav-link']); ?>
+                <?php if(Offer::getActiveOffer()): ?>
+                    <?= Html::a('Акции', ['/offer'], ['class' => 'header__nav-link']); ?>
+                <?php endif; ?>
             </nav>
         </div>
         <a href="<?= Yii::$app->homeUrl; ?>" class="header__logo">
@@ -40,12 +43,16 @@ use yii\helpers\Html;
         <div class="mobile-menu">
             <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
+            <?php if(Offer::getActiveOffer()): ?>
+                <?= Html::a('Акции', ['/offer'], ['class' => 'mobile-menu__link']); ?>
+            <?php endif; ?>
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Документы', ['/documents'], ['class' => 'mobile-menu__link']); ?>
+            <?php if(DocumentCategory::getActiveCategories()): ?>
+                <?= Html::a('Документы', ['/documents'], ['class' => 'mobile-menu__link']); ?>
+            <?php endif; ?>
             <?= Html::a('Способы оплаты', ['/payment'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Другие наши проекты', Yii::$app->configManager->getItemValue('anotherProjectsUrl'), ['class' => 'mobile-menu__link', 'target' => 'blank']); ?>
             <?= Html::a('Контакты', ['/contact'], ['class' => 'mobile-menu__link']); ?>

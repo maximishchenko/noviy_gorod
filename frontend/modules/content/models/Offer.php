@@ -32,4 +32,12 @@ class Offer extends backendOffer
     {
         return ($this->description_image) ? '/' . self::UPLOAD_PATH . $this->description_image : static::NO_IMAGE;
     }
+
+    public static function getActiveOffer()
+    {
+        $offers = self::getDb()->cache(function() {
+            return self::find()->active()->ordered()->all();
+        }, Offer::getCacheDuration(), Offer::getCacheDependency());
+        return $offers;
+    }
 }

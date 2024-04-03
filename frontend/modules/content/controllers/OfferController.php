@@ -5,6 +5,7 @@ namespace frontend\modules\content\controllers;
 
 use frontend\controllers\BaseController;
 use frontend\modules\content\models\Offer;
+use yii\web\NotFoundHttpException;
 
 class OfferController extends BaseController
 {
@@ -14,10 +15,10 @@ class OfferController extends BaseController
      */
     public function actionIndex(): string
     {
-        $offers = Offer::getDb()->cache(function() {
-            return Offer::find()->active()->ordered()->all();
-        }, Offer::getCacheDuration(), Offer::getCacheDependency());
-
-        return $this->render('index', ['offers' => $offers]);
+        $activeOffers = Offer::getActiveOffer();
+        if ($activeOffers) {
+            return $this->render('index', ['offers' => $activeOffers]);
+        }
+        throw new NotFoundHttpException("Запрошенная страница не найдена");
     }
 }

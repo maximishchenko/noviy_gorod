@@ -6,6 +6,7 @@ use common\models\Status;
 use frontend\controllers\BaseController;
 use frontend\modules\catalog\models\Apartment;
 use frontend\modules\content\models\DocumentCategory;
+use frontend\modules\content\models\Offer;
 use Yii;
 use yii\web\Response;
 use yii2tech\sitemap\File;
@@ -28,7 +29,9 @@ class SitemapController extends BaseController
             $sitemap->writeUrl(['site/index'], ['priority' => '0.9']);
 
             $sitemap->writeUrl(['contact'], ['priority' => '0.9']);
-            $sitemap->writeUrl(['offer'], ['priority' => '0.9']);
+            if (Offer::getActiveOffer()) {
+                $sitemap->writeUrl(['offer'], ['priority' => '0.9']);
+            }
             $sitemap->writeUrl(['/payment/mortgage'], ['priority' => '0.9']);
             $sitemap->writeUrl(['filter'], ['priority' => '0.9']);
             $sitemap->writeUrl(['gallery'], ['priority' => '0.9']);

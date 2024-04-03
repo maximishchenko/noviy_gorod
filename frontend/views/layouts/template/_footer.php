@@ -1,8 +1,9 @@
 <?php
+use frontend\modules\content\models\DocumentCategory;
+use frontend\modules\content\models\Offer;
 use yii\helpers\Html;
 ?>
 
-<!-- TODO Заполнить актуальные ссылки, добавить адрес в настройки, уточнить состав ссылок -->
 <footer class="footer">
   <div class="container">
     <div class="footer__top">
@@ -33,9 +34,13 @@ use yii\helpers\Html;
                 <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>
+                <?php if(Offer::getActiveOffer()): ?>
+                  <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>
+                <?php endif; ?>
                 <?= Html::a('Паркинг', ['/parking'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Документы', ['/documents'], ['class' => 'footer__links-item']); ?>
+                <?php if(DocumentCategory::getActiveCategories()): ?>
+                  <?= Html::a('Документы', ['/documents'], ['class' => 'footer__links-item']); ?>
+                <?php endif; ?>
                 <?= Html::a('Контакты', ['/contact'], ['class' => 'footer__links-item']); ?>
               </div>
             </div>
