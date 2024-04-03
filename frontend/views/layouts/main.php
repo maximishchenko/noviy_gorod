@@ -9,6 +9,7 @@ use yii\helpers\Url;
 AppAsset::register($this);
 
 $commercialId = Yii::$app->configManager->getItemValue('contentCommercialStage');
+$storageId = Yii::$app->configManager->getItemValue('contentStorageStage');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -54,7 +55,6 @@ $commercialId = Yii::$app->configManager->getItemValue('contentCommercialStage')
     <!-- "Хлебные крошки" -->
     <?= $this->render('//layouts/template/_breadcrumbs'); ?>
 
-    <!-- TODO Добавить возможность исключать страницы (например - Главная) -->
     <?php // echo $h1title; ?>
 
     <?php if(!empty($metaTag->setDescriptionSnippet())): ?>

@@ -8,6 +8,7 @@ use frontend\modules\catalog\models\Apartment;
 use frontend\modules\content\models\DocumentCategory;
 use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Offer;
+use frontend\modules\content\models\Premise;
 use Yii;
 use yii\web\Response;
 use yii2tech\sitemap\File;
@@ -20,6 +21,7 @@ class SitemapController extends BaseController
         // get content from cache:
         $content = Yii::$app->cache->get('sitemap.xml');
         if ($content === false) {
+            $commercialId = Yii::$app->configManager->getItemValue('contentCommercialStage');
             // if no cached value exists - create an new one
             // create sitemap file in memory:
             $sitemap = new File();
@@ -40,7 +42,9 @@ class SitemapController extends BaseController
             $sitemap->writeUrl(['gallery'], ['priority' => '0.9']);
             $sitemap->writeUrl(['parking'], ['priority' => '0.9']);
             $sitemap->writeUrl(['storage'], ['priority' => '0.9']);
-            $sitemap->writeUrl(['commercial'], ['priority' => '0.9']);
+            if (Premise::getCommercialActiveItem($commercialId) || Premise::getCommercialStages($commercialId)) {
+                $sitemap->writeUrl(['commercial'], ['priority' => '0.9']);
+            }
             if(DocumentCategory::getActiveCategories()){
                 $sitemap->writeUrl(['documents'], ['priority' => '0.9']);
             }

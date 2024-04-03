@@ -35,7 +35,7 @@ use yii\helpers\Html;
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'footer__links-item']); ?>
                 
-                <?php if (Premise::getActiveItem($commercialId) || Premise::getStages($commercialId)): ?>
+                <?php if (Premise::getCommercialActiveItem($commercialId) || Premise::getCommercialStages($commercialId)): ?>
                   <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'footer__links-item']); ?>
                 <?php endif; ?>
                 <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'footer__links-item']); ?>

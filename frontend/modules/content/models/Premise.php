@@ -58,7 +58,7 @@ class Premise extends backendPremise
         return '/' . self::UPLOAD_PATH . $this->layout_image;
     }
 
-    public static function getActiveItem($id)
+    public static function getCommercialActiveItem($id)
     {
         $activeItem = self::getDb()->cache(function() use ($id) {
             return self::find()->active()->activeItem($id)->one();
@@ -66,7 +66,7 @@ class Premise extends backendPremise
         return $activeItem;
     }
 
-    public static function getStages($id) 
+    public static function getCommercialStages($id) 
     {
         $stages = self::getDb()->cache(function() use ($id) {
             return self::find()->active()->onlyCommercial()->stages($id)->all();

@@ -14,8 +14,8 @@ class CommercialController extends BaseController
     {
         $activeItemId = Yii::$app->configManager->getItemValue('contentCommercialStage');
 
-        $activeItem = Premise::getActiveItem($activeItemId);
-        $stages = Premise::getStages($activeItemId);
+        $activeItem = Premise::getCommercialActiveItem($activeItemId);
+        $stages = Premise::getCommercialStages($activeItemId);
         if ($activeItem || $stages) {
             return $this->render('index', ['activeItem' => $activeItem, 'stages' => $stages]);
         }
