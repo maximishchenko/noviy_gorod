@@ -6,6 +6,7 @@ namespace frontend\modules\content\controllers;
 use frontend\controllers\BaseController;
 use frontend\modules\content\models\Premise;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 class CommercialController extends BaseController
 {
@@ -13,8 +14,11 @@ class CommercialController extends BaseController
     {
         $activeItemId = Yii::$app->configManager->getItemValue('contentCommercialStage');
 
-        $activeItem = Premise::find()->active()->activeItem($activeItemId)->one();
-        $stages = Premise::find()->active()->onlyCommercial()->stages($activeItemId)->all();
-        return $this->render('index', ['activeItem' => $activeItem, 'stages' => $stages]);
+        $activeItem = Premise::getActiveItem($activeItemId);
+        $stages = Premise::getStages($activeItemId);
+        if ($activeItem || $stages) {
+            return $this->render('index', ['activeItem' => $activeItem, 'stages' => $stages]);
+        }
+        throw new NotFoundHttpException("Запрошенная страница не найдена");
     }
 }

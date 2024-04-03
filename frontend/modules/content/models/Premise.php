@@ -8,6 +8,7 @@ use backend\modules\content\models\Parking as backendParking;
 use backend\modules\content\models\Commercial as backendCommercial;
 use backend\modules\content\models\Storage as backendStorage;
 use frontend\modules\content\models\query\PremiseQuery;
+use frontend\traits\cacheParamsTrait;
 
 /**
  *
@@ -16,6 +17,7 @@ use frontend\modules\content\models\query\PremiseQuery;
  */
 class Premise extends backendPremise
 {
+    use cacheParamsTrait;
 
     public static function find(): PremiseQuery
     {
@@ -56,4 +58,19 @@ class Premise extends backendPremise
         return '/' . self::UPLOAD_PATH . $this->layout_image;
     }
 
+    public static function getActiveItem($id)
+    {
+        $activeItem = self::getDb()->cache(function() use ($id) {
+            return self::find()->active()->activeItem($id)->one();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $activeItem;
+    }
+
+    public static function getStages($id) 
+    {
+        $stages = self::getDb()->cache(function() use ($id) {
+            return self::find()->active()->onlyCommercial()->stages($id)->all();
+        }, self::getCacheDuration(), self::getCacheDependency());
+        return $stages;
+    }
 }

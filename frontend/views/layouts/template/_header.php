@@ -2,9 +2,14 @@
 use frontend\modules\content\models\DocumentCategory;
 use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Offer;
+use frontend\modules\content\models\Premise;
 use yii\helpers\Html;
+
+
 ?>
-<!-- TODO заполнить актуальные ссылки, уточнить состав пунктов меню -->
+
+
+
 <div class="container">
     <div class="header__wrap">
         <div class="header__left">
@@ -37,7 +42,9 @@ use yii\helpers\Html;
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
             <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'header__menu-link']); ?>
-            <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'header__menu-link']); ?>
+            <?php if (Premise::getActiveItem($commercialId) || Premise::getStages($commercialId)): ?>
+                <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'header__menu-link']); ?>
+            <?php endif; ?>
             <?php if(DocumentCategory::getActiveCategories()): ?>
                 <?= Html::a('Документы', ['/documents'], ['class' => 'header__menu-link']); ?>
             <?php endif; ?>
@@ -54,7 +61,9 @@ use yii\helpers\Html;
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Паркинг', ['/parking'], ['class' => 'mobile-menu__link']); ?>
             <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'mobile-menu__link']); ?>
-            <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'mobile-menu__link']); ?>
+            <?php if (Premise::getActiveItem($commercialId) || Premise::getStages($commercialId)): ?>
+                <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'mobile-menu__link']); ?>
+            <?php endif; ?>
             <?php if(DocumentCategory::getActiveCategories()): ?>
                 <?= Html::a('Документы', ['/documents'], ['class' => 'mobile-menu__link']); ?>
             <?php endif; ?>

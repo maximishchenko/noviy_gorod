@@ -2,6 +2,7 @@
 use frontend\modules\content\models\DocumentCategory;
 use frontend\modules\content\models\Mortgage;
 use frontend\modules\content\models\Offer;
+use frontend\modules\content\models\Premise;
 use yii\helpers\Html;
 ?>
 
@@ -33,7 +34,10 @@ use yii\helpers\Html;
               <div class="footer__links-items">
                 <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'footer__links-item']); ?>
                 <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'footer__links-item']); ?>
-                <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'footer__links-item']); ?>
+                
+                <?php if (Premise::getActiveItem($commercialId) || Premise::getStages($commercialId)): ?>
+                  <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'footer__links-item']); ?>
+                <?php endif; ?>
                 <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'footer__links-item']); ?>
                 <?php if(Offer::getActiveOffer()): ?>
                   <?= Html::a('Акции', ['/offer'], ['class' => 'footer__links-item']); ?>

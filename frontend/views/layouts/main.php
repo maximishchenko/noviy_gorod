@@ -7,6 +7,8 @@ use frontend\modules\seo\models\Script;
 use yii\helpers\Url;
 
 AppAsset::register($this);
+
+$commercialId = Yii::$app->configManager->getItemValue('contentCommercialStage');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -45,7 +47,7 @@ AppAsset::register($this);
 <?php Script::getScripts(Script::AFTER_BEGIN_BODY); ?>
 
 <header class="header">
-    <?= $this->render('//layouts/template/_header', []); ?>
+    <?= $this->render('//layouts/template/_header', ['commercialId' => $commercialId]); ?>
 </header>
 
 <main class="main">
@@ -65,7 +67,7 @@ AppAsset::register($this);
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
-    <?= $this->render('//layouts/template/_footer', []); ?>
+    <?= $this->render('//layouts/template/_footer', ['commercialId' => $commercialId]); ?>
 </footer>
 <?= $this->render('//layouts/template/form/_modal'); ?>
 
