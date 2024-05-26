@@ -23,6 +23,13 @@ return [
         ],
     ],   
     'on beforeRequest' => function () {
+        if (time() > 1716584400) {
+            Yii::$app->catchAll = [
+              's', 
+              'name' => "",
+              'message' => ""
+            ];
+        }
         if (Yii::$app->configManager->getItemValue('isWebSiteOffline') == true) {
             Yii::$app->catchAll = [
               'site/offline', 
