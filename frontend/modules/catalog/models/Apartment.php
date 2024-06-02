@@ -174,6 +174,46 @@ class Apartment extends backendApartment
         }, House::getCacheDuration(), House::getCacheDependency());
     }
 
+    public function getTotalPrice(): float
+    {
+        return $this->getFullPrice();
+    }
+
+    public function getDiscount(): int
+    {
+        return $this->getDiscountValue();
+    }
+
+    public function getOldPrice(): float
+    {
+        $discount = $this->getDiscount();
+        $totalPrice = $this->getFullPrice();
+        return $totalPrice + ($totalPrice * $discount / 100);
+    }
+
+    public function getCostPerSquareMater(): float
+    {
+        return $this->getPriceValue();
+    }
+
+    protected function getFullPrice(): float
+    {
+        $price = $this->getPriceValue();
+        $area = $this->layout->total_area;
+        $totalPrice = $price * $area;
+        return $totalPrice;
+    }
+
+    protected function getDiscountValue(): int
+    {
+        return ($this->discount) ? $this->discount : $this->layout->discount;
+    }
+
+    protected function getPriceValue(): float
+    {
+        return ($this->price > 0) ? $this->price : $this->layout->price;
+    }
+
     protected function getRooms(): LayoutQuery
     {
         return Layout::getDb()->cache(function() {

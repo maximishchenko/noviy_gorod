@@ -13,6 +13,26 @@
 @import "apartments-list.less";
 
 
+.mar_2_4_top {
+  margin-top: 2rem;
+}
+.old__price {
+  color: #878787;
+  position: relative;
+}
+.old__price::after {
+  height: 2px;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  position: absolute;
+  -webkit-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+  content: "";
+  background: #d83737;
+}
+
 .pagination__item.pagination__item.pagination__item--active a {
   color: #fff;
 }
@@ -39,4 +59,11 @@
     max-width: 1400px;
     padding: 0;
   }
+}
+
+@media screen and (max-width: 500px) {
+  
+.mar_2_4_top {
+  margin-top: 4rem;
+}
 }

@@ -73,6 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
           </div>
         </div>
+
+
 <!--        <div class="room__btn js-open-feedback">Оставить заявку</div>-->
           <?php if(Yii::$app->configManager->getItemValue('contactPhone')): ?>
               <a class="header__phone" href="tel:<?= Yii::$app->configManager->getItemValue('contactPhone'); ?>">
@@ -81,7 +83,40 @@ $this->params['breadcrumbs'][] = $this->title;
                   </section>
               </a>
             <?php endif; ?>
+
+
+        <div class="room__info-items mar_2_4_top">
+          <?php if($model->getCostPerSquareMater()): ?>
+            <div class="room__info-item">
+              <div class="room__info-item-title">
+                Стоимость 1 м<sup>2</sup>
+              </div>
+              <div class="room__info-item-text">
+                <?= Yii::$app->formatter->asCurrency($model->getCostPerSquareMater()); ?>
+              </div>
+            </div>
+            <div class="room__info-item">
+              <div class="room__info-item-title">
+                Стоимость квартиры
+              </div>
+              <div class="room__info-item-text">
+                <?= Yii::$app->formatter->asCurrency($model->getTotalPrice()); ?>
+
+                <?php if($model->getDiscount() > 0): ?>
+                  <span class="old__price">
+                    <?= Yii::$app->formatter->asCurrency($model->getOldPrice()) ; ?>
+                  </span>
+                <?php endif;?>
+              </div>
+            </div>
+          <?php endif;?>
+        </div>
+
       </div>
+
+
+
+
     </div>
   </div>
 </section>

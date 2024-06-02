@@ -49,6 +49,8 @@ use yii\bootstrap5\ActiveForm;
                             <?= $form->field($model, 'status')->checkbox() ?>
                         </div>
                         <div class="col-md-6">
+                            <?= $form->field($model, 'price')->textInput(['type' => 'number']) ?>
+                            <?= $form->field($model, 'discount')->textInput(['type' => 'number']) ?>
                             <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                         </div>
                     </div>

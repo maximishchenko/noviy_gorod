@@ -23,6 +23,8 @@ use yii\helpers\ArrayHelper;
  * @property int $layout_id
  * @property int $number
  * @property int $apartment_floor
+ * @property float $price
+ * @property int $discount
  * @property string|null $image
  * @property string|null $status
  * @property string|null $comment
@@ -84,6 +86,10 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'number', 'apartment_floor'], 'integer'],
             [['comment'], 'string'],
+            [['price', 'discount'], 'number'],
+            ['price', 'default', 'value' => 0],
+            ['discount', 'default', 'value' => 0],
+            ['discount', 'in', 'range' => [0, 100]],
             [['image'], 'string', 'max' => 255],
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],
             
@@ -104,6 +110,8 @@ class Apartment extends \yii\db\ActiveRecord
             'layout_id' => Yii::t('app', 'Layout ID'),
             'apartment_floor' => Yii::t('app', 'Apartment Floor'),
             'number' => Yii::t('app', 'Apartment Number'),
+            'price' => Yii::t('app', 'Price'),
+            'discount' => Yii::t('app', 'Discount'),
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
             'imageFile' => Yii::t('app', 'Apartment Image'),
@@ -121,7 +129,8 @@ class Apartment extends \yii\db\ActiveRecord
     public function attributeHints(): array
     {
         return [
-
+            'price' => Yii::t('app', 'Price Hint'),
+            'discount' => Yii::t('app', 'Discount Hint'),
         ];
     }
 

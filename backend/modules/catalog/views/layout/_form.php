@@ -2,7 +2,7 @@
 
 use backend\modules\catalog\models\Layout;
 use backend\widgets\SingleImagePreviewWidget;
-use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 ?>
 
 <div class="layout-form">
@@ -27,6 +27,8 @@ use yii\widgets\ActiveForm;
                     <div class="row">
                         <div class="col-md-6">
                             <?= $form->field($model, 'count_rooms')->textInput() ?>
+                            <?= $form->field($model, 'price')->textInput(['type' => 'number']) ?>
+                            <?= $form->field($model, 'discount')->textInput(['type' => 'number']) ?>
                             <?= $form->field($model, 'sort')->textInput() ?>
                             <?= $form->field($model, 'status')->checkbox() ?>
                         </div>

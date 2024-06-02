@@ -23,6 +23,8 @@ use yii\helpers\ArrayHelper;
  * @property string|null $image
  * @property int|null $count_rooms
  * @property float|null $total_area
+ * @property float $price
+ * @property int $discount
  * @property string|null $comment
  * @property int|null $sort
  * @property int|null $status
@@ -72,7 +74,10 @@ class Layout extends \yii\db\ActiveRecord
     {
         return [
             [['entrance_id', 'count_rooms', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['total_area'], 'number'],
+            [['total_area', 'price', 'discount'], 'number'],
+            ['price', 'default', 'value' => 0],
+            ['discount', 'default', 'value' => 0],
+            ['discount', 'in', 'range' => [0, 100]],
             [['comment'], 'string'],
             [['entrance_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entrance::class, 'targetAttribute' => ['entrance_id' => 'id']],
             
@@ -90,6 +95,8 @@ class Layout extends \yii\db\ActiveRecord
             'nameWithCountRoomsAndTotalArea' => Yii::t('app', 'Name with count rooms and total area'),
             'house' => Yii::t('app', 'House of Layout'),
             'entrance' => Yii::t('app', 'Entrance of Layout'),
+            'price' => Yii::t('app', 'Price'),
+            'discount' => Yii::t('app', 'Discount'),
             'image' => Yii::t('app', 'Image'),
             'imageFile' => Yii::t('app', 'Layout Image'),
             'count_rooms' => Yii::t('app', 'Layout Count Rooms'),
@@ -110,6 +117,8 @@ class Layout extends \yii\db\ActiveRecord
             'entrance_id' => Yii::t('app', 'Layout Entrance ID'),
             'count_rooms' => Yii::t('app', 'Layout Count Rooms Hint'),
             'total_area' => Yii::t('app', 'Layout Total Area Hint'),
+            'price' => Yii::t('app', 'Price Hint'),
+            'discount' => Yii::t('app', 'Discount Hint'),
             'comment' => Yii::t('app', 'Comment Hint'),
             'sort' => Yii::t('app', 'Sort Hint. Default value is {sortDefault}', ['sortDefault' => Sort::DEFAULT_SORT_VALUE]),
             'status' => Yii::t('app', 'Status Hint'),
