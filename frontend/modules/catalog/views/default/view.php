@@ -1,5 +1,7 @@
 <?php
 
+use common\models\ApartmentStatus;
+use common\models\Status;
 use frontend\modules\catalog\models\Apartment;
 use yii\helpers\Html;
 
@@ -86,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         <div class="room__info-items mar_2_4_top">
-          <?php if($model->getCostPerSquareMater()): ?>
+          <?php if($model->sale_status == ApartmentStatus::STATUS_FREE && $model->getCostPerSquareMater()): ?>
             <div class="room__info-item">
               <div class="room__info-item-title">
                 Стоимость 1 м<sup>2</sup>
