@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace frontend\controllers;
 
 use common\models\Status;
+use frontend\components\InlineWidgetsBehavior;
 use frontend\modules\seo\models\Redirect;
 use Yii;
 use yii\base\ExitException;
@@ -22,6 +23,17 @@ class BaseController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'InlineWidgetsBehavior' => [
+                'class' => InlineWidgetsBehavior::className(),
+                'widgets' => \Yii::$app->params['runtimeWidgets'],
+                'classSuffix' => 'Widget',
+             ],
         ];
     }
 

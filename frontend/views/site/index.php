@@ -1,5 +1,6 @@
 <?php
 
+use frontend\components\widgets\MinPriceWidget;
 use yii\helpers\Html;
 
 $this->title = 'Новострой';
@@ -47,7 +48,6 @@ $this->title = 'Новострой';
   </div>
 </section>
 <?php endif; ?>
-
 
 
 <section class="main-rooms" id="flats">
