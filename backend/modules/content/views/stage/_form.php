@@ -3,6 +3,7 @@
 use backend\modules\content\models\Stage;
 use backend\widgets\SingleImagePreviewWidget;
 use yii\bootstrap5\ActiveForm;
+use vova07\imperavi\Widget;
 
 ?>
 
@@ -44,7 +45,44 @@ use yii\bootstrap5\ActiveForm;
                                 <?= $form->field($model, 'status')->checkbox() ?>
                             </div>
                             <div class="col-md-6">
-                                <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+                                <?php // echo $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+
+                                <?= $form->field($model, 'text')->widget(Widget::className(), [
+                                    'settings' => [
+                                        'lang' => 'ru',
+                                        'minHeight' => 200,
+                                        'options' => [
+                                            'minHeight' => 300,
+                                            'lang' => Yii::$app->language,
+                                            'pastePlainText' => true,
+                                            'paragraphize' => false,
+                                            'formatting' => ['br', 'h2', 'strong'],
+                                        ],
+
+                                        // 'imageUpload' => Url::to(['article/image-upload']),
+                                        // 'imageManagerJson' => Url::to(['article/image-upload']),
+                                        // 'fileManagerJson' => Url::to(['article/files-get']),
+                                        // 'validatorOptions' => ['maxSize' => 40000],    //макс. размер файла
+                                        'pastePlainText' => true,
+                                        'paragraphize' => false,
+                                        // 'buttonSource' => true,
+
+                                        // 'plugins' => [
+                                        //     'clips',
+                                        //     //'table',
+                                        //     'video',
+                                        //     //'fontsize',
+                                        //     'fontcolor',
+                                        //     //'fontfamily',
+                                        //     'imagemanager',
+                                        //     'filemanager',
+                                        //     'fullscreen' => array(
+                                        //         'js' => array('fullscreen.js',),
+                                        //     ),
+                                        // ]
+                                    ]
+                                ]); ?>
+
                                 <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                             </div>
                         </div>

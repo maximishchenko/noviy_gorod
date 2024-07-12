@@ -8253,7 +8253,7 @@ article .room__btn {
   line-height: 1.2;
   font-weight: 500;
   color: #1e293c;
-  width: 80%;
+  /* width: 80%; */
 }
 
 @media (min-width: 2000px) {

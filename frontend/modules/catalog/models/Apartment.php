@@ -123,6 +123,15 @@ class Apartment extends backendApartment
         return null;
     }
 
+    public function getApartmentPreview(): string
+    {
+        if (isset($this->layout->image) && !empty($this->layout->image)) {
+            return '/' . Layout::UPLOAD_PATH . $this->layout->image;
+        } else {
+            return static::NO_IMAGE;
+        }
+    }
+
     public function getThumb(): string
     {
         if (!empty($this->image)) {

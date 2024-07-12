@@ -1,7 +1,6 @@
 <?php
 
 use common\models\ApartmentStatus;
-use common\models\Status;
 use frontend\modules\catalog\models\Apartment;
 use yii\helpers\Html;
 
@@ -18,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="room__top">
 
           <div class="room__top-item room__top-item--active" data-id="1">
-            <a class="room__image" href="<?= $model->thumb; ?>" data-fancybox="room">
-              <img src="<?= $model->thumb; ?>">
+            <a class="room__image" href="<?= $model->layout->thumb; ?>" data-fancybox="room"> <!-- $model->thumb -->
+              <img src="<?= $model->layout->thumb; ?>">
               <div class="room__image-zoom">
                 <?= Html::img('/static/sprite.svg#zoom-icon'); ?>
               </div>
@@ -28,11 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
           <?php if ($model->layout->image): ?>
           <div class="room__top-item" data-id="2">
-            <a class="room__image" href="<?= $model->layout->thumb; ?>" data-fancybox="entrance">
-              <img src="<?= $model->layout->thumb; ?>">
-              <svg width="662" height="747" viewBox="0 0 662 747" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a class="room__image" href="<?= $model->thumb; ?>" data-fancybox="entrance"> <!-- $model->layout->thumb -->
+              <img src="<?= $model->thumb; ?>">
+              <!-- <svg width="662" height="747" viewBox="0 0 662 747" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="is-active" opacity="0.8" d="M257.623 547.64V416.182L305.538 415.772V404.305H334.205V407.581L413.244 408.4L412.425 555.012H341.986V547.64H257.623Z" fill="white"></path>
-              </svg>
+              </svg> -->
               <div class="room__image-zoom">
                 <?= Html::img('/static/sprite.svg#zoom-icon'); ?>
               </div>

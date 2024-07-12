@@ -7,7 +7,7 @@ use yii\helpers\Html;
         <?= $model->layout->count_rooms; ?>-комнатная квартира <?= $model->layout->total_area; ?> м<sup>2</sup>
     </div>
     <div class="flats__item-image">
-        <?= Html::img($model->thumb, []); ?>
+        <?= Html::img($model->apartmentPreview, []); ?> <!-- $model->thumb -->
     </div>
 
     <div class="flats__item-chars">
