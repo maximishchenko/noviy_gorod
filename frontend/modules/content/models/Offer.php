@@ -7,11 +7,7 @@ use backend\modules\content\models\Offer as backendOffer;
 use frontend\modules\content\models\query\OfferQuery;
 use frontend\traits\cacheParamsTrait;
 
-/**
- *
- * @property-read string $descriptionThumb
- * @property-read string $previewThumb
- */
+
 class Offer extends backendOffer
 {
     use cacheParamsTrait;

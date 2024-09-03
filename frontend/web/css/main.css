@@ -4296,6 +4296,7 @@ article .room__btn {
 
 .main-rooms__wrap {
   margin-top: 32px;
+  position: relative;
 }
 
 @media only screen and (min-width: 1080px) {
@@ -4318,6 +4319,10 @@ article .room__btn {
   margin-top: 32px;
 }
 
+.main-offers__slider {
+  position: relative;
+}
+
 .main-rooms__slider {
   display: none;
   position: relative;
@@ -4327,29 +4332,29 @@ article .room__btn {
   display: block;
 }
 
-.main-rooms .information__navigation-btn {
+.main-rooms .information__navigation-btn, .main-offers .information__navigation-btn {
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
-.main-rooms .main-rooms--prev {
+.main-rooms .main-rooms--prev, .main-offers .main-offers--prev {
   left: 0;
 }
 
 @media only screen and (min-width: 1280px) {
-  .main-rooms .main-rooms--prev {
+  .main-rooms .main-rooms--prev, .main-offers .main-offers--prev {
     left: -28px;
   }
 }
 
-.main-rooms .main-rooms--next {
+.main-rooms .main-rooms--next, .main-offers .main-offers--next {
   right: 0;
 }
 
 @media only screen and (min-width: 1280px) {
-  .main-rooms .main-rooms--next {
+  .main-rooms .main-rooms--next, .main-offers .main-offers--next {
     right: -28px;
   }
 }

@@ -121,6 +121,12 @@ $(function () {
       )
         for (var a = 0; a < e.length; a++) e[a].update();
     });
+    var mainOffersSlider = new Swiper(".main-offers-slider", {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      navigation: { nextEl: ".main-offers--next", prevEl: ".main-offers--prev" },
+      breakpoints: { 1080: { slidesPerView: 3 }, 820: { slidesPerView: 3 }, 550: { slidesPerView: 2 } },
+    });
     var t = new Swiper(".main-rooms-slider", {
       slidesPerView: 1,
       spaceBetween: 24,

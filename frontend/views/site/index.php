@@ -50,6 +50,50 @@ $this->title = 'Новострой';
 <?php endif; ?>
 
 
+<!-- Start Offers -->
+
+<section class="main-offers" id="flats">
+  <div class="container">
+    <div class="page-title">Действующие акции</div>
+    <div class="page__subtitle"></div>
+    <div class="main-rooms__content">
+      <div class="main-rooms__wrap">
+          <div class="swiper-container main-offers-slider">
+            <div class="swiper-wrapper">
+
+              <?php foreach ($offers->getActiveOffer() as $offer): ?>
+                  <div class="swiper-slide">
+
+                  <a href="/offer/<?= $offer->slug; ?>">
+                    <div class="news__item">
+                        <?= Html::img($offer->previewThumb, ['class' => 'news__item-img', 'alt' => $offer->name]); ?>
+                        <div class="news__item-title"><?= $offer->name; ?></div>
+                      <div class="room__btn js-open-feedback">Оставить заявку</div>
+                    </div>
+                  </a>
+
+                </div>
+              <?php endforeach; ?>
+
+            </div>
+          </div>
+          <div class="information__navigation">
+            <div class="information__navigation-btn main-offers--prev">
+              <?= Html::img('/static/svg/arrow_p.svg'); ?>
+            </div>
+            <div class="information__navigation-btn main-offers--next">
+              <?= Html::img('/static/svg/arrow_n.svg'); ?>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Offers -->
+
+
 <section class="main-rooms" id="flats">
   <div class="container">
     <div class="page-title">Выберите свою квартиру</div>

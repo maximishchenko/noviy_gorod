@@ -89,6 +89,7 @@ return [
                 'filter' => 'catalog/default/index',
                 'filter/<slug>' => 'catalog/default/view',
                 'offer' => 'content/offer/index',
+                'offer/<slug>' => 'content/offer/view',
                 'gallery' => 'content/gallery/index',
                 'parking' => 'content/parking/index',
                 'storage' => 'content/storage/index',
