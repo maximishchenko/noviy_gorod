@@ -141,8 +141,11 @@ $this->title = 'Новострой';
 </section>
 
 <?php if($apartmentModel->getActiveHouses()): ?>
-    <?php foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
-        <?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel, 'current' => null]); ?>
+    <?php // foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
+    <?php foreach($apartmentModel->getActiveHouses() as $house): ?>
+      <?php foreach ($house->entrances as $entrance): ?>
+        <?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel, 'current' => null, 'house' => $house->name]); ?>
+        <?php endforeach; ?>
     <?php endforeach; ?>
 <?php endif; ?>
       

@@ -37,7 +37,7 @@ class ApartmentSearch extends Apartment
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id'=>Sort::getBackendDefaultSort()]],
+            'sort'=> ['defaultOrder' => Sort::getBackendDefaultSort()],
         ]);
 
         $dataProvider->setSort([

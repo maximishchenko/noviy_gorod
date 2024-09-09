@@ -5,11 +5,18 @@ use common\models\ApartmentStatus;
 /** @var \frontend\modules\catalog\models\Apartment $apartmentModel **/
 /** @var \frontend\modules\catalog\models\Entrance $entrance **/
 /** @var $current **/
+
+if ($house)
+{
+  $layout_title = "Литер №" . $house . ", " . $entrance->numberWithPrefix;
+} else {
+  $layout_title = $entrance->numberWithPrefix;
+}
 ?>
 
 <div class="apartments-list-wraper">
   <h2 style="text-align: center; margin-bottom: 1rem;">
-    <?= $entrance->numberWithPrefix; ?>
+    <?= $layout_title; ?>
   </h2>
 
     <div class="apartments-list-legend">
@@ -57,7 +64,7 @@ use common\models\ApartmentStatus;
 
         <?php  $apartment = $apartmentModel->getApartmentsByFloorAndLayout($floor, $layout->id); ?>
 
-        <?php if ($apartment->number): ?>
+        <?php if ($apartment && $apartment->number): ?>
                 <div class="apartments-list__item <?= ($apartment->id == $current) ? ApartmentStatus::SELECTED_ITEM_CSS_CLASS : ApartmentStatus::getStatusesCssClassNames()[$apartment->sale_status]; ?>">
                     <?php if($apartment->id != $current): ?>
                         <a href="/filter/<?= $apartment->slug; ?>">
