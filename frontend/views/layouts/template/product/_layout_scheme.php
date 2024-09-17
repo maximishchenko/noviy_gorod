@@ -6,7 +6,7 @@ use common\models\ApartmentStatus;
 /** @var \frontend\modules\catalog\models\Entrance $entrance **/
 /** @var $current **/
 
-if ($house)
+if (isset($house) && !empty($house))
 {
   $layout_title = "Этап № " . $house . ", " . $entrance->numberWithPrefix;
 } else {

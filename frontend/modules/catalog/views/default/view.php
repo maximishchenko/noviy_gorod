@@ -4,7 +4,9 @@ use common\models\ApartmentStatus;
 use frontend\modules\catalog\models\Apartment;
 use yii\helpers\Html;
 
-$this->title = $model->layout->count_rooms . '-комнатная квартира ' . $model->layout->total_area . '&nbsp;м<sup>2</sup>';
+$count = ($model->extended_count_rooms) ? $model->extended_count_rooms : $model->layout->count_rooms;
+$area = ($model->extended_total_area) ? $model->extended_total_area : $model->layout->total_area;
+$this->title = $count . '-комнатная квартира ' . $area . '&nbsp;м<sup>2</sup>';
 $this->params['breadcrumbs'][] = ['label' => 'Выбрать квартиру', 'url' => ['/filter']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -64,13 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
           <div class="room__info-item">
             <div class="room__info-item-title">Комнат</div>
             <div class="room__info-item-text">
-              <?= $model->layout->count_rooms; ?>
+              <?= ($model->extended_count_rooms) ? $model->extended_count_rooms : $model->layout->count_rooms; ?>
             </div>
           </div>
           <div class="room__info-item">
             <div class="room__info-item-title">Площадь</div>
             <div class="room__info-item-text">
-              <?= $model->layout->total_area; ?> м<sup>2</sup>
+              <?= ($model->extended_total_area) ? $model->extended_total_area : $model->layout->total_area; ?> м<sup>2</sup>
             </div>
           </div>
         </div>
