@@ -68,10 +68,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'apartment_floor',
-            // [
-            //     'attribute' => 'sort',
-            //     'contentOptions' => ['style' => 'width:100px;'],
-            // ],
+            [
+                'label' => Yii::t('app', "Extended Apartment Params"),
+                'format' => 'raw',
+                'filter' => false,
+                'value' => function($data) {
+                    $str = "";
+                    if ($data->extended_count_rooms) {
+                        $str .= (string)$data->extended_count_rooms . "-комн.";
+                    }
+                    if ($data->extended_total_area) {
+                        $str .=  ", " . (string)$data->extended_total_area . "м2";
+                    }
+                    return $str;
+                }
+            ],
             [
                 'class' => SetColumn::className(),
                 'filter' => ApartmentStatus::getStatusesArray(),

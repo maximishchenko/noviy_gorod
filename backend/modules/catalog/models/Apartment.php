@@ -167,9 +167,17 @@ class Apartment extends \yii\db\ActiveRecord
 
     public function getApartmentName(): string
     {
-        $count_rooms = ($this->extended_count_rooms) ? $this->extended_count_rooms : null;
-        $total_area = ($this->extended_total_area) ? $this->extended_total_area : null;
-        return 'Кв. № ' . $this->number . ' (' . $this->layout->getNameWithCountRoomsAndTotalArea($count_rooms, $total_area) . ')';
+        // $count_rooms = ($this->extended_count_rooms) ? $this->extended_count_rooms : null;
+        // $total_area = ($this->extended_total_area) ? $this->extended_total_area : null;
+
+        return ($this->extended_count_rooms || $this->extended_total_area) ? 'Кв. № ' . $this->number . ' (' . $this->nameWithCountRoomsAndTotalArea . ')' : 'Кв. № ' . $this->number . ' (' . $this->layout->nameWithCountRoomsAndTotalArea . ')';
+    }
+
+    
+
+    public function getNameWithCountRoomsAndTotalArea(): string
+    {
+        return Yii::t('app', '{count_rooms} - suffix {total_area}', ['count_rooms' => $this->extended_count_rooms, 'total_area' => $this->extended_total_area]);
     }
 
     public function getEntrance(): ActiveQuery
