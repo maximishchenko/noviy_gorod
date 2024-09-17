@@ -77,7 +77,7 @@ if ($house)
                               <?= $layout->count_rooms; ?>-комнатная
                             </div>
                             <div class="apartment-area">
-                              <?= $layout->total_area; ?>
+                              <?= ($apartment->extended_total_area) ? $apartment->extended_total_area : $layout->total_area; ?>
                             </div>
                           </div>
                     <?php if($apartment->id != $current): ?>

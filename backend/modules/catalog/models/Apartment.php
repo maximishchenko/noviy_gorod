@@ -86,7 +86,7 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'number', 'apartment_floor'], 'integer'],
             [['comment'], 'string'],
-            [['price', 'discount'], 'number'],
+            [['price', 'discount', 'extended_total_area'], 'number'],
             ['price', 'default', 'value' => 0],
             ['discount', 'default', 'value' => 0],
             ['discount', 'in', 'range' => [0, 100]],
@@ -110,6 +110,7 @@ class Apartment extends \yii\db\ActiveRecord
             'layout_id' => Yii::t('app', 'Layout ID'),
             'apartment_floor' => Yii::t('app', 'Apartment Floor'),
             'number' => Yii::t('app', 'Apartment Number'),
+            'extended_total_area' => Yii::t('app', 'Extended Total Area'),
             'price' => Yii::t('app', 'Price'),
             'discount' => Yii::t('app', 'Discount'),
             'slug' => Yii::t('app', 'Slug'),
@@ -131,6 +132,7 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             'price' => Yii::t('app', 'Price Hint'),
             'discount' => Yii::t('app', 'Discount Hint'),
+            'extended_total_area' => Yii::t('app', 'Extended Total Area Hint')
         ];
     }
 
