@@ -86,7 +86,7 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             [['layout_id', 'sort', 'created_at', 'updated_at', 'created_by', 'updated_by', 'number', 'apartment_floor'], 'integer'],
             [['comment'], 'string'],
-            [['price', 'discount', 'extended_total_area'], 'number'],
+            [['price', 'discount', 'extended_total_area', 'extended_count_rooms'], 'number'],
             ['price', 'default', 'value' => 0],
             ['discount', 'default', 'value' => 0],
             ['discount', 'in', 'range' => [0, 100]],
@@ -111,6 +111,7 @@ class Apartment extends \yii\db\ActiveRecord
             'apartment_floor' => Yii::t('app', 'Apartment Floor'),
             'number' => Yii::t('app', 'Apartment Number'),
             'extended_total_area' => Yii::t('app', 'Extended Total Area'),
+            'extended_count_rooms' => Yii::t('app', 'Extended Count Rooms'),
             'price' => Yii::t('app', 'Price'),
             'discount' => Yii::t('app', 'Discount'),
             'slug' => Yii::t('app', 'Slug'),
@@ -132,7 +133,8 @@ class Apartment extends \yii\db\ActiveRecord
         return [
             'price' => Yii::t('app', 'Price Hint'),
             'discount' => Yii::t('app', 'Discount Hint'),
-            'extended_total_area' => Yii::t('app', 'Extended Total Area Hint')
+            'extended_total_area' => Yii::t('app', 'Extended Total Area Hint'),
+            'extended_count_rooms' => Yii::t('app', 'Extended Count Rooms Hint')
         ];
     }
 
@@ -165,7 +167,9 @@ class Apartment extends \yii\db\ActiveRecord
 
     public function getApartmentName(): string
     {
-        return 'Кв. № ' . $this->number . ' (' . $this->layout->nameWithCountRoomsAndTotalArea . ')';
+        $count_rooms = ($this->extended_count_rooms) ? $this->extended_count_rooms : null;
+        $total_area = ($this->extended_total_area) ? $this->extended_total_area : null;
+        return 'Кв. № ' . $this->number . ' (' . $this->layout->getNameWithCountRoomsAndTotalArea($count_rooms, $total_area) . ')';
     }
 
     public function getEntrance(): ActiveQuery

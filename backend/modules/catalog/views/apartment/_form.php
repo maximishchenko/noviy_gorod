@@ -51,6 +51,7 @@ use yii\bootstrap5\ActiveForm;
                         <div class="col-md-6">
                             <?= $form->field($model, 'price')->textInput(['type' => 'number']) ?>
                             <?= $form->field($model, 'discount')->textInput(['type' => 'number']) ?>
+                            <?= $form->field($model, 'extended_count_rooms')->textInput([]) ?>
                             <?= $form->field($model, 'extended_total_area')->textInput([]) ?>
                             <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                         </div>

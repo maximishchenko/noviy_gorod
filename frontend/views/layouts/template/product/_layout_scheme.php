@@ -74,7 +74,7 @@ if ($house)
                           </div>
                           <div class="apartments-list__item__content">
                             <div class="apartment-rooms">
-                              <?= $layout->count_rooms; ?>-комнатная
+                              <?= ($apartment->extended_count_rooms) ? $apartment->extended_count_rooms : $layout->count_rooms; ?>-комнатная
                             </div>
                             <div class="apartment-area">
                               <?= ($apartment->extended_total_area) ? $apartment->extended_total_area : $layout->total_area; ?>

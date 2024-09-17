@@ -146,9 +146,9 @@ class Layout extends \yii\db\ActiveRecord
         return $this->hasOne(House::class, ['id' => 'house_id'])->viaTable(Entrance::tableName(), ['id' => 'entrance_id']);
     }
 
-    public function getNameWithCountRoomsAndTotalArea(): string
+    public function getNameWithCountRoomsAndTotalArea($count_rooms = null, $total_area = null): string
     {
-        return Yii::t('app', '{count_rooms} - suffix {total_area}', ['count_rooms' => $this->count_rooms, 'total_area' => $this->total_area]);
+        return Yii::t('app', '{count_rooms} - suffix {total_area}', ['count_rooms' => ($count_rooms) ? $count_rooms : $this->count_rooms, 'total_area' => ($total_area) ? $total_area : $this->total_area]);
     }
 
     public function getNameWithHouseAndSection(): string
