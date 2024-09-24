@@ -149,4 +149,4 @@ $this->title = 'Новострой';
     <?php endforeach; ?>
 <?php endif; ?>
       
-<?= $this->render('//layouts/template/form/_inline', ['title' => 'Поможем в выборе']); ?>
+<?php // echo $this->render('//layouts/template/form/_inline', ['title' => 'Поможем в выборе']); ?>

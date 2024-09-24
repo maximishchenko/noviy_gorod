@@ -35,7 +35,7 @@ use yii\helpers\Html;
             </nav>
             <div class="header__blocks">
                 <?= Html::a(Yii::$app->configManager->getItemValue('contactPhone'), 'tel:' . Yii::$app->configManager->getItemValue('contactPhone'), ['class' => 'header__phone']); ?>
-                <?= Html::button('Заказать звонок', ['class' => 'js-open-feedback'])?>
+                <?php // echo Html::button('Заказать звонок', ['class' => 'js-open-feedback'])?>
             </div>
         </div>
         <div class="header__menu">
