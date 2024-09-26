@@ -142,6 +142,14 @@ class Apartment extends backendApartment
             return static::NO_IMAGE;
         }
     }
+    
+    public function getExtendedLayoutThumb(): ?string
+    {
+        if (!empty($this->extended_layout_image)) {
+            return '/' . static::UPLOAD_PATH . $this->extended_layout_image;
+        } 
+        return null;
+    }
 
     public function getEntrance(): ActiveQuery
     {

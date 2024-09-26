@@ -19,15 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="room__top">
 
           <div class="room__top-item room__top-item--active" data-id="1">
-            <a class="room__image" href="<?= $model->layout->thumb; ?>" data-fancybox="room"> <!-- $model->thumb -->
-              <img src="<?= $model->layout->thumb; ?>">
+            <a class="room__image" href="<?= ($model->extendedLayoutThumb) ? $model->extendedLayoutThumb : $model->layout->thumb; ?>" data-fancybox="room"> <!-- $model->thumb -->
+              <img src="<?= ($model->extendedLayoutThumb) ? $model->extendedLayoutThumb : $model->layout->thumb; ?>">
               <div class="room__image-zoom">
                 <?= Html::img('/static/sprite.svg#zoom-icon'); ?>
               </div>
             </a>
           </div>
 
-          <?php if ($model->layout->image): ?>
+          <?php if ($model->thumb): ?>
           <div class="room__top-item" data-id="2">
             <a class="room__image" href="<?= $model->thumb; ?>" data-fancybox="entrance"> <!-- $model->layout->thumb -->
               <img src="<?= $model->thumb; ?>">
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <?php endif; ?>
 
         </div>
-        <?php if ($model->layout->image): ?>
+        <?php if ($model->extended_layout_image || $model->layout->image): ?>
         <div class="room__tabs">
           <div class="room__tab room__tab--active page-btn" data-id="1">Квартира</div>
           <div class="room__tab page-btn" data-id="2">Расположение</div>

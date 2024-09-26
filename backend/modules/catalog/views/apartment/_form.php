@@ -64,7 +64,7 @@ use yii\bootstrap5\ActiveForm;
                 <div class="accordion-body">
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <?= $form->field($model, 'imageFile')->fileInput() ?>
                             <?php if(isset($model->image) && !empty($model->image) && $model->image !== null): ?>
                                 <div class="row">
@@ -72,6 +72,19 @@ use yii\bootstrap5\ActiveForm;
                                         'id' => $model->id,
                                         'filePath' => $model->getUrl(Apartment::UPLOAD_PATH, $model->image),
                                         'url' => 'delete-image',
+                                        'fancyboxGalleryName' => "SingleCategoryImage",
+                                    ]); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($model, 'layoutImageFile')->fileInput() ?>
+                            <?php if(isset($model->extended_layout_image) && !empty($model->extended_layout_image) && $model->extended_layout_image !== null): ?>
+                                <div class="row">
+                                    <?= SingleImagePreviewWidget::widget([
+                                        'id' => $model->id,
+                                        'filePath' => $model->getUrl(Apartment::UPLOAD_PATH, $model->extended_layout_image),
+                                        'url' => 'delete-layout-image',
                                         'fancyboxGalleryName' => "SingleCategoryImage",
                                     ]); ?>
                                 </div>

@@ -49,6 +49,8 @@ class Apartment extends \yii\db\ActiveRecord
     const UPLOAD_PATH = 'upload/apartment/';
 
     public $imageFile;
+
+    public $layoutImageFile;
     
     public static function tableName(): string
     {
@@ -90,7 +92,7 @@ class Apartment extends \yii\db\ActiveRecord
             ['price', 'default', 'value' => 0],
             ['discount', 'default', 'value' => 0],
             ['discount', 'in', 'range' => [0, 100]],
-            [['image'], 'string', 'max' => 255],
+            [['image', 'extended_layout_image'], 'string', 'max' => 255],
             [['layout_id'], 'exist', 'skipOnError' => true, 'targetClass' => Layout::class, 'targetAttribute' => ['layout_id' => 'id']],
             
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
@@ -117,6 +119,8 @@ class Apartment extends \yii\db\ActiveRecord
             'slug' => Yii::t('app', 'Slug'),
             'image' => Yii::t('app', 'Image'),
             'imageFile' => Yii::t('app', 'Apartment Image'),
+            'extended_layout_image' => Yii::t('app', 'Extended Layout Image'),
+            'layoutImageFile' => Yii::t('app', 'Extended Layout Image File'),
             'status' => Yii::t('app', 'Status'),
             'sale_status' => Yii::t('app', 'Sale Status'),
             'comment' => Yii::t('app', 'Comment'),
@@ -134,7 +138,8 @@ class Apartment extends \yii\db\ActiveRecord
             'price' => Yii::t('app', 'Price Hint'),
             'discount' => Yii::t('app', 'Discount Hint'),
             'extended_total_area' => Yii::t('app', 'Extended Total Area Hint'),
-            'extended_count_rooms' => Yii::t('app', 'Extended Count Rooms Hint')
+            'extended_count_rooms' => Yii::t('app', 'Extended Count Rooms Hint'),
+            'layoutImageFile' => Yii::t('app', 'Extended Layout Image File Hint')
         ];
     }
 
@@ -199,6 +204,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         if (parent::beforeSave($insert)) {
             $this->uploadFile('imageFile', 'image', self::UPLOAD_PATH);
+            $this->uploadFile('layoutImageFile', 'extended_layout_image', self::UPLOAD_PATH);
             return true;
         }
         return false;
@@ -208,6 +214,7 @@ class Apartment extends \yii\db\ActiveRecord
     {
         if (parent::beforeDelete()) {
             $this->deleteSingleFile('image', self::UPLOAD_PATH);
+            $this->deleteSingleFile('extended_layout_image', self::UPLOAD_PATH);
             return true;
         } else {
             return false;
