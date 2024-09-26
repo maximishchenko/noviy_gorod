@@ -219,7 +219,8 @@ class Apartment extends backendApartment
     protected function getFullPrice(): float
     {
         $price = $this->getPriceValue();
-        $area = $this->layout->total_area;
+        // $area = $this->layout->total_area;
+        $area = $this->getAreaValue();
         $totalPrice = $price * $area;
         return $totalPrice;
     }
@@ -232,6 +233,11 @@ class Apartment extends backendApartment
     protected function getPriceValue(): float
     {
         return ($this->price > 0) ? $this->price : $this->layout->price;
+    }
+
+    protected function getAreaValue()
+    {
+        return ($this->extended_total_area) ? $this->extended_total_area : $this->layout->total_area;
     }
 
     protected function getRooms(): LayoutQuery
