@@ -125,7 +125,9 @@ class Apartment extends backendApartment
 
     public function getApartmentPreview(): string
     {
-        if (isset($this->layout->image) && !empty($this->layout->image)) {
+        if (isset($this->extended_layout_image) && !empty($this->extended_layout_image)) {
+            return '/' . static::UPLOAD_PATH . $this->extended_layout_image;
+        } elseif (isset($this->layout->image) && !empty($this->layout->image)) {
             return '/' . Layout::UPLOAD_PATH . $this->layout->image;
         } else {
             return static::NO_IMAGE;
