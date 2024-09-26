@@ -58,8 +58,8 @@ class ApartmentSearch extends Apartment
         $dataProvider->setSort([
             'attributes' => [
                 'totalArea' => [
-                    'asc' => [Layout::tableName() . '.total_area' => SORT_ASC, Apartment::tableName() . '.extended_count_rooms' => SORT_ASC],
-                    'desc' => [Layout::tableName() . '.total_area' => SORT_DESC, Apartment::tableName() . '.extended_count_rooms' => SORT_DESC],
+                    'asc' => [Layout::tableName() . '.total_area' => SORT_ASC, Apartment::tableName() . '.extended_total_area' => SORT_ASC],
+                    'desc' => [Layout::tableName() . '.total_area' => SORT_DESC, Apartment::tableName() . '.extended_total_area' => SORT_DESC],
                     'default' => SORT_ASC
                 ],
             ],
