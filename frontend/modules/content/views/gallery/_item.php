@@ -1,6 +1,5 @@
 <?php
 
-use frontend\modules\catalog\models\Apartment;
 use yii\helpers\Html;
 
 /**

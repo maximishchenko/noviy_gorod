@@ -1,12 +1,8 @@
 <?php
 
-use yii\widgets\ListView;
-
 $this->title = 'Ход строительства';
 $this->params['breadcrumbs'][] = $this->title;
-?>
-
-
+?>`
 
 <section class="construction" id="pdopage">
   <div class="container">
@@ -14,24 +10,15 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= $this->title; ?>
     </h1>
 
-    <div class="construction__wrap rows">
-      
-      <?= ListView::widget([
-              'dataProvider' => $dataProvider,
-              'itemView' => '_item',
-              'layout' => "{items}",
-              'options' => [
-                'tag' => false,
-              ],
-              'itemOptions' => [
-                  'tag' => false,
-              ],
-            ]);
-      ?>
-
-    </div>
-    
-    <?= $this->render('_pager', ['dataProvider' => $dataProvider]); ?>
-
+    <?php foreach ($houses as $k => $house): ?>
+      <h2 class="h2title">
+        <?= $house->nameWithPrefix; ?>
+      </h2>
+      <div class="construction__wrap rows">
+        <?php foreach ($house->galleries as $gallery): ?>
+            <?= $this->render('_item', ['model' => $gallery]); ?>
+        <?php endforeach; ?>
+      </div>
+    <?php endforeach; ?>
   </div>
 </section>

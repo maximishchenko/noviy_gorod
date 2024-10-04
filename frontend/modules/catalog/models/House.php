@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\models;
 use backend\modules\catalog\models\House as backendHouse;
 use common\models\Status;
 use frontend\modules\catalog\models\query\HouseQuery;
+use frontend\modules\content\models\Gallery;
 use frontend\traits\cacheParamsTrait;
 use yii\db\ActiveQuery;
 
@@ -20,5 +21,10 @@ class House extends backendHouse
     public function getEntrances(): ActiveQuery
     {
         return $this->hasMany(Entrance::class, ['house_id' => 'id'])->onCondition([Entrance::tableName() . ".status" => Status::STATUS_ACTIVE]);
+    }
+    
+    public function getGalleries(): ActiveQuery
+    {
+        return $this->hasMany(Gallery::class, ['house_id' => 'id'])->onCondition([Gallery::tableName() . ".status" => Status::STATUS_ACTIVE])->orderBy([Gallery::tableName() . ".sort" => SORT_DESC]);
     }
 }
