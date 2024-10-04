@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace backend\modules\content\models;
 
+use backend\modules\catalog\models\House;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -11,6 +12,7 @@ use backend\modules\content\models\query\GalleryQuery;
 use common\models\Sort;
 use common\models\Status;
 use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
 /**
@@ -18,6 +20,7 @@ use yii\web\UploadedFile;
  *
  * @property int $id
  * @property string $name
+ * @property string $period
  * @property string|null $comment
  * @property int|null $sort
  * @property int|null $status
@@ -32,6 +35,8 @@ use yii\web\UploadedFile;
 class Gallery extends \yii\db\ActiveRecord
 {
     public $files;
+
+    public $period;
 
     public static function tableName(): string
     {
@@ -60,10 +65,10 @@ class Gallery extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['name'], 'required'],
+            [['name', 'period'], 'required'],
             [['comment'], 'string'],
-            [['sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name'], 'string', 'max' => 255],
+            [['house_id', 'sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'period'], 'string', 'max' => 255],
 
             [['name'], 'required'],
             [['name'], 'unique'],
@@ -74,11 +79,19 @@ class Gallery extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getHousesItems(): array
+    {
+        $houses = House::find()->orderBy(['name' => SORT_ASC])->all();
+        return ArrayHelper::map($houses,'id','nameWithPrefix');
+    }
+
     public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'period' => Yii::t('app', 'Gallery Period'),
+            'house_id' => Yii::t('app', 'Gallery House ID'),
             'comment' => Yii::t('app', 'Comment'),
             'files' => Yii::t('app', 'Gallery Files'),
             'sort' => Yii::t('app', 'Sort'),
@@ -129,5 +142,24 @@ class Gallery extends \yii\db\ActiveRecord
                 }
             }
         }
+    }
+
+    public function afterFind()
+    {
+        if ($this->period_month && $this->period_year) {
+            $this->period = $this->period_month . "." . $this->period_year;
+        }
+        parent::afterFind();
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $period = explode(".", $this->period);
+            $this->period_month = $period[0];
+            $this->period_year = $period[1];
+            return true;
+        }
+        return false;
     }
 }

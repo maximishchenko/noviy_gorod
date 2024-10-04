@@ -34,6 +34,11 @@ use yii\bootstrap5\ActiveForm;
                                 <?= $form->field($model, 'status')->checkbox() ?>
                             </div>
                             <div class="col-md-6">
+
+                                <?= $form->field($model, 'period')->textInput(['maxlength' => true, 'class' => 'form-control datepicker']) ?>
+
+                                <?= $form->field($model, 'house_id')->dropDownList($model->getHousesItems(), ['prompt' => ""]) ?>
+
                                 <?= $form->field($model, 'comment')->textarea(['rows' => 6]) ?>
                             </div>
                         </div>
@@ -80,6 +85,16 @@ use yii\bootstrap5\ActiveForm;
 
 </div>
 
+<script>
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: "mm.yyyy",
+        language: 'ru',
+        orientation: 'bottom',
+        startView: "months", 
+        minViewMode: "months"
+    });
+</script>
 <?php $this->registerJsFile("@web/js/sortable.js"); ?>
 
 <?= $this->render('//layouts/forms/_buttons', ['formId' => 'gallery-form']); ?>
