@@ -15,9 +15,12 @@ use yii\helpers\Html;
         <div class="header__left">
             <div class="header__burger"></div>
             <nav class="header__nav">
-                <?= Html::a('Выбрать квартиру', ['/filter'], ['class' => 'header__nav-link']); ?>
-                <?php if(Mortgage::getActiveMortgages()): ?>
-                    <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'header__nav-link']); ?>
+                <?= Html::a('Квартиры', ['/filter'], ['class' => 'header__nav-link']); ?>
+                <?php if(Premise::getParkingActiveItem($parkingId) || Premise::getParkingStages($parkingId)): ?>
+                    <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__nav-link']); ?>
+                <?php endif; ?>
+                <?php if(Premise::getStorageActiveItem($storageId) || Premise::getStorageStages($storageId)): ?>
+                    <?= Html::a('Кладовые', ['/storage'], ['class' => 'header__nav-link']); ?>
                 <?php endif; ?>
                 <?php if(Offer::getActiveOffer()): ?>
                     <?= Html::a('Акции', ['/offer'], ['class' => 'header__nav-link']); ?>
@@ -39,13 +42,10 @@ use yii\helpers\Html;
             </div>
         </div>
         <div class="header__menu">
+            <?php if(Mortgage::getActiveMortgages()): ?>
+                <?= Html::a('Ипотека', ['/payment/mortgage'], ['class' => 'header__menu-link']); ?>
+            <?php endif; ?>
             <?= Html::a('Ход строительства', ['/gallery'], ['class' => 'header__menu-link']); ?>
-            <?php if(Premise::getParkingActiveItem($parkingId) || Premise::getParkingStages($parkingId)): ?>
-                <?= Html::a('Паркинг', ['/parking'], ['class' => 'header__menu-link']); ?>
-            <?php endif; ?>
-            <?php if(Premise::getStorageActiveItem($storageId) || Premise::getStorageStages($storageId)): ?>
-                <?= Html::a('Кладовые помещения', ['/storage'], ['class' => 'header__menu-link']); ?>
-            <?php endif; ?>
             <?php if (Premise::getCommercialActiveItem($commercialId) || Premise::getCommercialStages($commercialId)): ?>
                 <?= Html::a('Коммерческие помещения', ['/commercial'], ['class' => 'header__menu-link']); ?>
             <?php endif; ?>
