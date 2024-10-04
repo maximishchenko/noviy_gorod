@@ -8,7 +8,7 @@ use common\models\ApartmentStatus;
 
 if (isset($house) && !empty($house))
 {
-  $layout_title = "Этап № " . $house . ", " . $entrance->numberWithPrefix;
+  $layout_title = "Литер № " . $house . ", " . $entrance->numberWithPrefix;
 } else {
   $layout_title = $entrance->numberWithPrefix;
 }
