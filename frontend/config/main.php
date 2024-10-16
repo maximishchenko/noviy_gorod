@@ -91,6 +91,7 @@ return [
                 'offer' => 'content/offer/index',
                 'offer/<slug>' => 'content/offer/view',
                 'gallery' => 'content/gallery/index',
+                'gallery/<id>' => 'content/gallery/view',
                 'parking' => 'content/parking/index',
                 'storage' => 'content/storage/index',
                 'commercial' => 'content/commercial/index',

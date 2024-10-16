@@ -13,6 +13,8 @@ class House extends backendHouse
 {
     use cacheParamsTrait;
 
+    const NO_IMAGE = '/static/sprite.svg#noimage';
+
     public static function find(): HouseQuery
     {
         return new HouseQuery(get_called_class());
@@ -26,5 +28,14 @@ class House extends backendHouse
     public function getGalleries(): ActiveQuery
     {
         return $this->hasMany(Gallery::class, ['house_id' => 'id'])->onCondition([Gallery::tableName() . ".status" => Status::STATUS_ACTIVE])->orderBy([Gallery::tableName() . ".sort" => SORT_DESC]);
+    }
+
+    public function getThumb(): string
+    {
+        if (!empty($this->image)) {
+            return '/' . static::UPLOAD_PATH . $this->image;
+        } else {
+            return static::NO_IMAGE;
+        }
     }
 }

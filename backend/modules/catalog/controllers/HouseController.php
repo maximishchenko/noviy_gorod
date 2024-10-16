@@ -9,6 +9,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use yii\filters\VerbFilter;
 
 class HouseController extends Controller
@@ -84,6 +85,18 @@ class HouseController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionDeleteImage(int $id): Response
+    {
+        $model = $this->findModel($id);
+        $file = $model->getPath(House::UPLOAD_PATH, $model->image);
+        echo $file;
+        $model->removeSingleFileIfExist($file);
+        $model->image = null;
+        $model->save();
+        Yii::$app->session->setFlash('danger', Yii::t('app', 'Record deleted'));
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
     protected function findModel($id)
     {
         if (($model = House::findOne(['id' => $id])) !== null) {

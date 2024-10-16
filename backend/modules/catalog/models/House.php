@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace backend\modules\catalog\models;
 
 use backend\modules\catalog\models\query\HouseQuery;
+use backend\traits\fileTrait;
 use common\models\Sort;
 use common\models\Status;
 use Yii;
@@ -17,6 +18,7 @@ use yii\db\ActiveQuery;
  *
  * @property int $id
  * @property string|null $name
+ * @property string|null $image
  * @property string|null $comment
  * @property int|null $sort
  * @property int|null $status
@@ -29,7 +31,13 @@ use yii\db\ActiveQuery;
  */
 class House extends \yii\db\ActiveRecord
 {    
+    use fileTrait;
+    
     const NAME_PREFIX = 'Литер ';
+
+    const UPLOAD_PATH = 'upload/house/';
+
+    public $imageFile;
 
     public static function tableName(): string
     {
@@ -74,6 +82,7 @@ class House extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'House Name'),
+            'imageFile' => Yii::t('app', 'House Image'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
             'status' => Yii::t('app', 'Status'),
@@ -113,5 +122,24 @@ class House extends \yii\db\ActiveRecord
     public function getNameWithPrefix(): string
     {
         return static::NAME_PREFIX . " " . $this->name;
+    }    
+    
+    public function beforeSave($insert): bool
+    {
+        if (parent::beforeSave($insert)) {
+            $this->uploadFile('imageFile', 'image', self::UPLOAD_PATH);
+            return true;
+        }
+        return false;
+    }
+
+    public function beforeDelete(): bool
+    {
+        if (parent::beforeDelete()) {
+            $this->deleteSingleFile('image', self::UPLOAD_PATH);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

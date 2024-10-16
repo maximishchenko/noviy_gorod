@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Html;
+
 $this->title = 'Ход строительства';
 $this->params['breadcrumbs'][] = $this->title;
 ?>`
@@ -10,15 +12,15 @@ $this->params['breadcrumbs'][] = $this->title;
       <?= $this->title; ?>
     </h1>
 
+    <div class="construction__wrap rows">
     <?php foreach ($houses as $k => $house): ?>
-      <h2 class="h2title">
-        <?= $house->nameWithPrefix; ?>
-      </h2>
-      <div class="construction__wrap rows">
-        <?php foreach ($house->galleries as $gallery): ?>
-            <?= $this->render('_item', ['model' => $gallery]); ?>
-        <?php endforeach; ?>
-      </div>
+      <a href="/gallery/<?= $house->id; ?>">
+        <img src="<?= $house->thumb; ?>" />
+        <h2 class="h2title">
+          <?= $house->nameWithPrefix; ?>
+        </h2>
+      </a>
     <?php endforeach; ?>
+    </div>
   </div>
 </section>
