@@ -36,15 +36,4 @@ class Layout extends backendLayout
         }, self::getCacheDuration(), self::getCacheDependency());
         return ArrayHelper::getColumn($rooms, 'count_rooms');
     }
-
-    public function getLayoutsByRoomsCount(int $countRooms): array
-    {
-        return self::getDb()->cache(function() use ($countRooms) {
-            return self::find()->joinWith(['apartments'])->where([
-                self::tableName() . '.status' => Status::STATUS_ACTIVE,
-                Apartment::tableName() . '.sale_status' => [ApartmentStatus::STATUS_FREE, ApartmentStatus::STATUS_RESERVED],
-                self::tableName() . '.count_rooms' => $countRooms
-            ])->distinct()->all();
-        }, self::getCacheDuration(), self::getCacheDependency());
-    }
 }

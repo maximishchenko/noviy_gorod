@@ -113,8 +113,8 @@ $this->title = 'Новострой';
           <div class="swiper-container main-rooms-slider">
             <div class="swiper-wrapper">
 
-              <?php foreach ($layoutModel->getLayoutsByRoomsCount($room) as $layout): ?>
-                <?php $apartment = $apartmentModel->getFirstApartmentInLayout($layout->id); ?>
+                <?php $apartments = $apartmentModel->getFirstApartmentByCountRooms($room); ?>
+                <?php foreach($apartments as $apartment): ?>
                 <?php if(!empty($apartment)): ?>
                   <div class="swiper-slide">
                     <?= $this->render('//layouts/template/product/_item', ['model' => $apartment, 'showCallbackButton' => true]); ?>

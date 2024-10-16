@@ -13,7 +13,6 @@ use frontend\modules\catalog\models\query\ApartmentQuery;
 use frontend\traits\cacheParamsTrait;
 use Yii;
 use yii\db\ActiveQuery;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%apartment}}".
@@ -170,20 +169,29 @@ class Apartment extends backendApartment
         }, self::getCacheDuration(), self::getCacheDependency());
     }
 
-    public function getFirstApartmentInLayout(int $layout_id): Apartment | null
+    public function getFirstApartmentByCountRooms(int $count_rooms): Apartment | array | null
     {
-        return self::getDb()->cache(function() use ($layout_id) {
+        return self::getDb()->cache(function() use ($count_rooms) {
             return self::find()
-                ->where([
-                    'status' => Status::STATUS_ACTIVE,
+                ->joinWith(['layout'])
+                ->andWhere([
+                    Apartment::tableName().'.status' => Status::STATUS_ACTIVE,
                     'sale_status' => [ApartmentStatus::STATUS_FREE, ApartmentStatus::STATUS_RESERVED],
-                    'layout_id' => $layout_id
                 ])
+                ->andWhere([
+                    'and',
+                    [Layout::tableName() . '.count_rooms' => $count_rooms],
+                    [Apartment::tableName() . '.extended_count_rooms' => null],
+                ])
+                ->orWhere(
+                    [Apartment::tableName() . '.extended_count_rooms' => $count_rooms],
+                )
                 ->orderBy([
                     'apartment_floor' => SORT_ASC
                 ])
-                ->one();
-        }, self::getCacheDuration(), self::getCacheDependency());
+                ->groupBy([Layout::tableName() . '.total_area', Apartment::tableName() . '.extended_total_area'])
+                ->all();
+        }, self::getCacheDuration(), self::getCacheDependency());   
     }
 
     public function getActiveHouses()
