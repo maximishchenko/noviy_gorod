@@ -5,21 +5,19 @@ namespace frontend\modules\content\controllers;
 
 use frontend\controllers\BaseController;
 use frontend\modules\catalog\models\House;
-use frontend\modules\content\models\search\GallerySearch;
+use frontend\modules\content\models\Gallery;
 use Yii;
 use yii\web\NotFoundHttpException;
 
 class GalleryController extends BaseController
 {
-    /**
-     * @return string
-     * @throws \Throwable
-     */
     public function actionIndex(): string
     {
+        // $model = new Gallery();
         $houses = House::find()->active()->galleryOrdered()->all();
 
         return $this->render('index', [
+            // 'model' => $model,
             'houses' => $houses
         ]);
     }
