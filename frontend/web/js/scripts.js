@@ -125,6 +125,13 @@ $(function () {
       slidesPerView: 1,
       spaceBetween: 24,
       navigation: { nextEl: ".main-offers--next", prevEl: ".main-offers--prev" },
+      breakpoints: { 1080: { slidesPerView: 2 }, 820: { slidesPerView: 2 }, 550: { slidesPerView: 2 } },
+    });
+    var mainGallerySlider = new Swiper(".main-gallery-slider", {
+      autoplay: true,
+      slidesPerView: 1,
+      spaceBetween: 24,
+      navigation: { nextEl: ".main-gallery--next", prevEl: ".main-gallery--prev" },
       breakpoints: { 1080: { slidesPerView: 3 }, 820: { slidesPerView: 3 }, 550: { slidesPerView: 2 } },
     });
     var t = new Swiper(".main-rooms-slider", {

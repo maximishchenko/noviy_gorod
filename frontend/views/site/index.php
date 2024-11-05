@@ -52,7 +52,7 @@ $this->title = 'Новострой';
 
 <!-- Start Offers -->
 
-<section class="main-offers" id="flats">
+<section class="main-offers" id="offers">
   <div class="container">
     <div class="page-title">Действующие акции</div>
     <div class="page__subtitle"></div>
@@ -140,8 +140,43 @@ $this->title = 'Новострой';
   </div>
 </section>
 
+
+<!-- Start Gallery -->
+
+<section class="main-gallery" style="margin-bottom: 3em;">
+  <div class="container">
+    <div class="page-title">Ход строительства</div>
+    <div class="page__subtitle"></div>
+    <div class="main-rooms__content">
+      <div class="main-rooms__wrap">
+          <div class="swiper-container main-gallery-slider">
+            <div class="swiper-wrapper">
+
+              <?php foreach ($galleries as $gallery): ?>
+                  <div class="swiper-slide">
+                    <?= $this->render('//layouts/template/gallery/_item', ['model' => $gallery]); ?>
+                </div>
+              <?php endforeach; ?>
+
+            </div>
+          </div>
+          <div class="information__navigation">
+            <div class="information__navigation-btn main-gallery--prev">
+              <?= Html::img('/static/svg/arrow_p.svg'); ?>
+            </div>
+            <div class="information__navigation-btn main-gallery--next">
+              <?= Html::img('/static/svg/arrow_n.svg'); ?>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Gallery -->
+
 <?php if($apartmentModel->getActiveHouses()): ?>
-    <?php // foreach($apartmentModel->getActiveHouses()->entrances as $entrance): ?>
     <?php foreach($apartmentModel->getActiveHouses() as $house): ?>
       <?php foreach ($house->entrances as $entrance): ?>
         <?= $this->render('//layouts/template/product/_layout_scheme', ['entrance' => $entrance, 'apartmentModel' => $apartmentModel, 'current' => null, 'house' => $house->name]); ?>

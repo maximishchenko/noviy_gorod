@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="construction__wrap rows">
         <?php foreach ($house->galleries as $gallery): ?>
-            <?= $this->render('_item', ['model' => $gallery]); ?>
+            <?= $this->render('//layouts/template/gallery/_item', ['model' => $gallery]); ?>
         <?php endforeach; ?>
     </div>
   </div>
