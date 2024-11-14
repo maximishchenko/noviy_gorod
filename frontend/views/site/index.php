@@ -142,7 +142,7 @@ $this->title = 'Новострой';
 
 
 <!-- Start Gallery -->
-
+<!-- 
 <section class="main-gallery" style="margin-bottom: 3em;">
   <div class="container">
     <div class="page-title">Ход строительства</div>
@@ -154,7 +154,7 @@ $this->title = 'Новострой';
 
               <?php foreach ($galleries as $gallery): ?>
                   <div class="swiper-slide">
-                    <?= $this->render('//layouts/template/gallery/_item', ['model' => $gallery]); ?>
+                    <?php // echo $this->render('//layouts/template/gallery/_item', ['model' => $gallery]); ?>
                 </div>
               <?php endforeach; ?>
 
@@ -162,17 +162,17 @@ $this->title = 'Новострой';
           </div>
           <div class="information__navigation">
             <div class="information__navigation-btn main-gallery--prev">
-              <?= Html::img('/static/svg/arrow_p.svg'); ?>
+              <?php // echo Html::img('/static/svg/arrow_p.svg'); ?>
             </div>
             <div class="information__navigation-btn main-gallery--next">
-              <?= Html::img('/static/svg/arrow_n.svg'); ?>
+              <?php // echo Html::img('/static/svg/arrow_n.svg'); ?>
             </div>
           </div>
 
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- End Gallery -->
 
