@@ -52,7 +52,7 @@ $this->title = 'Новострой';
 
 <!-- Start Offers -->
 
-<section class="main-offers" id="offers">
+<!-- <section class="main-offers" id="offers">
   <div class="container">
     <div class="page-title">Действующие акции</div>
     <div class="page__subtitle"></div>
@@ -61,35 +61,35 @@ $this->title = 'Новострой';
           <div class="swiper-container main-offers-slider">
             <div class="swiper-wrapper">
 
-              <?php foreach ($offers->getActiveOffer() as $offer): ?>
+              <?php // foreach ($offers->getActiveOffer() as $offer): ?>
                   <div class="swiper-slide">
 
                   <a href="/offer/<?= $offer->slug; ?>">
                     <div class="news__item">
-                        <?= Html::img($offer->previewThumb, ['class' => 'news__item-img', 'alt' => $offer->name]); ?>
+                        <?php // echo Html::img($offer->previewThumb, ['class' => 'news__item-img', 'alt' => $offer->name]); ?>
                         <div class="news__item-title"><?= $offer->name; ?></div>
                       <div class="room__btn js-open-feedback">Оставить заявку</div>
                     </div>
                   </a>
 
                 </div>
-              <?php endforeach; ?>
+              <?php // endforeach; ?>
 
             </div>
           </div>
           <div class="information__navigation">
             <div class="information__navigation-btn main-offers--prev">
-              <?= Html::img('/static/svg/arrow_p.svg'); ?>
+              <?php // echo Html::img('/static/svg/arrow_p.svg'); ?>
             </div>
             <div class="information__navigation-btn main-offers--next">
-              <?= Html::img('/static/svg/arrow_n.svg'); ?>
+              <?php // echo Html::img('/static/svg/arrow_n.svg'); ?>
             </div>
           </div>
 
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- End Offers -->
 
@@ -152,11 +152,11 @@ $this->title = 'Новострой';
           <div class="swiper-container main-gallery-slider">
             <div class="swiper-wrapper">
 
-              <?php foreach ($galleries as $gallery): ?>
+              <?php // foreach ($galleries as $gallery): ?>
                   <div class="swiper-slide">
                     <?php // echo $this->render('//layouts/template/gallery/_item', ['model' => $gallery]); ?>
                 </div>
-              <?php endforeach; ?>
+              <?php // endforeach; ?>
 
             </div>
           </div>
