@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Другие наши проекты';
+$this->title = 'Объекты группы компаний';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
