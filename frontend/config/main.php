@@ -98,6 +98,7 @@ return [
                 'documents' => 'content/document/index',
                 'payment' => 'content/payment/index',
                 'payment/mortgage' => 'content/payment/mortgage',
+                'projects' => 'content/projects/index',
             ],
         ],
     ],

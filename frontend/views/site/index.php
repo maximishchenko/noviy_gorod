@@ -64,10 +64,10 @@ $this->title = 'Новострой';
               <?php // foreach ($offers->getActiveOffer() as $offer): ?>
                   <div class="swiper-slide">
 
-                  <a href="/offer/<?= $offer->slug; ?>">
+                  <a href="/offer/<?php // echo $offer->slug; ?>">
                     <div class="news__item">
                         <?php // echo Html::img($offer->previewThumb, ['class' => 'news__item-img', 'alt' => $offer->name]); ?>
-                        <div class="news__item-title"><?= $offer->name; ?></div>
+                        <div class="news__item-title"><?php // echo $offer->name; ?></div>
                       <div class="room__btn js-open-feedback">Оставить заявку</div>
                     </div>
                   </a>
