@@ -34,7 +34,7 @@ use yii\helpers\Html;
         <div class="header__right">
             <nav class="header__nav">
                 <?php // echo Html::a('Другие наши проекты', Yii::$app->configManager->getItemValue('anotherProjectsUrl'), ['class' => 'header__nav-link', 'target' => 'blank']); ?>
-                <?= Html::a('Другие наши проекты', ['/projects'], ['class' => 'header__nav-link']); ?>
+                <?= Html::a('Объекты группы компаний', ['/projects'], ['class' => 'header__nav-link']); ?>
                 <?= Html::a('Контакты', ['/contact'], ['class' => 'header__nav-link']); ?>
             </nav>
             <div class="header__blocks">
@@ -78,7 +78,7 @@ use yii\helpers\Html;
             <?php endif; ?>
             <?= Html::a('Способы оплаты', ['/payment'], ['class' => 'mobile-menu__link']); ?>
             <?php // echoHtml::a('Другие наши проекты', Yii::$app->configManager->getItemValue('anotherProjectsUrl'), ['class' => 'mobile-menu__link', 'target' => 'blank']); ?>
-            <?= Html::a('Другие наши проекты', ['/projects'], ['class' => 'mobile-menu__link', 'target' => 'blank']); ?>
+            <?= Html::a('Объекты группы компаний', ['/projects'], ['class' => 'mobile-menu__link', 'target' => 'blank']); ?>
             <?= Html::a('Контакты', ['/contact'], ['class' => 'mobile-menu__link']); ?>
         </div>
     </div>
