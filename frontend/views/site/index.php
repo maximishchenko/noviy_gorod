@@ -8,6 +8,14 @@ $this->title = 'Новострой';
 /** @var $apartmentModel **/
 /** @var $layoutModel **/
 /** @var $stage **/
+
+$about_pictures = [
+  0 => '/images/about/1.jpg',
+  1 => '/images/about/2.jpg',
+  2 => '/images/about/3.jpg',
+  3 => '/images/about/4.jpg',
+  4 => '/images/about/5.jpg',
+];
 ?>
 
 <?php if(!empty($stage)): ?>
@@ -52,44 +60,49 @@ $this->title = 'Новострой';
 
 <!-- Start Offers -->
 
-<!-- <section class="main-offers" id="offers">
+<section class="main-offers" id="offers">
   <div class="container">
-    <div class="page-title">Действующие акции</div>
-    <div class="page__subtitle"></div>
+    <div class="page-title">О застройщике</div>
+    <div class="page__subtitle text-center center">
+      Группа компаний «НовоСтрой» - надежный застройщик ведущий строительную деятельность на территории города Минеральные Воды более 10 лет.
+      Индивидуальный подход к каждому клиенту.
+    </div>
     <div class="main-rooms__content">
       <div class="main-rooms__wrap">
-          <div class="swiper-container main-offers-slider">
+          <div class="swiper-container main-offers-slider" style="max-height: 300px;">
             <div class="swiper-wrapper">
 
-              <?php // foreach ($offers->getActiveOffer() as $offer): ?>
+              <?php foreach ($about_pictures as $about_picture): ?>
                   <div class="swiper-slide">
 
-                  <a href="/offer/<?php // echo $offer->slug; ?>">
+                  <!-- <a href="/offer/<?php // echo $offer->slug; ?>"> -->
                     <div class="news__item">
-                        <?php // echo Html::img($offer->previewThumb, ['class' => 'news__item-img', 'alt' => $offer->name]); ?>
-                        <div class="news__item-title"><?php // echo $offer->name; ?></div>
-                      <div class="room__btn js-open-feedback">Оставить заявку</div>
+                        <?= Html::img($about_picture, ['class' => 'news__item-img', 'alt' => "", "style" => "max-height: 250px; height: 250px"]); ?>
+                        <div class="news__item-title">
+                          <?php // echo $offer->name; ?>
+                        </div>
+                      <!-- <div class="room__btn js-open-feedback">Оставить заявку</div> -->
                     </div>
-                  </a>
+                  <!-- </a> -->
 
                 </div>
-              <?php // endforeach; ?>
+              <?php endforeach; ?>
 
             </div>
           </div>
           <div class="information__navigation">
             <div class="information__navigation-btn main-offers--prev">
-              <?php // echo Html::img('/static/svg/arrow_p.svg'); ?>
+              <?= Html::img('/static/svg/arrow_p.svg'); ?>
             </div>
             <div class="information__navigation-btn main-offers--next">
-              <?php // echo Html::img('/static/svg/arrow_n.svg'); ?>
+              <?= Html::img('/static/svg/arrow_n.svg'); ?>
             </div>
           </div>
 
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- End Offers -->
 

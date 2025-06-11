@@ -124,8 +124,9 @@ $(function () {
     var mainOffersSlider = new Swiper(".main-offers-slider", {
       slidesPerView: 1,
       spaceBetween: 24,
+      autoplay: true,
       navigation: { nextEl: ".main-offers--next", prevEl: ".main-offers--prev" },
-      breakpoints: { 1080: { slidesPerView: 2 }, 820: { slidesPerView: 2 }, 550: { slidesPerView: 2 } },
+      breakpoints: { 1080: { slidesPerView: 3 }, 820: { slidesPerView: 3 }, 550: { slidesPerView: 3 } },
     });
     var mainGallerySlider = new Swiper(".main-gallery-slider", {
       autoplay: true,
