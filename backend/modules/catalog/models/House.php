@@ -12,6 +12,8 @@ use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
+use backend\modules\catalog\models\Healting;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%house}}".
@@ -67,7 +69,7 @@ class House extends \yii\db\ActiveRecord
     {
         return [
             [['comment'], 'string'],
-            [['sort', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['sort', 'status', 'created_at', 'updated_at', 'healting_id', 'created_by', 'updated_by'], 'integer'],
             [['name'], 'string', 'max' => 255],
 
             ['sort', 'default', 'value' => Sort::DEFAULT_SORT_VALUE],
@@ -82,6 +84,7 @@ class House extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'House Name'),
+            'healting_id' => Yii::t('app', 'House healting'),
             'imageFile' => Yii::t('app', 'House Image'),
             'comment' => Yii::t('app', 'Comment'),
             'sort' => Yii::t('app', 'Sort'),
@@ -98,9 +101,21 @@ class House extends \yii\db\ActiveRecord
         return [
             'name' => Yii::t('app', 'House Name Hint'),
             'comment' => Yii::t('app', 'Comment Hint'),
+            'healting_id' => Yii::t('app', 'House healting Hint'),
             'sort' => Yii::t('app', 'Sort Hint. Default value is {sortDefault}', ['sortDefault' => Sort::DEFAULT_SORT_VALUE]),
             'status' => Yii::t('app', 'Status Hint'),
         ];
+    }
+
+    public function getHealting(): ActiveQuery
+    {
+        return $this->hasOne(Healting::class, ['id' => 'healting_id']);
+    }
+    
+    public function getHealtingsItems(): array
+    {
+        $healtings = Healting::find()->orderBy(['name' => SORT_ASC])->all();
+        return ArrayHelper::map($healtings,'id','name');
     }
 
     public function getEntrances(): ActiveQuery

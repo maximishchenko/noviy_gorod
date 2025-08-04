@@ -9,6 +9,8 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+use backend\modules\catalog\models\Healting;
+
 $this->title = Yii::t('app', 'Houses');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'CATALOG_MODULE'), 'url' => ['/catalog']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -42,6 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data) {
                     return Html::a($data->nameWithPrefix, ['update', 'id' => $data->id], []);
                 }
+            ],
+            [
+                'attribute' => 'healting_id',
+                'format' => 'raw',
+                'value' => 'healting.name',
+                'filter' => ArrayHelper::map(Healting::find()->orderBy(['name' => SORT_ASC])->all(), 'id', 'name'),
             ],
             [
                 'attribute' => 'sort',

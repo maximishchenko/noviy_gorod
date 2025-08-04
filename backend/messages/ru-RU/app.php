@@ -323,4 +323,6 @@ return [
     'Healting Edit' => 'Управление данными раздела "Типы отопления"',
     'Healtings' => 'Типы отопления',
     'Healting Name Hint' => 'Наименование типа отопления',
+    'House healting' => 'Тип отопления',
+    'House healting Hint' => 'Укажите тип отопления дома',
 ];
