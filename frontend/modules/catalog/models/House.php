@@ -8,6 +8,7 @@ use frontend\modules\catalog\models\query\HouseQuery;
 use frontend\modules\content\models\Gallery;
 use frontend\traits\cacheParamsTrait;
 use yii\db\ActiveQuery;
+use backend\modules\catalog\models\Healting;
 
 class House extends backendHouse
 {
@@ -18,6 +19,11 @@ class House extends backendHouse
     public static function find(): HouseQuery
     {
         return new HouseQuery(get_called_class());
+    }
+
+    public function getHealting(): ActiveQuery
+    {
+        return $this->hasOne(Healting::class, ['id' => 'healting_id']);
     }
 
     public function getEntrances(): ActiveQuery

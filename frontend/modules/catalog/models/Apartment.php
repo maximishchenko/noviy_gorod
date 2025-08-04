@@ -197,9 +197,9 @@ class Apartment extends backendApartment
     public function getActiveHouses()
     {
         return House::find()->active()->orderBy(['id' => SORT_ASC])->all();
-        return House::getDb()->cache(function () {
-            return House::find()->active()->orderBy(['id' => SORT_ASC])->all();
-        }, House::getCacheDuration(), House::getCacheDependency());
+        //return House::getDb()->cache(function () {
+        //    return House::find()->active()->orderBy(['id' => SORT_ASC])->all();
+        //}, House::getCacheDuration(), House::getCacheDependency());
     }
 
     public function getTotalPrice(): float
