@@ -318,5 +318,9 @@ return [
     'Projects Image' => 'Изображение проекта',
     'Project Name Hint' => 'Наименование проекта',
     'Project imageFile Hint {extensions}' => 'Изображение проекта {extensions}',
-    'Projects Url Hint' => 'Ссылка на раздел проекта'
+    'Projects Url Hint' => 'Ссылка на раздел проекта',
+    'Healting' => 'Типы отопления',
+    'Healting Edit' => 'Управление данными раздела "Типы отопления"',
+    'Healtings' => 'Типы отопления',
+    'Healting Name Hint' => 'Наименование типа отопления',
 ];
