@@ -8,7 +8,7 @@ use common\models\ApartmentStatus;
 
 if (isset($house->name) && !empty($house->name) && isset($house->healting->name) && !empty($house->healting->name))
 {
-  $layout_title = "Литер № " . $house->name . ", " . $house->healting->name . " " . $entrance->numberWithPrefix;
+  $layout_title = "Литер № " . $house->name . ", " . $house->healting->name . " " . mb_strtolower($entrance->numberWithPrefix);
 } elseif (isset($house->name) && !empty($house->name)) {
   $layout_title = "Литер № " . $house->name . ", " . $entrance->numberWithPrefix;
 } else {
